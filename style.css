@@ -1,5 +1,6 @@
 body{
   background: #ddd;
+  font-family: Menlo, Consolas, Monaco, "Lucida Console", monospace;
 }
 
 a{
@@ -9,7 +10,12 @@ a{
 }
 
 a:visited{
-  color: #2873ff;
+  color:#001bff
+}
+
+a:hover{
+  color: #1ea9ff;
+  text-decoration: underline;
 }
 
 table {
@@ -29,8 +35,10 @@ td {
 }
 
 textarea{
-  min-height: 500px;
+  min-height: 550px;
   width: 99%;
+  font-size: large;
+  font-family: Menlo, Consolas, Monaco, "Lucida Console", monospace;
 }
 
 .osf_time {
@@ -54,4 +62,9 @@ textarea{
   margin: 0px 5px 30px 15px;
   display: list-item;
   list-style: none;
+}
+
+#info{
+  margin: 45px auto 15px auto;
+  width: 550px;
 }
