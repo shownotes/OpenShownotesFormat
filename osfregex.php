@@ -101,6 +101,7 @@ function osf_export_psc($array)
           }
       }
     $returnstring .= '</sc:chapters>'."\n";
+    $returnstring = preg_replace('(\s+")', '"', $returnstring);
     return $returnstring;
   }
 

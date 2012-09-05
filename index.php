@@ -31,7 +31,12 @@ if(!isset($_GET['podcast']))
             echo '</tr>';
           }
       }
-    //echo '<tr><th colspan="7"><form action="./?mode=textarea" method="POST"><textarea></textarea></th><br><input type="submit" value=" Absenden "></tr>';
+    echo '<tr><th colspan="7"><hr><form action="./form.php?mode=textarea" method="POST"><textarea name="shownote" style="min-height:100px;"></textarea><br><select name="mode">
+  <option>PSC</option>
+  <option>HTML</option>
+  <option>JSON</option>
+</select><input type="submit" value=" Absenden "></form></th></tr>';
+
     echo '</table><div id="info">mehr Informationen gibt es im zugeh&ouml;rigen <a href="https://github.com/SimonWaldherr/OpenShownotesFormat">GitHub Repo</a>. <br>&sup1;) PSC = Podlove Simple Chapters, mehr informationen dazu gibt es auf <a href="http://podlove.org/simple-chapters/">podlove.org</a>.';
   }
 else
