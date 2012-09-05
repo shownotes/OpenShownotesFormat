@@ -15,7 +15,7 @@ if(!isset($_GET['podcast']))
     $Podcastverzeichnis = './Beispiele/';
     $Podcastliste       = scandir($Podcastverzeichnis);
     
-    echo '<table><tr><td>Datei</td><td>json</td><td>php</td><td>html</td><td>mehr html</td><td>PSC&sup1;</td><td>OSF-Class</td></tr>';
+    echo '<table><tr><td>Datei</td><td>json</td><td>php</td><td>html</td><td>mehr html</td><td>PSC&sup1;</td><td>chapter</td><td>OSF-Class</td></tr>';
     foreach($Podcastliste as $Podcast)
       {
         if(($Podcast != '.')&&($Podcast != '..'))
@@ -27,14 +27,16 @@ if(!isset($_GET['podcast']))
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=html">link</a></td>';
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=morehtml">link</a></td>';
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=psc">link</a></td>';
+            echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=chapter">link</a></td>';
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=osfc">link</a></td>';
             echo '</tr>';
           }
       }
-    echo '<tr><th colspan="7"><hr><form action="./form.php?mode=textarea" method="POST"><textarea name="shownote" style="min-height:100px;"></textarea><br><select name="mode">
+    echo '<tr><th colspan="8"><hr><form action="./form.php?mode=textarea" method="POST"><textarea name="shownote" style="min-height:100px;"></textarea><br><select name="mode">
   <option>PSC</option>
   <option>HTML</option>
   <option>JSON</option>
+  <option>chapter</option>
 </select><input type="submit" value=" Absenden "></form></th></tr>';
 
     echo '</table><div id="info">mehr Informationen gibt es im zugeh&ouml;rigen <a href="https://github.com/SimonWaldherr/OpenShownotesFormat">GitHub Repo</a>. <br>&sup1;) PSC = Podlove Simple Chapters, mehr informationen dazu gibt es auf <a href="http://podlove.org/simple-chapters/">podlove.org</a>.';
@@ -76,6 +78,10 @@ else
       {
         echo '<textarea>'.osf_export_psc($shownotes['export']).'</textarea>';
         $timer['osf_export_psc'] = microtime(1)-$starttime;
+      }
+    elseif($_GET['mode'] == 'chapter')
+      {
+        echo '<form action="./form.php?mode=download" method="POST"><textarea name="download" style="min-height:300px;">'.osf_export_chapterlist($shownotes['export']).'</textarea><input type="submit" value=" Download "></form>';
       }
     elseif($_GET['mode'] == 'osfc')
       {
