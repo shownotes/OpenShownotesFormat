@@ -19,9 +19,10 @@ function osf_parser($shownotes)
       {
         unset($newarray);
         
-        preg_match_all($pattern['tags'], $zeile[4], $tags, PREG_PATTERN_ORDER);
-        preg_match_all($pattern['urls'], $zeile[4], $urls, PREG_PATTERN_ORDER);
-        preg_match_all($pattern['urls2'], $zeile[4], $urls2, PREG_PATTERN_ORDER);
+        $text = $zeile[4].' ';
+        preg_match_all($pattern['tags'],  $text, $tags,  PREG_PATTERN_ORDER);
+        preg_match_all($pattern['urls'],  $text, $urls,  PREG_PATTERN_ORDER);
+        preg_match_all($pattern['urls2'], $text, $urls2, PREG_PATTERN_ORDER);
         
         $urls = array_merge($urls[2], $urls2[2]);
         
@@ -34,7 +35,6 @@ function osf_parser($shownotes)
           {
             $newarray['chapter'] = true;
           }
-        
         if(preg_match($pattern['kaskade'], $zeile[0]))
           {
             $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
@@ -45,9 +45,7 @@ function osf_parser($shownotes)
             $returnarray['export'][$i] = $newarray;
             $lastroot = $i;
             $kaskadei = 0;
-            
           }
-        
         ++$i;
       }
     $returnarray['info']['zeilen']  = $i;
@@ -64,22 +62,25 @@ function osf_get_chapter($array)
       {
         if($item['chapter'])
           {
+            $filterpattern = array('((#)(\S*))', '(\<((http(|s)://\S{0,64})>))', '(\s+((http(|s)://\S{0,64})\s))');
+            $text = preg_replace($filterpattern, '', $item['text']);
             $returnstring .= '<span class="osf_time">'.$item['time'].'</span> '."\n";
-            $returnstring .= '<span class="osf_text">'.$item['text'].'</span> '."\n";
+            $returnstring .= '<span class="osf_text">'.$text.'</span> '."\n";
             $returnstring .= '<span class="osf_tags">';
             foreach($item['tags'] as $tag)
               {
-                $returnstring .= $tag.' ';
+                $returnstring .= '#'.$tag.' ';
               }
             $returnstring .= '</span> '."\n";
             $returnstring .= '<span class="osf_urls">';
             foreach($item['urls'] as $url)
               {
-                $returnstring .= $url.' ';
+                $returnstring .= '<a href="'.$url.'">'.$url.'</a> ';
               }
             $returnstring .= '</span> '."\n";
           }
       }
     return $returnstring;
   }
+
 ?>
