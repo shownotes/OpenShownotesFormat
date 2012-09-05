@@ -5,8 +5,8 @@ function osf_parser($shownotes)
 
     $pattern['zeilen']    = '/((\d\d:\d\d:\d\d)(.\d\d\d)*)*(.+)/';
     $pattern['tags']      = '((#)(\S*))';
-    $pattern['urls']      = '(\s+((http(|s)://\S{0,64})\s))';
-    $pattern['urls2']     = '(\<((http(|s)://\S{0,64})>))';
+    $pattern['urls']      = '(\s+((http(|s)://\S{0,128})\s))';
+    $pattern['urls2']     = '(\<((http(|s)://\S{0,128})>))';
     $pattern['kaskade']   = '/^(-+ )/';
     
     preg_match_all($pattern['zeilen'], $shownotes, $zeilen, PREG_SET_ORDER);
@@ -28,13 +28,20 @@ function osf_parser($shownotes)
         
         $newarray['time'] = $zeile[1];
         $newarray['text'] = $zeile[4];
-        $newarray['tags'] = $tags[2];
-        $newarray['urls'] = $urls;
-        
-        if(((in_array("Chapter", $newarray['tags']))||(in_array("chapter", $newarray['tags'])))&&($newarray['time'] != ''))
+        if(@count($tags[2])>0)
           {
-            $newarray['chapter'] = true;
+            $newarray['tags'] = $tags[2];
+            if(((in_array("Chapter", $newarray['tags']))||(in_array("chapter", $newarray['tags'])))&&($newarray['time'] != ''))
+              {
+                $newarray['chapter'] = true;
+              }
           }
+        if(@count($urls)>0)
+          {
+            $newarray['urls'] = $urls;
+          }
+        
+        
         if(preg_match($pattern['kaskade'], $zeile[0]))
           {
             $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
@@ -55,28 +62,36 @@ function osf_parser($shownotes)
     return $returnarray;
   }
 
-function osf_get_chapter_html($array)
+function osf_get_chapter_html($array, $full=false)
   {
     $returnstring = '';
     foreach($array as $item)
       {
-        if($item['chapter'])
+        if(($item['chapter'])||(($full)&&($item['time'] != '')))
           {
             $filterpattern = array('((#)(\S*))', '(\<((http(|s)://\S{0,64})>))', '(\s+((http(|s)://\S{0,64})\s))');
             $text = preg_replace($filterpattern, '', $item['text']);
             $returnstring .= '<span class="osf_time">'.$item['time'].'</span> '."\n";
             $returnstring .= '<span class="osf_text">'.$text.'</span> '."\n";
             $returnstring .= '<span class="osf_tags">';
-            foreach($item['tags'] as $tag)
+            if(is_array($item['tags']))
               {
-                $returnstring .= '#'.$tag.' ';
+                foreach($item['tags'] as $tag)
+                  {
+                    $returnstring .= '#'.$tag.' ';
+                  }
               }
+            
             $returnstring .= '</span> '."\n";
             $returnstring .= '<span class="osf_urls">';
-            foreach($item['urls'] as $url)
+            if(is_array($item['urls']))
               {
-                $returnstring .= '<a href="'.$url.'">'.$url.'</a> ';
+                foreach($item['urls'] as $url)
+                  {
+                    $returnstring .= '<a href="'.$url.'">'.$url.'</a> ';
+                  }
               }
+            
             $returnstring .= '</span> '."\n";
           }
       }
@@ -90,7 +105,7 @@ function osf_export_psc($array)
       {
         if($item['chapter'])
           {
-            $filterpattern = array('((#)(\S*))', '(\<((http(|s)://\S{0,64})>))', '(\s+((http(|s)://\S{0,64})\s))');
+            $filterpattern = array('((#)(\S*))', '(\<((http(|s)://\S{0,128})>))', '(\s+((http(|s)://\S{0,128})\s))');
             $text = preg_replace($filterpattern, '', $item['text']);
             $returnstring .= '<sc:chapter start="'.$item['time'].'" title="'.$text.'"';
             if(isset($item['urls'][0]))

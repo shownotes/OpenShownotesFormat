@@ -15,17 +15,17 @@ if(!isset($_GET['podcast']))
     $Podcastverzeichnis = './Beispiele/';
     $Podcastliste       = scandir($Podcastverzeichnis);
     
-    echo '<table><tr><td>Datei</td><td>plaintext</td><td>json</td><td>var_dump()</td><td>html</td><td>PSC&sup1;</td><td>OSF-Class</td></tr>';
+    echo '<table><tr><td>Datei</td><td>json</td><td>php</td><td>html</td><td>mehr html</td><td>PSC&sup1;</td><td>OSF-Class</td></tr>';
     foreach($Podcastliste as $Podcast)
       {
         if(($Podcast != '.')&&($Podcast != '..'))
           {
             echo '<tr>';
-            echo '<td>'.$Podcast.'</td>';
-            echo '<td><a href="'.$Podcastverzeichnis.$Podcast.'">link</a></td>';
+            echo '<td><a href="'.$Podcastverzeichnis.$Podcast.'">'.$Podcast.'</a></td>';
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=json">link</a></td>';
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'">link</a></td>';
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=html">link</a></td>';
+            echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=morehtml">link</a></td>';
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=psc">link</a></td>';
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=osfc">link</a></td>';
             echo '</tr>';
@@ -67,6 +67,11 @@ else
         echo osf_get_chapter_html($shownotes['export']);
         $timer['osf_get_chapter_html'] = microtime(1)-$starttime;
       }
+    elseif($_GET['mode'] == 'morehtml')
+    {
+      echo osf_get_chapter_html($shownotes['export'], true);
+      $timer['osf_get_chapter_morehtml'] = microtime(1)-$starttime;
+    }
     elseif($_GET['mode'] == 'psc')
       {
         echo '<textarea>'.osf_export_psc($shownotes['export']).'</textarea>';
@@ -84,12 +89,9 @@ else
       }
     else
       {
-        ob_start();
-        var_dump($shownotes);
-        $buffer = ob_get_clean();
-        $buffer = nl2br(str_replace(' ', '&nbsp;', $buffer));
-        echo $buffer;
-        //echo nl2br($buffer);
+        echo '<textarea>';
+        print_r($shownotes);
+        echo '</textarea>';
         $timer['var_dump'] = microtime(1)-$starttime;
       }
     
