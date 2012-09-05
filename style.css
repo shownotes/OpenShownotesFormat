@@ -28,6 +28,11 @@ td {
   min-width: 90px;
 }
 
+textarea{
+  min-height: 500px;
+  width: 99%;
+}
+
 .osf_time {
   font-weight: bolder;
   display: list-item;

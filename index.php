@@ -15,7 +15,7 @@ if(!isset($_GET['podcast']))
     $Podcastverzeichnis = './Beispiele/';
     $Podcastliste       = scandir($Podcastverzeichnis);
     
-    echo '<table><tr><td>Datei</td><td>plaintext</td><td>json</td><td>var_dump()</td><td>html</td><td>OSF-Class</td></tr>';
+    echo '<table><tr><td>Datei</td><td>plaintext</td><td>json</td><td>var_dump()</td><td>html</td><td>PSC</td><td>OSF-Class</td></tr>';
     foreach($Podcastliste as $Podcast)
       {
         if(($Podcast != '.')&&($Podcast != '..'))
@@ -26,6 +26,7 @@ if(!isset($_GET['podcast']))
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=json">link</a></td>';
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'">link</a></td>';
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=html">link</a></td>';
+            echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=psc">link</a></td>';
             echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=osfc">link</a></td>';
             echo '</tr>';
           }
@@ -43,7 +44,7 @@ else
     
     if($_GET['mode'] == 'json')
       {
-        echo json_encode($shownotes['export']);
+        echo '<textarea>'.json_encode($shownotes['export']).'</textarea>';
       }
     elseif($_GET['mode'] == 'xml')
       {
@@ -54,13 +55,19 @@ else
       }
     elseif($_GET['mode'] == 'html')
       {
-        echo osf_get_chapter($shownotes['export']);
+        echo osf_get_chapter_html($shownotes['export']);
+      }
+    elseif($_GET['mode'] == 'psc')
+      {
+        echo '<textarea>'.osf_export_psc($shownotes['export']).'</textarea>';
       }
     elseif($_GET['mode'] == 'osfc')
       {
         include "./OpenShownotesClass.php";
         $sn = new Shownotes($content);
+        echo '<textarea>';
         print_r($sn->items);
+        echo '</textarea>';
       }
     else
       {

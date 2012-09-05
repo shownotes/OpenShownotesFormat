@@ -55,7 +55,7 @@ function osf_parser($shownotes)
     return $returnarray;
   }
 
-function osf_get_chapter($array)
+function osf_get_chapter_html($array)
   {
     $returnstring = '';
     foreach($array as $item)
@@ -80,6 +80,27 @@ function osf_get_chapter($array)
             $returnstring .= '</span> '."\n";
           }
       }
+    return $returnstring;
+  }
+
+function osf_export_psc($array)
+  {
+    $returnstring = '<!-- specify chapter information -->'."\n".'<sc:chapters version="1.0">'."\n";
+    foreach($array as $item)
+      {
+        if($item['chapter'])
+          {
+            $filterpattern = array('((#)(\S*))', '(\<((http(|s)://\S{0,64})>))', '(\s+((http(|s)://\S{0,64})\s))');
+            $text = preg_replace($filterpattern, '', $item['text']);
+            $returnstring .= '<sc:chapter start="'.$item['time'].'" title="'.$text.'"';
+            if(isset($item['urls'][0]))
+              {
+                $returnstring .= ' href="'.$item['urls'][0].'"';
+              }
+            $returnstring .= ' />'."\n";
+          }
+      }
+    $returnstring .= '</sc:chapters>'."\n";
     return $returnstring;
   }
 
