@@ -16,7 +16,6 @@ Die Shownotes bestehen aus mehreren einzelnen Zeilen, "Items". Jedes Item enthä
 - Titel/Text, Rauten ```#``` ***0x23*** werden darin per vorgestelltem backslash ```\``` ***0x5C*** escaped
 - Links (optional) [Format: ```<URL>``` oder ```[Beschreibung](URL)```] //Da Kapitelmarken in Mediadateien nur maximal einen Link pro Kapitel erlauben, wird hierzu nur der erste Link verwendet.
 - Tags (optional) [Format: ```#tag``` ...]
-- Zeitangaben ausserhalb der Sendung (optional) [Format: ```(dd.mm.yyyy[ - hh:mm[:ss]]```]
 
 ---
 
