@@ -78,3 +78,5 @@ Der gesammte Inhalt dieses Repos steht unter der MIT Lizenz zur Verfügung.
 Jeder ist eingeladen, bei diesem Projekt mitzuwirken.
 
 OSF ist Teil des [Shownot.es Projekt](http://shownot.es/), sowie von [Podlove](http://podlove.org/)
+
+Eine Demoversion ist unter <http://simon.waldherr.eu/projects/osf/> zu finden.
