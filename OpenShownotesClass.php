@@ -15,11 +15,8 @@ class Shownotes
 					$ln = trim(substr($ln, 1));
 					$subcounter += 1;
 				} else { if(isset($subcounter)){ unset($subcounter); } }
-				$otime = strstr($ln, " ", TRUE);
-				date_default_timezone_set('Europe/Berlin');
-				if ((($time = DateTime::createFromFormat("G:i:s.u", $otime)) !== FALSE) || (($time = DateTime::createFromFormat("G:i:s", $otime)) !== FALSE)){
-					$ln = trim(strstr($ln, " "));
-				}
+				$time = substr($ln, 0, strpos($ln, " "));
+
 				$text_end = FALSE;
 				$tags = array();
 				$urls = array();

@@ -31,6 +31,7 @@ if(!isset($_GET['podcast']))
             echo '</tr>';
           }
       }
+    //echo '<tr><th colspan="7"><form action="./?mode=textarea" method="POST"><textarea></textarea></th><br><input type="submit" value=" Absenden "></tr>';
     echo '</table><div id="info">mehr Informationen gibt es im zugeh&ouml;rigen <a href="https://github.com/SimonWaldherr/OpenShownotesFormat">GitHub Repo</a>. <br>&sup1;) PSC = Podlove Simple Chapters, mehr informationen dazu gibt es auf <a href="http://podlove.org/simple-chapters/">podlove.org</a>.';
   }
 else
@@ -40,11 +41,14 @@ else
     $handle = fopen($Shownotedatei, "r");
     $content = fread($handle, filesize($Shownotedatei));
     fclose($handle);
-    $shownotes = osf_parser($content);
     
+    $starttime = microtime(1);
+    $shownotes = osf_parser($content);
+    $timer['osf_parser'] = microtime(1)-$starttime;
     if($_GET['mode'] == 'json')
       {
         echo '<textarea>'.json_encode($shownotes['export']).'</textarea>';
+        $timer['json_encode'] = microtime(1)-$starttime;
       }
     elseif($_GET['mode'] == 'xml')
       {
@@ -56,18 +60,22 @@ else
     elseif($_GET['mode'] == 'html')
       {
         echo osf_get_chapter_html($shownotes['export']);
+        $timer['osf_get_chapter_html'] = microtime(1)-$starttime;
       }
     elseif($_GET['mode'] == 'psc')
       {
         echo '<textarea>'.osf_export_psc($shownotes['export']).'</textarea>';
+        $timer['osf_export_psc'] = microtime(1)-$starttime;
       }
     elseif($_GET['mode'] == 'osfc')
       {
         include "./OpenShownotesClass.php";
+        $starttime_osc = microtime(1);
         $sn = new Shownotes($content);
         echo '<textarea>';
         print_r($sn->items);
         echo '</textarea>';
+        $timer['osc'] = microtime(1)-$starttime_osc;
       }
     else
       {
@@ -77,7 +85,12 @@ else
         $buffer = nl2br(str_replace(' ', '&nbsp;', $buffer));
         echo $buffer;
         //echo nl2br($buffer);
+        $timer['var_dump'] = microtime(1)-$starttime;
       }
+    
+    echo '<!--';
+    var_dump($timer);
+    echo '-->';
   }
 ?>
 
