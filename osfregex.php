@@ -3,11 +3,11 @@
 function osf_parser($shownotes)
   {
 
-    $pattern['zeilen']    = '/((\d\d:\d\d:\d\d)(.\d\d\d)*)*(.+)/';
+    $pattern['zeilen']    = '/((\d\d:\d\d:\d\d)(\\.\d\d\d)?)*(.+)/';
     $pattern['tags']      = '((#)(\S*))';
     $pattern['urls']      = '(\s+((http(|s)://\S{0,128})\s))';
     $pattern['urls2']     = '(\<((http(|s)://\S{0,128})>))';
-    $pattern['kaskade']   = '/^(-+ )/';
+    $pattern['kaskade']   = '/^([\t ]*-+ )/';
     
     preg_match_all($pattern['zeilen'], $shownotes, $zeilen, PREG_SET_ORDER);
     
@@ -71,28 +71,17 @@ function osf_get_chapter_html($array, $full=false)
           {
             $filterpattern = array('((#)(\S*))', '(\<((http(|s)://\S{0,64})>))', '(\s+((http(|s)://\S{0,64})\s))');
             $text = preg_replace($filterpattern, '', $item['text']);
+            $returnstring .= '<div class="osf_item">'."\n";
             $returnstring .= '<span class="osf_time">'.$item['time'].'</span> '."\n";
-            $returnstring .= '<span class="osf_text">'.$text.'</span> '."\n";
-            $returnstring .= '<span class="osf_tags">';
-            if(is_array($item['tags']))
+            if(isset($item['urls'][0]))
               {
-                foreach($item['tags'] as $tag)
-                  {
-                    $returnstring .= '#'.$tag.' ';
-                  }
+                $returnstring .= '<span class="osf_text"><a href="'.$item['urls'][0].'">'.$text.'</a></span> '."\n";
               }
-            
-            $returnstring .= '</span> '."\n";
-            $returnstring .= '<span class="osf_urls">';
-            if(is_array($item['urls']))
+            else
               {
-                foreach($item['urls'] as $url)
-                  {
-                    $returnstring .= '<a href="'.$url.'">'.$url.'</a> ';
-                  }
+                $returnstring .= '<span class="osf_text">'.$text.'</span> '."\n";
               }
-            
-            $returnstring .= '</span> '."\n";
+            $returnstring .= '</div>'."\n";
           }
       }
     return $returnstring;

@@ -49,9 +49,6 @@ if($_POST['mode'] == 'JSON')
 elseif($_POST['mode'] == 'XML')
   {
     echo 'sorry, xml-export is currently not working';
-    //$xml = new SimpleXMLElement('<root/>');
-    //array_walk_recursive($shownotes, array ($xml, 'addChild'));
-    //print $xml->asXML();
   }
 elseif($_POST['mode'] == 'HTML')
   {
