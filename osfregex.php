@@ -3,11 +3,11 @@
 function osf_parser($shownotes)
   {
 
-    $pattern['zeilen']    = '/((\d\d:\d\d:\d\d)(.\d\d\d)*)*(.+)/';
+    $pattern['zeilen']    = '/((\d\d:\d\d:\d\d)(\\.\d\d\d)?)*(.+)/';
     $pattern['tags']      = '((#)(\S*))';
     $pattern['urls']      = '(\s+((http(|s)://\S{0,128})\s))';
     $pattern['urls2']     = '(\<((http(|s)://\S{0,128})>))';
-    $pattern['kaskade']   = '/^(-+ )/';
+    $pattern['kaskade']   = '/^([\t ]+-{1,2} )/';
     
     preg_match_all($pattern['zeilen'], $shownotes, $zeilen, PREG_SET_ORDER);
     
