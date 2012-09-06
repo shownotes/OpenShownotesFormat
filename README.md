@@ -78,4 +78,7 @@ Jeder ist eingeladen, bei diesem Projekt mitzuwirken.
 
 OSF ist Teil des [Shownot.es Projekt](http://shownot.es/), sowie von [Podlove](http://podlove.org/)
 
-Eine Demoversion ist unter <http://simon.waldherr.eu/projects/osf/> zu finden.
+Eine Demoversion ist unter <http://simon.waldherr.eu/projects/osf/> zu finden.  
+Diese enthält die beiden Referenz-Implementierungen osf_parser (osfregex.php) und Shownotes Class (OpenShownotesClass.php)  
+Zur automatisierten Nutzung ist das Ganze auch via API erreichbar: http://simon.waldherr.eu/projects/osf/api.php?mode=**$mode**&pad=**$pad**  
+Beispiel: [simon.waldherr.eu/projects/osf/api.php?mode=**morehtml**&pad=**mm95**](http://simon.waldherr.eu/projects/osf/api.php?mode=morehtml&pad=mm95)  

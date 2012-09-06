@@ -72,7 +72,15 @@ function osf_get_chapter_html($array, $full=false)
             $filterpattern = array('((#)(\S*))', '(\<((http(|s)://\S{0,64})>))', '(\s+((http(|s)://\S{0,64})\s))');
             $text = preg_replace($filterpattern, '', $item['text']);
             $returnstring .= '<div class="osf_item">'."\n";
-            $returnstring .= '<span class="osf_time">'.$item['time'].'</span> '."\n";
+            if(strpos($item['time'], '.'))
+              {
+                $time = $item['time'];
+              }
+            else
+              {
+                $time = $item['time'].'.000 ';
+              }
+            $returnstring .= '<span class="osf_time">'.$time.'</span> '."\n";
             if(isset($item['urls'][0]))
               {
                 $returnstring .= '<span class="osf_text"><a href="'.$item['urls'][0].'">'.$text.'</a></span> '."\n";
@@ -96,7 +104,15 @@ function osf_export_psc($array)
           {
             $filterpattern = array('((#)(\S*))', '(\<((http(|s)://\S{0,128})>))', '(\s+((http(|s)://\S{0,128})\s))');
             $text = preg_replace($filterpattern, '', $item['text']);
-            $returnstring .= '<sc:chapter start="'.$item['time'].'" title="'.$text.'"';
+            if(strpos($item['time'], '.'))
+              {
+                $time = $item['time'];
+              }
+            else
+              {
+                $time = $item['time'].'.000 ';
+              }
+            $returnstring .= '<sc:chapter start="'.$time.'" title="'.$text.'"';
             if(isset($item['urls'][0]))
               {
                 $returnstring .= ' href="'.$item['urls'][0].'"';
