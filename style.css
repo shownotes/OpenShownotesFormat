@@ -68,3 +68,46 @@ textarea{
   margin: 45px auto 15px auto;
   width: 550px;
 }
+
+.anycaststyle{
+  width: 750px;
+  margin: auto;
+}
+
+dl {
+  width: 540px;
+  padding-bottom: 10px;
+  float: left;
+  padding: 40px 80px 30px 120px;
+  background: #FEFEFE;
+  border-radius: 55px;
+}
+
+dd a, dd a:hover, dd a:visited{
+  color: #B20000;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+dt {
+  font: 16px/24px Aller, Helmet, Freesans, sans-serif;
+  color: #BABABA;
+  width: 80px;
+  margin-left: -80px;
+  float: left;
+  cursor: pointer;
+}
+
+dd {
+  padding-bottom: 6px;
+  font: 14px/20px Aller, Helmet, Freesans, sans-serif;
+}
+
+dd strong {
+  display: inline-block;
+  font: bold 16px/24px Aller, Helmet, Freesans, sans-serif;
+}
+
+dd strong a, dd strong a:hover, dd strong a:visited{
+  font-weight: bold;
+}

@@ -71,7 +71,7 @@ else
       }
     elseif($_GET['mode'] == 'morehtml')
     {
-      echo osf_get_chapter_html($shownotes['export'], true);
+      echo '<div class="anycaststyle">'.osf_get_chapter_html($shownotes['export'], true).'</div>';
       $timer['osf_get_chapter_morehtml'] = microtime(1)-$starttime;
     }
     elseif($_GET['mode'] == 'psc')
