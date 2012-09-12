@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>Open Shownotes Format</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
+    <link href="./css/anycast.css" rel="stylesheet" type="text/css">
     
 </head>
 <body>
@@ -66,21 +67,25 @@ else
       }
     elseif($_GET['mode'] == 'html')
       {
-        echo osf_get_chapter_html($shownotes['export']);
+        include "./export/anycast.php";
+        echo '<div class="anycaststyle">'.osf_export_anycast($shownotes['export']).'</div>';
         $timer['osf_get_chapter_html'] = microtime(1)-$starttime;
       }
     elseif($_GET['mode'] == 'morehtml')
     {
-      echo '<div class="anycaststyle">'.osf_get_chapter_html($shownotes['export'], true).'</div>';
+      include "./export/anycast.php";
+      echo '<div class="anycaststyle">'.osf_export_anycast($shownotes['export'], true).'</div>';
       $timer['osf_get_chapter_morehtml'] = microtime(1)-$starttime;
     }
     elseif($_GET['mode'] == 'psc')
       {
+        include "./export/psc.php";
         echo '<textarea>'.osf_export_psc($shownotes['export']).'</textarea>';
         $timer['osf_export_psc'] = microtime(1)-$starttime;
       }
     elseif($_GET['mode'] == 'chapter')
       {
+        include "./export/chapterlist.php";
         echo '<form action="./form.php?mode=download" method="POST"><textarea name="download" style="min-height:300px;">'.osf_export_chapterlist($shownotes['export']).'</textarea><input type="submit" value=" Download "></form>';
       }
     elseif($_GET['mode'] == 'osfc')

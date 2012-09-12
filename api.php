@@ -33,21 +33,25 @@ if(($mode != '')&&($getpad != ''))
       }
     elseif($_GET['mode'] == 'html')
       {
+        include "./export/anycast.php";
         header("Content-Type: text/html");
-        echo osf_get_chapter_html($shownotes['export']);
+        echo osf_export_anycast($shownotes['export']);
       }
     elseif($_GET['mode'] == 'morehtml')
       {
+        include "./export/anycast.php";
         header("Content-Type: text/html");
-        echo osf_get_chapter_html($shownotes['export'], true);
+        echo osf_export_anycast($shownotes['export'], true);
       }
     elseif($_GET['mode'] == 'psc')
       {
+        include "./export/psc.php";
         header("Content-Type: text/plain");
         echo osf_export_psc($shownotes['export']);
       }
     elseif($_GET['mode'] == 'chapter')
       {
+        include "./export/chapterlist.php";
         header("Content-Type: text/plain");
         echo osf_export_chapterlist($shownotes['export']);
       }

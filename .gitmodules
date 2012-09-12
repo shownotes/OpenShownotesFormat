@@ -1,0 +1,3 @@
+[submodule "reqwest"]
+	path = reqwest
+	url = https://SimonWaldherr@github.com/SimonWaldherr/reqwest.git

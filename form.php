@@ -13,7 +13,8 @@ if($_GET['mode'] == 'download')
 <head>
     <meta charset="utf-8">
     <title>Open Shownotes Format</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
+    <link href="./css/anycast.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
