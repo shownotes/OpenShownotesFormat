@@ -20,6 +20,12 @@ function osf_export_anycast($array, $full=false)
               {
                 $time = $item['time'];
               }
+            
+            if(($item['chapter'])&&($full)&&($time != '')&&($time != '00:00:00'))
+              {
+                $returnstring .= '<hr>';
+              }
+            
             $returnstring .= '<dt data-time="'.osf_convert_time($time).'">'.$time.'</dt>'."\n".'<dd>';
             if(isset($item['urls'][0]))
               {

@@ -3,6 +3,11 @@
   margin: auto;
 }
 
+.anycaststyle hr {
+  /* background: #EEE; use this for multicolor lines */
+  border: 1px dotted #DDD;
+}
+
 dl {
   width: 540px;
   padding-bottom: 10px;
