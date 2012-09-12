@@ -3,8 +3,8 @@
   margin: auto;
 }
 
-.anycaststyle hr {
-  /* background: #EEE; use this for multicolor lines */
+hr.anycaststyle{
+  background: #FEFEFE;
   border: 1px dotted #DDD;
 }
 
@@ -44,4 +44,10 @@ dd strong {
 
 dd strong a, dd strong a:hover, dd strong a:visited{
   font-weight: bold;
+}
+
+strong.chapter{
+  margin-left: -25px;
+  font-size: 25px;
+
 }

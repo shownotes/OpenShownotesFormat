@@ -29,11 +29,21 @@ function osf_export_anycast($array, $full=false)
             $returnstring .= '<dt data-time="'.osf_convert_time($time).'">'.$time.'</dt>'."\n".'<dd>';
             if(isset($item['urls'][0]))
               {
-                $returnstring .= '<strong><a href="'.$item['urls'][0].'">'.$text.'</a></strong> '."\n";
+                $returnstring .= '<strong';
+                if(($item['chapter'])&&($time != ''))
+                  {
+                    $returnstring .= ' class="chapter"';
+                  }
+                $returnstring .= '><a href="'.$item['urls'][0].'">'.$text.'</a></strong> '."\n";
               }
             else
               {
-                $returnstring .= '<strong>'.$text.'</strong> '."\n";
+                $returnstring .= '<strong';
+                if(($item['chapter'])&&($time != ''))
+                  {
+                    $returnstring .= ' class="chapter"';
+                  }
+                $returnstring .= '>'.$text.'</strong> '."\n";
               }
             if(isset($item['subitems']))
               {
