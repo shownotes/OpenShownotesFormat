@@ -19,14 +19,15 @@ a:hover{
 }
 
 table {
-  margin: 35px auto 0px auto;
+  margin: 42px auto 0px auto;
   border: 1px solid #CCC;
   background: white;
   border-radius: 7px;
   padding: 25px;
+  min-width: 800px;
   
-  -webkit-box-shadow:  0px 3px 10px 0px rgba(0, 0, 0, 0.4);
-  box-shadow:  0px 3px 10px 0px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow:  0px 3px 10px 0px rgba(23, 23, 23, 0.4);
+  box-shadow:  0px 3px 10px 0px rgba(23, 23, 23, 0.4);
 }
 
 td {
