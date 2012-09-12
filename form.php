@@ -22,9 +22,11 @@ if($_GET['mode'] == 'download')
 <?php
 
 echo '<form action="./form.php?mode=textarea" method="POST"><textarea name="shownote" style="min-height:300px;">'.$_POST['shownote'].'</textarea><br><select name="mode">
-  <option>JSON</option>
-  <option>HTML</option>
   <option>PSC</option>
+  <option>anycast</option>
+  <option>anycast-long</option>
+  <option>metaebene</option>
+  <option>JSON</option>
   <option>chapter</option>
 </select><input type="submit" value=" Absenden "></form><br><br><hr><br><br>';
 
@@ -38,33 +40,46 @@ include "./osfregex.php";
 
 $content = $_POST['shownote'];
 
-
-$starttime = microtime(1);
 $shownotes = osf_parser($content);
-$timer['osf_parser'] = microtime(1)-$starttime;
+
 if($_POST['mode'] == 'JSON')
   {
     echo '<textarea>'.json_encode($shownotes['export']).'</textarea>';
-    $timer['json_encode'] = microtime(1)-$starttime;
   }
 elseif($_POST['mode'] == 'XML')
   {
     echo 'sorry, xml-export is currently not working';
   }
-elseif($_POST['mode'] == 'HTML')
+elseif($_POST['mode'] == 'anycast')
   {
-    echo osf_get_chapter_html($shownotes['export']);
-    $timer['osf_get_chapter_html'] = microtime(1)-$starttime;
+    include "./export/anycast.php";
+    echo '<div class="anycaststyle">'.osf_export_anycast($shownotes['export']).'</div>';
+  }
+elseif($_POST['mode'] == 'anycast-long')
+  {
+    include "./export/anycast.php";
+    echo '<div class="anycaststyle">'.osf_export_anycast($shownotes['export'], true).'</div>';
   }
 elseif($_POST['mode'] == 'PSC')
   {
+    include "./export/psc.php";
     echo '<textarea>'.osf_export_psc($shownotes['export']).'</textarea>';
-    $timer['osf_export_psc'] = microtime(1)-$starttime;
+  }
+elseif($_POST['mode'] == 'metaebene')
+  {
+    include "./export/metaebene.php";
+    echo osf_export_metaebene($shownotes['export']);
   }
 elseif($_POST['mode'] == 'chapter')
   {
+    include "./export/chapterlist.php";
     echo '<form action="./form.php?mode=download" method="POST"><textarea name="download" style="min-height:300px;">'.osf_export_chapterlist($shownotes['export']).'</textarea><input type="submit" value=" Download "></form>';
   }
+else
+  {
+    echo '<form action="./form.php?mode=download" method="POST"><textarea name="download" style="min-height:300px;">'.print_r($shownotes['export']).'</textarea><input type="submit" value=" Download "></form>';
+  }
+
 ?>
 
 </body>

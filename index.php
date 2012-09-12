@@ -5,7 +5,8 @@
     <title>Open Shownotes Format</title>
     <link href="./css/style.css" rel="stylesheet" type="text/css">
     <link href="./css/anycast.css" rel="stylesheet" type="text/css">
-    
+    <script type="text/javascript" src="./reqwest/reqwest.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
 </head>
 <body>
 
@@ -16,26 +17,21 @@ if(!isset($_GET['podcast']))
     $Podcastverzeichnis = './Beispiele/';
     $Podcastliste       = scandir($Podcastverzeichnis);
     
-    echo '<table><tr><td>Datei</td><td>json</td><td>php</td><td>html</td><td>mehr html</td><td>PSC&sup1;</td><td>chapter</td><td>OSF-Class</td></tr>';
+    echo '<table><tr><td>Datei</td></tr>';
     foreach($Podcastliste as $Podcast)
       {
         if(($Podcast != '.')&&($Podcast != '..'))
           {
             echo '<tr>';
-            echo '<td><a href="'.$Podcastverzeichnis.$Podcast.'">'.$Podcast.'</a></td>';
-            echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=json">link</a></td>';
-            echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'">link</a></td>';
-            echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=html">link</a></td>';
-            echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=morehtml">link</a></td>';
-            echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=psc">link</a></td>';
-            echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=chapter">link</a></td>';
-            echo '<td><a href="?podcast='.$Podcastverzeichnis.$Podcast.'&mode=osfc">link</a></td>';
+            echo '<td><a href="#" onclick="getpad(\''.$Podcastverzeichnis.$Podcast.'\')">'.$Podcast.'</a></td>';
             echo '</tr>';
           }
       }
-    echo '<tr><th colspan="8"><hr><form action="./form.php?mode=textarea" method="POST"><textarea name="shownote" style="min-height:100px;"></textarea><br><select name="mode">
+    echo '<tr><th colspan="8"><hr><form action="./form.php?mode=textarea" method="POST"><textarea name="shownote" style="min-height:100px;" id="textpadarea"></textarea><br><select name="mode">
   <option>PSC</option>
-  <option>HTML</option>
+  <option>anycast</option>
+  <option>anycast-long</option>
+  <option>metaebene</option>
   <option>JSON</option>
   <option>chapter</option>
 </select><input type="submit" value=" Absenden "></form></th></tr>';

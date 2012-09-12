@@ -2,6 +2,7 @@
 
 $getpad = $_GET['pad'];
 $mode = $_GET['mode'];
+$dl = $_GET['dl'];
 
 if(($mode != '')&&($getpad != ''))
   {
@@ -29,35 +30,41 @@ if(($mode != '')&&($getpad != ''))
     if($_GET['mode'] == 'json')
       {
         header("Content-Type: application/json");
+        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.json\"");}
         echo json_encode($shownotes);
       }
     elseif($_GET['mode'] == 'html')
       {
         include "./export/anycast.php";
         header("Content-Type: text/html");
+        header("Content-Disposition: attachment; filename=\"shownotes.html\"");
         echo osf_export_anycast($shownotes['export']);
       }
     elseif($_GET['mode'] == 'morehtml')
       {
         include "./export/anycast.php";
         header("Content-Type: text/html");
+        header("Content-Disposition: attachment; filename=\"shownotes.html\"");
         echo osf_export_anycast($shownotes['export'], true);
       }
     elseif($_GET['mode'] == 'psc')
       {
         include "./export/psc.php";
         header("Content-Type: text/plain");
+        header("Content-Disposition: attachment; filename=\"shownotes.txt\"");
         echo osf_export_psc($shownotes['export']);
       }
     elseif($_GET['mode'] == 'chapter')
       {
         include "./export/chapterlist.php";
         header("Content-Type: text/plain");
+        header("Content-Disposition: attachment; filename=\"shownotes.txt\"");
         echo osf_export_chapterlist($shownotes['export']);
       }
     else
       {
         header("Content-Type: text/plain");
+        header("Content-Disposition: attachment; filename=\"shownotes.txt\"");
         print_r($shownotes);
       }
   }

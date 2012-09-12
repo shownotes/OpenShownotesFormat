@@ -2,12 +2,13 @@
 
 //HTML export im metaebene.me style
 
-function osf_export_metaebene($array, $full=false)
+function osf_export_metaebene($array, $url='')
   {
-    $returnstring = '<dl>';
+    $starttime = '00:00:00';
+    $returnstring = '<table rel="wp_pwp_1" class="pwp_chapters linked" style="display: table; "><caption>Podcast Chapters</caption><thead><tr><th scope="col">Timecode</th><th scope="col">Title</th></tr></thead><tbody>'."\n";
     foreach($array as $item)
       {
-        if(($item['chapter'])||(($full)&&($item['time'] != '')))
+        if(($item['chapter'])&&($item['time'] != ''))
           {
             $filterpattern = array('(\s(#)(\S*))', '(\<((http(|s)://[\S#?-]{0,128})>))', '(\s+((http(|s)://[\S#?-]{0,128})\s))', '(^ *-*)');
             $text = preg_replace($filterpattern, '', $item['text']);
@@ -20,45 +21,17 @@ function osf_export_metaebene($array, $full=false)
               {
                 $time = $item['time'];
               }
-            $returnstring .= '<dt data-time="'.osf_convert_time($time).'">'.$time.'</dt>'."\n".'<dd>';
-            if(isset($item['urls'][0]))
+            
+            if((isset($starttime))&&(isset($chaptitel)))
               {
-                $returnstring .= '<strong><a href="'.$item['urls'][0].'">'.$text.'</a></strong> '."\n";
+                $returnstring .= '<tr data-start="'.osf_convert_time($starttime).'.0" data-end="'.osf_convert_time($time).'.0"><td class="timecode"><code>'.$starttime.'</code></td><td class="title"><a href="'.$url.'#t='.$starttime.','.$time.'">'.$chaptitel.'</a></td></tr><!-- Chapter length = '.(osf_convert_time($time)-osf_convert_time($starttime)).' -->'."\n";
               }
-            else
-              {
-                $returnstring .= '<strong>'.$text.'</strong> '."\n";
-              }
-            if(isset($item['subitems']))
-              {
-                $subitemi = 0;
-                foreach($item['subitems'] as $subitem)
-                  {
-                    //$filterpattern = array('((#)(\S*))', '(\<((http(|s)://\S{0,64})>))', '(\s+((http(|s)://\S{0,64})\s))');
-                    $text = preg_replace($filterpattern, '', $subitem['text']);
-                    if($subitemi)
-                      {
-                        $returnstring .= ', ';
-                      }
-                    else
-                      {
-                        $returnstring .= '<br>';
-                      }
-                    if(isset($subitem['urls'][0]))
-                      {
-                        $returnstring .= '<a href="'.$subitem['urls'][0].'">'.$text.'</a>'."\n";
-                      }
-                    else
-                      {
-                        $returnstring .= $text;
-                      }
-                    ++$subitemi;
-                  }
-              }
-            $returnstring .= '</dd>';
+            
+            $starttime = $time;
+            $chaptitel = $text;
           }
       }
-    $returnstring .= '</dl>'."\n";
+    $returnstring .= '</tbody></table>'."\n";
     return $returnstring;
   }
 
