@@ -108,7 +108,6 @@ else
   }
 ?>
 <script type='text/javascript'>
-    QueryLoader.init();
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-12565471-1']);
