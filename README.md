@@ -1,5 +1,7 @@
 #OpenShownotesFormat
 
+<img src="http://cdn.simon.waldherr.eu/projects/osf/osf_file_icon.png">
+
 Das ```Open Shownotes Format``` oder ```Podlove Shownotes Format``` ist ein Standard, um maschinenlesbare Shownotes für Podcasts zu schreiben.
 
 Dieses Repo enthält die Standard-Definition sowie eine Referenz-Implementierung in PHP.
@@ -78,7 +80,7 @@ Jeder ist eingeladen, bei diesem Projekt mitzuwirken.
 
 OSF ist Teil des [Shownot.es Projekt](http://shownot.es/), sowie von [Podlove](http://podlove.org/)
 
-Eine Demoversion ist unter <http://simon.waldherr.eu/projects/osf/> zu finden.  
+Eine Demoversion ist unter <http://cdn.simon.waldherr.eu/projects/osf/> zu finden.  
 Diese enthält die beiden Referenz-Implementierungen osf_parser (osfregex.php) und Shownotes Class (OpenShownotesClass.php)  
-Zur automatisierten Nutzung ist das Ganze auch via API erreichbar: http://simon.waldherr.eu/projects/osf/api.php?mode=**$mode**&pad=**$pad**  
-Beispiel: [simon.waldherr.eu/projects/osf/api.php?mode=**morehtml**&pad=**mm95**](http://simon.waldherr.eu/projects/osf/api.php?mode=morehtml&pad=mm95)  
+Zur automatisierten Nutzung ist das Ganze auch via API erreichbar: http://cdn.simon.waldherr.eu/projects/osf/api.php?mode=**$mode**&pad=**$pad**  
+Beispiel: [cdn.simon.waldherr.eu/projects/osf/api.php?mode=**morehtml**&pad=**mm95**](http://cdn.simon.waldherr.eu/projects/osf/api.php?mode=morehtml&pad=mm95)  
