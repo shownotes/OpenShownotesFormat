@@ -48,9 +48,12 @@ function osf_parser($shownotes)
           }
         
         
-        if(preg_match($pattern['kaskade'], $zeile[0]))
+        if((preg_match($pattern['kaskade'], $zeile[0]))||(!preg_match('/(\d\d:\d\d:\d\d)/', $zeile[0])))
           {
-            $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
+            if(preg_match($pattern['kaskade'], $zeile[0]))
+              {
+                $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
+              }
             ++$kaskadei;
           }
         else
