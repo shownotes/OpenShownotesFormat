@@ -30,6 +30,18 @@ table {
   box-shadow:  0px 3px 10px 0px rgba(23, 23, 23, 0.4);
 }
 
+#boxc {
+  margin: 42px auto 0px auto;
+  border: 1px solid #CCC;
+  background: white;
+  border-radius: 7px;
+  padding: 25px;
+  min-width: 600px;
+  max-width: 90%;
+  -webkit-box-shadow:  0px 3px 10px 0px rgba(23, 23, 23, 0.4);
+  box-shadow:  0px 3px 10px 0px rgba(23, 23, 23, 0.4);
+}
+
 td {
   padding: 5px;
   min-width: 90px;

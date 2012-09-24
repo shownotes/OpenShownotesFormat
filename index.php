@@ -17,26 +17,24 @@ if(!isset($_GET['podcast']))
     $Podcastverzeichnis = './Beispiele/';
     $Podcastliste       = scandir($Podcastverzeichnis);
     
-    echo '<table><tr><td>Datei</td></tr>';
+    echo '<div id="boxc"><h1>OSF Parser Demo</h1><p>Dies ist eine Testinstallation der <a href="https://github.com/SimonWaldherr/OpenShownotesFormat">Open Shownotes Format Parser</a> Referenzimplementation</p><p>Sie können eine der folgenden Testdateien verwenden (durch einen Klick auf den Dateinamen wird die Datei in das Textfeld geladen) oder selbst Text in das Textfeld schreiben/kopieren.</p><p>Anschliessend muss nur noch der Export-Modus gewählt und durch das Klicken des Absende-Buttons der Vorgang gestartet werden.</p><p>Der Modus PSC exportiert die Shownotes im <a href="http://podlove.org/simple-chapters/">Podlove Simple Chapter Format</a>, die beiden anycast Modi exportieren HTML im Format des <a href="http://anyca.st/">Anyca.st-Podcasts</a>, der Modus <a href="http://metaebene.me/">Metaebene</a> exportiert eine HTML-Tabelle, wie sie auch vom <a href="http://podlove.org/podlove-wordpress-plugin/">Podlove Wordpress Plugin</a> exportiert wird, JSON exportiert die gesammten Shownotes in <a href="http://www.json.org/">JSON</a> und der chapter Export-Modus exportiert eine Plaintextliste der Kapitel.</p><ul>';
     foreach($Podcastliste as $Podcast)
       {
         if(($Podcast != '.')&&($Podcast != '..'))
           {
-            echo '<tr>';
-            echo '<td><a href="#" onclick="getpad(\''.$Podcastverzeichnis.$Podcast.'\')">'.$Podcast.'</a></td>';
-            echo '</tr>';
+            echo '<li><a href="#" onclick="getpad(\''.$Podcastverzeichnis.$Podcast.'\')">'.$Podcast.'</a></li>';
           }
       }
-    echo '<tr><th colspan="8"><hr><form action="./form.php?mode=textarea" method="POST"><textarea name="shownote" style="min-height:100px;" id="textpadarea"></textarea><br><select name="mode">
+    echo '</ul><hr><form action="./form.php?mode=textarea" method="POST"><textarea name="shownote" style="min-height:100px;" id="textpadarea"></textarea><br><select name="mode">
   <option>PSC</option>
   <option>anycast</option>
   <option>anycast-long</option>
   <option>metaebene</option>
   <option>JSON</option>
   <option>chapter</option>
-</select><input type="submit" value=" Absenden "></form></th></tr>';
+</select><input type="submit" value=" Absenden "></form></div>';
 
-    echo '</table><div id="info">mehr Informationen gibt es im zugeh&ouml;rigen <a href="https://github.com/SimonWaldherr/OpenShownotesFormat">GitHub Repo</a>. <br>&sup1;) PSC = Podlove Simple Chapters, mehr informationen dazu gibt es auf <a href="http://podlove.org/simple-chapters/">podlove.org</a>.';
+    echo '<div id="info">mehr Informationen gibt es im zugeh&ouml;rigen <a href="https://github.com/SimonWaldherr/OpenShownotesFormat">GitHub Repo</a>. <br>&sup1;) PSC = Podlove Simple Chapters, mehr informationen dazu gibt es auf <a href="http://podlove.org/simple-chapters/">podlove.org</a>.';
   }
 else
   {
