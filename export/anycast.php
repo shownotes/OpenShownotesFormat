@@ -50,25 +50,27 @@ function osf_export_anycast($array, $full=false)
                 $subitemi = 0;
                 foreach($item['subitems'] as $subitem)
                   {
-                    //$filterpattern = array('((#)(\S*))', '(\<((http(|s)://\S{0,64})>))', '(\s+((http(|s)://\S{0,64})\s))');
-                    $text = preg_replace($filterpattern, '', $subitem['text']);
-                    if($subitemi)
+                    if(($full)||(!$subitem['subtext']))
                       {
-                        $returnstring .= ', ';
+                        $text = preg_replace($filterpattern, '', $subitem['text']);
+                        if($subitemi)
+                          {
+                            $returnstring .= ', ';
+                          }
+                        else
+                          {
+                            $returnstring .= '<br>';
+                          }
+                        if(isset($subitem['urls'][0]))
+                          {
+                            $returnstring .= '<a href="'.$subitem['urls'][0].'">'.$text.'</a>'."\n";
+                          }
+                        else
+                          {
+                            $returnstring .= $text;
+                          }
+                        ++$subitemi;
                       }
-                    else
-                      {
-                        $returnstring .= '<br>';
-                      }
-                    if(isset($subitem['urls'][0]))
-                      {
-                        $returnstring .= '<a href="'.$subitem['urls'][0].'">'.$text.'</a>'."\n";
-                      }
-                    else
-                      {
-                        $returnstring .= $text;
-                      }
-                    ++$subitemi;
                   }
               }
             $returnstring .= '</dd>';

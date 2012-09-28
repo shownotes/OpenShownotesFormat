@@ -71,6 +71,11 @@ function osf_parser($shownotes)
               {
                 $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
               }
+            else
+              {
+                $newarray['subtext'] = true;
+                $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
+              }
             
             // Verschachtelungstiefe hochzählen
             ++$kaskadei;
