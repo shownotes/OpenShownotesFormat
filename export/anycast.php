@@ -63,11 +63,33 @@ function osf_export_anycast($array, $full=false)
                           }
                         if(isset($subitem['urls'][0]))
                           {
-                            $subtext .= '<a href="'.$subitem['urls'][0].'">'.trim($text).'</a>'." ";
+                            $subtext .= '<a href="'.$subitem['urls'][0].'"';
+                            if(strstr($subitem['urls'][0], 'wikipedia.org/wiki/'))
+                              {
+                                $subtext .= ' class="osf_wiki"';
+                              }
+                            elseif(strstr($subitem['urls'][0], 'www.amazon.'))
+                              {
+                                $subtext .= ' class="osf_amazon"';
+                              }
+                            elseif(strstr($subitem['urls'][0], 'www.youtube.com/'))
+                              {
+                                $subtext .= ' class="osf_youtube"';
+                              }
+                            if((isset($subitem['time']))&&(trim($subitem['time']) != ''))
+                              {
+                                $subtext .= ' data-tooltip="'.$subitem['time'].'"';
+                              }
+                            $subtext .= '>'.trim($text).'</a>'." ";
                           }
                         else
                           {
-                            $subtext .= trim($text)." ";
+                            $subtext .= '<span';
+                            if((isset($subitem['time']))&&(trim($subitem['time']) != ''))
+                              {
+                                $subtext .= ' data-tooltip="'.$subitem['time'].'"';
+                              }
+                            $subtext .= '>'.trim($text).'</span> ';
                           }
                         //$subtext = str_replace("\n, ", ", ", $subtext);
                         $subtext = trim($subtext);

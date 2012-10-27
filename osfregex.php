@@ -85,7 +85,7 @@ function osf_parser($shownotes)
           }
         
         // Wenn Zeile mit "- " beginnt im Ausgabe-Array verschachteln
-        if((preg_match($pattern['kaskade'], $zeile[0]))||(!preg_match('/(\d\d:\d\d:\d\d)/', $zeile[0])))
+        if((preg_match($pattern['kaskade'], $zeile[0]))||(!preg_match('/(\d\d:\d\d:\d\d)/', $zeile[0]))||(!$newarray['chapter']))
           {
             if(preg_match($pattern['kaskade'], $zeile[0]))
               {

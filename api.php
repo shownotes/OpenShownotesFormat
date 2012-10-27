@@ -64,6 +64,15 @@ if(($mode != '')&&($getpad != ''))
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
         echo osf_export_anycast($shownotes['export'], true);
       }
+    elseif($_GET['mode'] == 'stylehtml')
+      {
+        include "./export/anycast.php";
+        header("Content-Type: text/html");
+        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
+        echo '<html><head><meta charset="utf-8"><title>Shownotes - '.$pad.'</title><link href="./css/anycast.css" rel="stylesheet" type="text/css" /></head><body>';
+        echo osf_export_anycast($shownotes['export'], true);
+        echo '</body></html>';
+      }
     elseif($_GET['mode'] == 'metaebene')
       {
         include "./export/metaebene.php";
@@ -99,6 +108,7 @@ elseif($mode == '')
     echo '<a href="?mode=json&pad='.$getpad.'">JSON</a> <a href="?mode=json&dl&pad='.$getpad.'">&lang;DL&rang;</a>, ';
     echo '<a href="?mode=html&pad='.$getpad.'">anyca.st</a> <a href="?mode=html&dl&pad='.$getpad.'">&lang;DL&rang;</a>, ';
     echo '<a href="?mode=morehtml&pad='.$getpad.'">anyca.st (long)</a> <a href="?mode=morehtml&dl&pad='.$getpad.'">&lang;DL&rang;</a>, ';
+    echo '<a href="?mode=stylehtml&pad='.$getpad.'">anyca.st (style)</a> <a href="?mode=stylehtml&dl&pad='.$getpad.'">&lang;DL&rang;</a>, ';
     echo '<a href="?mode=metaebene&pad='.$getpad.'">metaebene.me (long)</a> <a href="?mode=metaebene&dl&pad='.$getpad.'">&lang;DL&rang;</a>, ';
     echo '<a href="?mode=psc&pad='.$getpad.'">PSC</a> <a href="?mode=psc&dl&pad='.$getpad.'">&lang;DL&rang;</a>, ';
     echo '<a href="?mode=chapter&pad='.$getpad.'">Chapterlist</a> <a href="?mode=chapter&dl&pad='.$getpad.'">&lang;DL&rang;</a> or ';
