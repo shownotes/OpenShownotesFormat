@@ -5,11 +5,11 @@
 function osf_export_anycast($array, $full=false)
   {
     $returnstring = '<dl>';
+    $filterpattern = array('(\s(#)(\S*))', '(\<((http(|s)://[\S#?-]{0,128})>))', '(\s+((http(|s)://[\S#?-]{0,128})\s))', '(^ *-*)');
     foreach($array as $item)
       {
         if(($item['chapter'])||(($full)&&($item['time'] != '')))
           {
-            $filterpattern = array('(\s(#)(\S*))', '(\<((http(|s)://[\S#?-]{0,128})>))', '(\s+((http(|s)://[\S#?-]{0,128})\s))', '(^ *-*)');
             $text = preg_replace($filterpattern, '', $item['text']);
             if(strpos($item['time'], '.'))
               {
@@ -20,12 +20,12 @@ function osf_export_anycast($array, $full=false)
               {
                 $time = $item['time'];
               }
-            
+
             if(($item['chapter'])&&($full)&&($time != '')&&($time != '00:00:00'))
               {
                 $returnstring .= '<hr>';
               }
-            
+
             $returnstring .= '<dt data-time="'.osf_convert_time($time).'">'.$time.'</dt>'."\n".'<dd>';
             if(isset($item['urls'][0]))
               {
@@ -55,20 +55,23 @@ function osf_export_anycast($array, $full=false)
                         $text = preg_replace($filterpattern, '', $subitem['text']);
                         if($subitemi)
                           {
-                            $returnstring .= ', ';
+                            $subtext = ', ';
                           }
                         else
                           {
-                            $returnstring .= '<br>';
+                            $subtext = '<br>';
                           }
                         if(isset($subitem['urls'][0]))
                           {
-                            $returnstring .= '<a href="'.$subitem['urls'][0].'">'.$text.'</a>'."\n";
+                            $subtext .= '<a href="'.$subitem['urls'][0].'">'.trim($text).'</a>'." ";
                           }
                         else
                           {
-                            $returnstring .= $text;
+                            $subtext .= trim($text)." ";
                           }
+                        //$subtext = str_replace("\n, ", ", ", $subtext);
+                        $subtext = trim($subtext);
+                        $returnstring .= $subtext;
                         ++$subitemi;
                       }
                   }
@@ -76,8 +79,9 @@ function osf_export_anycast($array, $full=false)
             $returnstring .= '</dd>';
           }
       }
+
     $returnstring .= '</dl>'."\n";
-    return $returnstring;
+    return str_replace(',</dd>', '</dd>', $returnstring);
   }
 
 ?>

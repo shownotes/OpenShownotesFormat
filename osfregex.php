@@ -61,7 +61,27 @@ function osf_parser($shownotes)
         // Wenn URLs vorhanden sind, auch diese im Array speichern
         if(@count($urls)>0)
           {
-            $newarray['urls'] = $urls;
+            $purls = array();
+            foreach($urls as $url)
+              {
+                if(strstr($url, 'www.amazon.de/')&&strstr($url, 'p/'))
+                  {
+                    $pid = substr(strstr($url,"p/"),2,10);
+                    $aid = '?ie=UTF8&camp=1638&creative=19454&creativeASIN=3864970245&linkCode=as2&tag=shownot.es-21';
+                    $purls[] = 'http://www.amazon.de/gp/product/'.$pid.'/'.$aid;
+                  }
+                elseif(strstr($url, 'www.amazon.com/')&&strstr($url, 'p/'))
+                {
+                  $pid = substr(strstr($url,"p/"),2,10);
+                  $aid = '?ie=UTF8&camp=1638&creative=19454&creativeASIN=3864970245&linkCode=as2&tag=shownot.es-21';
+                  $purls[] = 'http://www.amazon.com/gp/product/'.$pid.'/'.$aid;
+                }
+                else
+                  {
+                    $purls[] = $url;
+                  }
+              }
+            $newarray['urls'] = $purls;
           }
         
         // Wenn Zeile mit "- " beginnt im Ausgabe-Array verschachteln

@@ -59,6 +59,7 @@ elseif($_POST['mode'] == 'anycast-long')
   {
     include "./export/anycast.php";
     echo '<div class="anycaststyle">'.osf_export_anycast($shownotes['export'], true).'</div>';
+    echo '<form action="./form.php?mode=download" method="POST"><textarea name="download" style="min-height:300px;"><!DOCTYPE html><html><head><meta charset="utf-8"><title>Shownotes</title></head><body>'.osf_export_anycast($shownotes['export'], true).'</body></html></textarea><input type="submit" value=" Download "></form>';
   }
 elseif($_POST['mode'] == 'PSC')
   {
