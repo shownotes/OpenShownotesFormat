@@ -64,16 +64,21 @@ function osf_parser($shownotes)
             $purls = array();
             foreach($urls as $url)
               {
+                
                 if(strstr($url, 'www.amazon.de/')&&strstr($url, 'p/'))
                   {
-                    $pid = substr(strstr($url,"p/"),2,10);
-                    $aid = '?ie=UTF8&camp=1638&creative=19454&creativeASIN=3864970245&linkCode=as2&tag=shownot.es-21';
+                    if(strstr($url,"dp/")){$pid = substr(strstr($url,"dp/"),3,10);}
+                    elseif(strstr($url,"gp/product/")){$pid = substr(strstr($url,"gp/product/"),11,10);}
+                    else{$pid='';}
+                    $aid = '?ie=UTF8&linkCode=as2&tag=shownot.es-21';
                     $purls[] = 'http://www.amazon.de/gp/product/'.$pid.'/'.$aid;
                   }
                 elseif(strstr($url, 'www.amazon.com/')&&strstr($url, 'p/'))
                 {
-                  $pid = substr(strstr($url,"p/"),2,10);
-                  $aid = '?ie=UTF8&camp=1638&creative=19454&creativeASIN=3864970245&linkCode=as2&tag=shownot.es-21';
+                  if(strstr($url,"dp/")){$pid = substr(strstr($url,"dp/"),3,10);}
+                  elseif(strstr($url,"gp/product/")){$pid = substr(strstr($url,"gp/product/"),11,10);}
+                  else{$pid='';}
+                  $aid = '?ie=UTF8&linkCode=as2&tag=shownot.es-21';
                   $purls[] = 'http://www.amazon.com/gp/product/'.$pid.'/'.$aid;
                 }
                 else
