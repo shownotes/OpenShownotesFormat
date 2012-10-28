@@ -1,5 +1,23 @@
 <?php
 
+function ctcs_header($type)
+  {
+    $contenttype = 'Content-Type: '.$type.'; ';
+    if(strpos($_SERVER["HTTP_ACCEPT_CHARSET"], 'utf-8'))
+      {
+        $contenttype .= 'charset=utf-8';
+      }
+    elseif(strpos($_SERVER["HTTP_ACCEPT_CHARSET"], 'ISO-8859-15'))
+      {
+        $contenttype .= 'charset=ISO-8859-15';
+      }
+    else
+      {
+        $contenttype .= 'charset=ISO-8859-1';
+      }
+    header($contenttype);
+  }
+
 $getpad = $_GET['pad'];
 $mode = $_GET['mode'];
 
@@ -46,28 +64,28 @@ if(($mode != '')&&($getpad != ''))
 
     if($_GET['mode'] == 'json')
       {
-        header("Content-Type: application/json");
+        ctcs_header("application/json");
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.json\"");}
         echo json_encode($shownotes);
       }
     elseif($_GET['mode'] == 'html')
       {
         include "./export/anycast.php";
-        header("Content-Type: text/html");
+        ctcs_header("text/html");
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
         echo osf_export_anycast($shownotes['export']);
       }
     elseif($_GET['mode'] == 'morehtml')
       {
         include "./export/anycast.php";
-        header("Content-Type: text/html");
+        ctcs_header("text/html");
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
         echo osf_export_anycast($shownotes['export'], true);
       }
     elseif($_GET['mode'] == 'stylehtml')
       {
         include "./export/anycast.php";
-        header("Content-Type: text/html");
+        ctcs_header("text/html");
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
         echo '<html><head><meta charset="utf-8"><title>Shownotes - '.$pad.'</title><link href="./css/anycast.css" rel="stylesheet" type="text/css" /></head><body>';
         echo osf_export_anycast($shownotes['export'], true);
@@ -76,34 +94,35 @@ if(($mode != '')&&($getpad != ''))
     elseif($_GET['mode'] == 'metaebene')
       {
         include "./export/metaebene.php";
-        header("Content-Type: text/html");
+        ctcs_header("text/html");
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
         echo osf_export_metaebene($shownotes['export'], $url);
       }
     elseif($_GET['mode'] == 'psc')
       {
         include "./export/psc.php";
-        header("Content-Type: text/plain");
+        ctcs_header("text/plain");
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
+        echo '<?xml version="1.0" encoding="utf-8"?>'."\n";
         echo osf_export_psc($shownotes['export']);
       }
     elseif($_GET['mode'] == 'chapter')
       {
         include "./export/chapterlist.php";
-        header("Content-Type: text/plain");
+        ctcs_header("text/plain");
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
         echo osf_export_chapterlist($shownotes['export']);
       }
     else
       {
-        header("Content-Type: text/plain");
+        ctcs_header("text/plain");
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
         print_r($shownotes);
       }
   }
 elseif($mode == '')
   {
-    header("Content-Type: text/html");
+    ctcs_header("text/html");
     echo '<p>please select export mode: ';
     echo '<a href="?mode=json&pad='.$getpad.'">JSON</a> <a href="?mode=json&dl&pad='.$getpad.'">&lang;DL&rang;</a>, ';
     echo '<a href="?mode=html&pad='.$getpad.'">anyca.st</a> <a href="?mode=html&dl&pad='.$getpad.'">&lang;DL&rang;</a>, ';

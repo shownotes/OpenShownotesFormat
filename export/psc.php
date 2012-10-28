@@ -10,7 +10,7 @@ function osf_export_psc($array)
         if($item['chapter'])
           {
             $filterpattern = array('((#)(\S*))', '(\<((http(|s)://[\S#?-]{0,128})>))', '(\s+((http(|s)://[\S#?-]{0,128})\s))');
-            $text = preg_replace($filterpattern, '', $item['text']);
+            $text = trim(preg_replace($filterpattern, '', $item['text']));
             if(strpos($item['time'], '.'))
               {
                 $time = $item['time'];

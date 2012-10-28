@@ -23,7 +23,7 @@ function osf_export_anycast($array, $full=false)
 
             if(($item['chapter'])&&($full)&&($time != '')&&($time != '00:00:00'))
               {
-                $returnstring .= '<hr>';
+                $returnstring .= ''; //add code, which should inserted between chapters
               }
 
             $returnstring .= '<dt data-time="'.osf_convert_time($time).'">'.$time.'</dt>'."\n".'<dd>';
@@ -55,11 +55,11 @@ function osf_export_anycast($array, $full=false)
                         $text = preg_replace($filterpattern, '', $subitem['text']);
                         if($subitemi)
                           {
-                            $subtext = ', ';
+                            $subtext = '; ';
                           }
                         else
                           {
-                            $subtext = '<br>';
+                            $subtext = '';
                           }
                         if(isset($subitem['urls'][0]))
                           {
@@ -72,10 +72,19 @@ function osf_export_anycast($array, $full=false)
                               {
                                 $subtext .= ' class="osf_amazon"';
                               }
-                            elseif(strstr($subitem['urls'][0], 'www.youtube.com/'))
+                            elseif(strstr($subitem['urls'][0], 'www.youtube.com/')||($subitem['chapter'] == 'video'))
                               {
                                 $subtext .= ' class="osf_youtube"';
                               }
+                            elseif(strstr($subitem['urls'][0], 'flattr.com/'))
+                              {
+                                $subtext .= ' class="osf_flattr"';
+                              }
+                            elseif(strstr($subitem['urls'][0], 'twitter.com/'))
+                              {
+                                $subtext .= ' class="osf_twitter"';
+                              }
+                            
                             if((isset($subitem['time']))&&(trim($subitem['time']) != ''))
                               {
                                 $subtext .= ' data-tooltip="'.$subitem['time'].'"';
