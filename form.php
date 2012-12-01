@@ -25,9 +25,11 @@ echo '<form action="./form.php?mode=textarea" method="POST"><textarea name="show
   <option>PSC</option>
   <option>anycast</option>
   <option>anycast-long</option>
+  <option>anycast-full</option>
   <option>metaebene</option>
   <option>JSON</option>
   <option>chapter</option>
+  <option>PHP</option>
 </select><input type="submit" value=" Absenden "></form><br><br><hr><br><br>';
 
 if((!isset($_GET['mode']))||(!isset($_POST['shownote']))||(!isset($_POST['mode'])))
@@ -58,8 +60,14 @@ elseif($_POST['mode'] == 'anycast')
 elseif($_POST['mode'] == 'anycast-long')
   {
     include "./export/anycast.php";
-    echo '<div class="anycaststyle">'.osf_export_anycast($shownotes['export'], true).'</div>';
-    echo '<form action="./form.php?mode=download" method="POST"><textarea name="download" style="min-height:300px;"><!DOCTYPE html><html><head><meta charset="utf-8"><title>Shownotes</title></head><body>'.osf_export_anycast($shownotes['export'], true).'</body></html></textarea><input type="submit" value=" Download "></form>';
+    echo '<div class="anycaststyle">'.osf_export_anycast($shownotes['export'], 1).'</div>';
+    echo '<form action="./form.php?mode=download" method="POST"><textarea name="download" style="min-height:300px;"><!DOCTYPE html><html><head><meta charset="utf-8"><title>Shownotes</title></head><body>'.osf_export_anycast($shownotes['export'], 1).'</body></html></textarea><input type="submit" value=" Download "></form>';
+  }
+elseif($_POST['mode'] == 'anycast-full')
+  {
+    include "./export/anycast.php";
+    echo '<div class="anycaststyle">'.osf_export_anycast($shownotes['export'], 2).'</div>';
+    echo '<form action="./form.php?mode=download" method="POST"><textarea name="download" style="min-height:300px;"><!DOCTYPE html><html><head><meta charset="utf-8"><title>Shownotes</title></head><body>'.osf_export_anycast($shownotes['export'], 2).'</body></html></textarea><input type="submit" value=" Download "></form>';
   }
 elseif($_POST['mode'] == 'PSC')
   {
@@ -75,6 +83,10 @@ elseif($_POST['mode'] == 'chapter')
   {
     include "./export/chapterlist.php";
     echo '<form action="./form.php?mode=download" method="POST"><textarea name="download" style="min-height:300px;">'.osf_export_chapterlist($shownotes['export']).'</textarea><input type="submit" value=" Download "></form>';
+  }
+elseif($_POST['mode'] == 'PHP')
+  {
+    print_r($shownotes);
   }
 else
   {

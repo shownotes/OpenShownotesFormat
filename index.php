@@ -29,9 +29,11 @@ if(!isset($_GET['podcast']))
   <option>PSC</option>
   <option>anycast</option>
   <option>anycast-long</option>
+  <option>anycast-full</option>
   <option>metaebene</option>
   <option>JSON</option>
   <option>chapter</option>
+  <option>PHP</option>
 </select><input type="submit" value=" Absenden "></form></div>';
 
     echo '<div id="info">mehr Informationen gibt es im zugeh&ouml;rigen <a href="https://github.com/SimonWaldherr/OpenShownotesFormat">GitHub Repo</a>. <br>&sup1;) PSC = Podlove Simple Chapters, mehr informationen dazu gibt es auf <a href="http://podlove.org/simple-chapters/">podlove.org</a>.';
@@ -68,7 +70,7 @@ else
     elseif($_GET['mode'] == 'morehtml')
     {
       include "./export/anycast.php";
-      echo '<div class="anycaststyle">'.osf_export_anycast($shownotes['export'], true).'</div>';
+      echo '<div class="anycaststyle">'.osf_export_anycast($shownotes['export'], 2).'</div>';
       $timer['osf_get_chapter_morehtml'] = microtime(1)-$starttime;
     }
     elseif($_GET['mode'] == 'psc')

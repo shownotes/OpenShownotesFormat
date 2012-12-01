@@ -1,14 +1,28 @@
 <?php
 
+function osf_checktags($needles, $haystack)
+  {
+    $return = false;
+    foreach($needles as $needle)
+      {
+        if(array_search($needle, $haystack) !== false)
+          {
+            $return = true;
+          }
+      }
+    return $return;
+  }
+
 //HTML export im anyca.st style
 
-function osf_export_anycast($array, $full=false)
+function osf_export_anycast($array, $full=false, $filtertags=array(0 => 'spoiler'))
   {
+    $filtertags = array('spoiler', 'trash');
     $returnstring = '<dl>';
     $filterpattern = array('(\s(#)(\S*))', '(\<((http(|s)://[\S#?-]{0,128})>))', '(\s+((http(|s)://[\S#?-]{0,128})\s))', '(^ *-*)');
     foreach($array as $item)
       {
-        if(($item['chapter'])||(($full)&&($item['time'] != '')))
+        if(($item['chapter'])||(($full!=false)&&($item['time'] != '')))
           {
             $text = preg_replace($filterpattern, '', $item['text']);
             if(strpos($item['time'], '.'))
@@ -21,7 +35,7 @@ function osf_export_anycast($array, $full=false)
                 $time = $item['time'];
               }
 
-            if(($item['chapter'])&&($full)&&($time != '')&&($time != '00:00:00'))
+            if(($item['chapter'])&&($full!=false)&&($time != '')&&($time != '00:00:00'))
               {
                 $returnstring .= ''; //add code, which should inserted between chapters
               }
@@ -50,8 +64,17 @@ function osf_export_anycast($array, $full=false)
                 $subitemi = 0;
                 foreach($item['subitems'] as $subitem)
                   {
-                    if(($full)||(!$subitem['subtext']))
+                    if((($full!=false)||(!$subitem['subtext']))&&((($full==1)&&(!osf_checktags($filtertags, $subitem['tags'])))||($full==2)))
                       {
+                        if(($full==2)&&(osf_checktags($filtertags, $subitem['tags'])))
+                          {
+                            $hide = ' osf_spoiler';
+                          }
+                        else
+                          {
+                            $hide = '';
+                          }
+                        
                         $text = preg_replace($filterpattern, '', $subitem['text']);
                         if($subitemi)
                           {
@@ -66,23 +89,23 @@ function osf_export_anycast($array, $full=false)
                             $subtext .= '<a href="'.$subitem['urls'][0].'"';
                             if(strstr($subitem['urls'][0], 'wikipedia.org/wiki/'))
                               {
-                                $subtext .= ' class="osf_wiki"';
+                                $subtext .= ' class="osf_wiki '.$hide.'"';
                               }
                             elseif(strstr($subitem['urls'][0], 'www.amazon.'))
                               {
-                                $subtext .= ' class="osf_amazon"';
+                                $subtext .= ' class="osf_amazon '.$hide.'"';
                               }
                             elseif(strstr($subitem['urls'][0], 'www.youtube.com/')||($subitem['chapter'] == 'video'))
                               {
-                                $subtext .= ' class="osf_youtube"';
+                                $subtext .= ' class="osf_youtube '.$hide.'"';
                               }
                             elseif(strstr($subitem['urls'][0], 'flattr.com/'))
                               {
-                                $subtext .= ' class="osf_flattr"';
+                                $subtext .= ' class="osf_flattr '.$hide.'"';
                               }
                             elseif(strstr($subitem['urls'][0], 'twitter.com/'))
                               {
-                                $subtext .= ' class="osf_twitter"';
+                                $subtext .= ' class="osf_twitter '.$hide.'"';
                               }
                             
                             if((isset($subitem['time']))&&(trim($subitem['time']) != ''))
@@ -94,6 +117,10 @@ function osf_export_anycast($array, $full=false)
                         else
                           {
                             $subtext .= '<span';
+                            if($hide != '')
+                              {
+                                $subtext .= ' class="'.$hide.'"';
+                              }
                             if((isset($subitem['time']))&&(trim($subitem['time']) != ''))
                               {
                                 $subtext .= ' data-tooltip="'.$subitem['time'].'"';
