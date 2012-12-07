@@ -30,6 +30,8 @@ if(!isset($_GET['podcast']))
   <option>anycast</option>
   <option>anycast-long</option>
   <option>anycast-full</option>
+  <option>wikigeeks</option>
+  <option>wikigeeks-full</option>
   <option>metaebene</option>
   <option>JSON</option>
   <option>chapter</option>

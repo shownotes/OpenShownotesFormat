@@ -14,7 +14,15 @@ if($_GET['mode'] == 'download')
     <meta charset="utf-8">
     <title>Open Shownotes Format</title>
     <link href="./css/style.css" rel="stylesheet" type="text/css">
-    <link href="./css/anycast.css" rel="stylesheet" type="text/css">
+
+<?php
+
+if(strpos($_POST['mode'], 'anycast') !== false)
+  {
+    echo '<link href="./css/anycast.css" rel="stylesheet" type="text/css">';
+  }
+
+?>
 
 </head>
 <body>
@@ -26,6 +34,8 @@ echo '<form action="./form.php?mode=textarea" method="POST"><textarea name="show
   <option>anycast</option>
   <option>anycast-long</option>
   <option>anycast-full</option>
+  <option>wikigeeks</option>
+  <option>wikigeeks-full</option>
   <option>metaebene</option>
   <option>JSON</option>
   <option>chapter</option>
@@ -68,6 +78,18 @@ elseif($_POST['mode'] == 'anycast-full')
     include "./export/anycast.php";
     echo '<div class="anycaststyle">'.osf_export_anycast($shownotes['export'], 2).'</div>';
     echo '<form action="./form.php?mode=download" method="POST"><textarea name="download" style="min-height:300px;"><!DOCTYPE html><html><head><meta charset="utf-8"><title>Shownotes</title></head><body>'.osf_export_anycast($shownotes['export'], 2).'</body></html></textarea><input type="submit" value=" Download "></form>';
+  }
+elseif($_POST['mode'] == 'wikigeeks')
+  {
+    include "./export/wikigeeks.php";
+    echo '<div class="wikigeeksstyle">'.osf_export_wikigeeks($shownotes['export'], 1).'</div>';
+    echo '<form action="./form.php?mode=download" method="POST"><textarea name="download" style="min-height:300px;"><!DOCTYPE html><html><head><meta charset="utf-8"><title>Shownotes</title></head><body>'.osf_export_wikigeeks($shownotes['export'], 1).'</body></html></textarea><input type="submit" value=" Download "></form>';
+  }
+elseif($_POST['mode'] == 'wikigeeks-full')
+  {
+    include "./export/wikigeeks.php";
+    echo '<div class="wikigeeksstyle">'.osf_export_wikigeeks($shownotes['export'], 2).'</div>';
+    echo '<form action="./form.php?mode=download" method="POST"><textarea name="download" style="min-height:300px;"><!DOCTYPE html><html><head><meta charset="utf-8"><title>Shownotes</title></head><body>'.osf_export_wikigeeks($shownotes['export'], 2).'</body></html></textarea><input type="submit" value=" Download "></form>';
   }
 elseif($_POST['mode'] == 'PSC')
   {
