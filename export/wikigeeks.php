@@ -52,7 +52,7 @@ function osf_export_wikigeeks($array, $full=false, $filtertags=array(0 => 'spoil
                 $subitemi = 0;
                 foreach($item['subitems'] as $subitem)
                   {
-                    if((($full!=false)||(!$subitem['subtext']))&&((($full==1)&&(!osf_checktags($filtertags, $subitem['tags'])))||($full==2)))
+                    if(((($full!=false)||(!$subitem['subtext']))&&((($full==1)&&(!osf_checktags($filtertags, $subitem['tags'])))||($full==2)))&&(strlen(trim($subitem['text']))>2))
                       {
                         if(($full==2)&&(osf_checktags($filtertags, $subitem['tags'])))
                           {

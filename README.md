@@ -1,6 +1,6 @@
 #OpenShownotesFormat
 
-<img src="http://cdn.simon.waldherr.eu/projects/osf/osf_file_icon.png">
+<img src="http://tools.shownot.es/parser/osf_file_icon.png">
 
 Das ```Open Shownotes Format``` oder ```Podlove Shownotes Format``` ist ein Standard, um maschinenlesbare Shownotes für Podcasts zu schreiben.
 
@@ -62,25 +62,35 @@ Zur stärkeren Kaskadierung erhöht man die Anzahl der Bindestriche ```-- ``` ``
 
 ---
 
+##Exportmodule
+
+* Podlove Simple Chapter
+* Anycast (short, long, full)
+* wikigeeks (short, long, full)
+* metaebene
+* JSON
+* Plaintext Chapter
+* PHP (print_r)
+
 ##Automatisierungen
 
-- Podlove Simple Chapters
-- Affiliate Links
-- Links
-- Webpage Generierung via Template
-- Export als JSON
-- Export als XML
+* Podlove Simple Chapters
+* Affiliate Links
+* Links
+* Webpage Generierung via Template
+* Export als JSON
+* Export als XML
 
 ---
 
 #Info
 
-Der gesammte Inhalt dieses Repos steht unter der MIT Lizenz zur Verfügung.  
+Der gesammte Inhalt dieses Repos steht unter der MIT Lizenz zur Verfügung.  (ausgenommen die Shownote Beispiele)
 Jeder ist eingeladen, bei diesem Projekt mitzuwirken.
 
 OSF ist Teil des [Shownot.es Projekt](http://shownot.es/), sowie von [Podlove](http://podlove.org/)
 
-Eine Demoversion ist unter <http://cdn.simon.waldherr.eu/projects/osf/> zu finden.  
+Eine Demoversion ist unter <http://tools.shownot.es/parser/> zu finden.  
 Diese enthält die beiden Referenz-Implementierungen osf_parser (osfregex.php) und Shownotes Class (OpenShownotesClass.php)  
-Zur automatisierten Nutzung ist das Ganze auch via API erreichbar: http://cdn.simon.waldherr.eu/projects/osf/api.php?mode=**$mode**&pad=**$pad**  
-Beispiel: [cdn.simon.waldherr.eu/projects/osf/api.php?mode=**morehtml**&pad=**mm95**](http://cdn.simon.waldherr.eu/projects/osf/api.php?mode=morehtml&pad=mm95)  
+Zur automatisierten Nutzung ist das Ganze auch via API erreichbar: http://tools.shownot.es/parser/api.php?mode=**$mode**&pad=**$pad**  
+Beispiel: [tools.shownot.es/parser/api.php?mode=**morehtml**&pad=**mm95**](http://tools.shownot.es/parser/api.php?mode=morehtml&pad=mm95)  

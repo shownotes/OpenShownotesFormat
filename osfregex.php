@@ -9,6 +9,15 @@ function osf_convert_time($string)
 
 function osf_parser($shownotes)
   {
+    $shownotes = explode('/HEADER', $shownotes);
+    if(strlen($shownotes[1])>42)
+      {
+        $shownotes = $shownotes[1];
+      }
+    else
+      {
+        $shownotes = $shownotes[0];
+      }
     // Diese Funktion ist das Herzstück des OSF-Parsers
     // zuerst werden die regex-Definitionen zum erkennen von Zeilen, Tags, URLs und subitems definiert
     $pattern['zeilen']    = '/((\d\d:\d\d:\d\d)(\\.\d\d\d)?)*(.+)/';

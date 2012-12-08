@@ -5,8 +5,34 @@
     <title>Open Shownotes Format</title>
     <link href="./css/style.css" rel="stylesheet" type="text/css">
     <link href="./css/anycast.css" rel="stylesheet" type="text/css">
+    <link href="http://selfcss.org/baf/css/baf.css" media="screen" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="./reqwest/reqwest.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
+    <script type="text/javascript">
+    /* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */
+    </script>
+    <style>
+    	.baf:visited {
+    	color: black;
+    	}
+    	.baf {
+    	margin: 10px;
+    	color: black;
+    	}
+    	button, input[type="button"], input[type="reset"], input[type="submit"] {
+    	cursor: pointer;
+    	-webkit-appearance: push-button;
+    	margin: 5px;
+    	}
+    </style>
 </head>
 <body>
 
@@ -17,15 +43,15 @@ if(!isset($_GET['podcast']))
     $Podcastverzeichnis = './Beispiele/';
     $Podcastliste       = scandir($Podcastverzeichnis);
     
-    echo '<div id="boxc"><h1>OSF Parser Demo</h1><p>Dies ist eine Testinstallation der <a href="https://github.com/SimonWaldherr/OpenShownotesFormat">Open Shownotes Format Parser</a> Referenzimplementation</p><p>Sie können eine der folgenden Testdateien verwenden (durch einen Klick auf den Dateinamen wird die Datei in das Textfeld geladen) oder selbst Text in das Textfeld schreiben/kopieren.</p><p>Anschliessend muss nur noch der Export-Modus gewählt und durch das Klicken des Absende-Buttons der Vorgang gestartet werden.</p><p>Der Modus PSC exportiert die Shownotes im <a href="http://podlove.org/simple-chapters/">Podlove Simple Chapter Format</a>, die beiden anycast Modi exportieren HTML im Format des <a href="http://anyca.st/">Anyca.st-Podcasts</a>, der Modus <a href="http://metaebene.me/">Metaebene</a> exportiert eine HTML-Tabelle, wie sie auch vom <a href="http://podlove.org/podlove-wordpress-plugin/">Podlove Wordpress Plugin</a> exportiert wird, JSON exportiert die gesammten Shownotes in <a href="http://www.json.org/">JSON</a> und der chapter Export-Modus exportiert eine Plaintextliste der Kapitel.</p><ul>';
+    echo '<div id="boxc"><h1>OSF Parser Demo</h1><p>Dies ist eine Testinstallation der <a href="https://github.com/shownotes/OpenShownotesFormat">Open Shownotes Format Parser</a> Referenzimplementation</p><p>Sie können eine der folgenden Testdateien verwenden (durch einen Klick auf den Dateinamen wird die Datei in das Textfeld geladen) oder selbst Text in das Textfeld schreiben/kopieren.</p><p>Anschliessend muss nur noch der Export-Modus gewählt und durch das Klicken des Absende-Buttons der Vorgang gestartet werden.</p><p>Der Modus PSC exportiert die Shownotes im <a href="http://podlove.org/simple-chapters/">Podlove Simple Chapter Format</a>, die beiden anycast Modi exportieren HTML im Format des <a href="http://anyca.st/">Anyca.st-Podcasts</a>, der Modus <a href="http://metaebene.me/">Metaebene</a> exportiert eine HTML-Tabelle, wie sie auch vom <a href="http://podlove.org/podlove-wordpress-plugin/">Podlove Wordpress Plugin</a> exportiert wird, JSON exportiert die gesammten Shownotes in <a href="http://www.json.org/">JSON</a> und der chapter Export-Modus exportiert eine Plaintextliste der Kapitel.</p><div>Wer den OSF-Parser mag, kann dies durch einen kleinen Beitrag via Flattr zeigen. Vielen Dank! <a class="FlattrButton" style="display:none;" href="http://OSF-Tools"></a><noscript><a href="http://flattr.com/thing/1030881/OpenShownotesFormat-Tools" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript></div><p>Nachfolgend eine Liste an Beispiel Shownotes, um den Parser zu testen:</p>';
     foreach($Podcastliste as $Podcast)
       {
         if(($Podcast != '.')&&($Podcast != '..'))
           {
-            echo '<li><a href="#" onclick="getpad(\''.$Podcastverzeichnis.$Podcast.'\')">'.$Podcast.'</a></li>';
+            echo '<a href="#" onclick="getpad(\''.$Podcastverzeichnis.$Podcast.'\')" class="baf grey bluehover w90">'.$Podcast.'</a>';
           }
       }
-    echo '</ul><hr><form action="./form.php?mode=textarea" method="POST"><textarea name="shownote" style="min-height:100px;" id="textpadarea"></textarea><br><select name="mode">
+    echo '<hr><form action="./form.php?mode=textarea" method="POST"><textarea name="shownote" style="min-height:100px;" id="textpadarea"></textarea><br><select name="mode">
   <option>PSC</option>
   <option>anycast</option>
   <option>anycast-long</option>
@@ -38,7 +64,7 @@ if(!isset($_GET['podcast']))
   <option>PHP</option>
 </select><input type="submit" value=" Absenden "></form></div>';
 
-    echo '<div id="info">mehr Informationen gibt es im zugeh&ouml;rigen <a href="https://github.com/SimonWaldherr/OpenShownotesFormat">GitHub Repo</a>. <br>&sup1;) PSC = Podlove Simple Chapters, mehr informationen dazu gibt es auf <a href="http://podlove.org/simple-chapters/">podlove.org</a>.';
+    echo '<div id="info">mehr Informationen gibt es im zugeh&ouml;rigen <a href="https://github.com/shownotes/OpenShownotesFormat">GitHub Repo</a>. <br>&sup1;) PSC = Podlove Simple Chapters, mehr informationen dazu gibt es auf <a href="http://podlove.org/simple-chapters/">podlove.org</a>.';
   }
 else
   {
