@@ -1,6 +1,0 @@
-[submodule "reqwest"]
-	path = reqwest
-	url = https://SimonWaldherr@github.com/SimonWaldherr/reqwest.git
-[submodule "etherpadexport"]
-	path = etherpadexport
-	url = git://github.com/Locke/Piratenpad-Backup.git
