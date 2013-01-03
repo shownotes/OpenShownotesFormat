@@ -41,5 +41,23 @@ Jeder ist eingeladen, bei diesem Projekt mitzuwirken.
 OSF ist Teil des [Shownot.es Projekt](http://shownot.es/), sowie von [Podlove](http://podlove.org/)
 
 Eine Demoversion ist unter <http://tools.shownot.es/parser/> zu finden.  
-Zur automatisierten Nutzung ist das Ganze auch via API erreichbar: http://tools.shownot.es/parser/api.php?mode=**$mode**&pad=**$pad**  
-Beispiel: [tools.shownot.es/parser/api.php?mode=**morehtml**&pad=**mm95**](http://tools.shownot.es/parser/api.php?mode=morehtml&pad=mm95)  
+  
+#API
+Zur automatisierten Nutzung ist das Ganze auch via API erreichbar:
+`GET` `http://tools.shownot.es/parser/api.php`  
+Parameter:  
+* `mode` – Art der Rückgabe, mögliche Werte:  
+  * `json`: Ausgabe als JSON, zur weiteren Verwendung in z.B. JavaScript nützlich  
+  * `html`: Ausgabe als HTML, nur Kapitel und Namen  
+  * `morehtml`: Ausgabe als HTML, Kapitel, Namen sowie weitere Links  
+  * `wikigeeks`: Ausgabe als HTML, Format: Kapitelname [Timestamp] und Liste mit Links  
+  * `wikigeeks-full`: Ausgabe als HTML, Format: Kapitelname [Timestamp] und Liste mit Links und Teilüberschriften  
+  * `metaebene`: Ausgabe als HTML, Format: Tabelle mit Timestamp und Kapiteltiel welcher auf den Timestamp linkt  
+  * `chapter`: Ausgabe als Text, Format: Timestamp  Kapitelname  
+  * `psc`: [Podlove Simple Chapter Format](http://podlove.org/simple-chapters/)  
+  * `php`: Debug-Ausgabe (print_r)  
+* `pad` – Entweder eine URL welche die zu parsenden Daten zurückgibt oder die [shownotes.piratenpad.de](http://shownotes.piratenpad.de) Pad-ID  
+* `dl` – Wenn gesetzt wird das Ergebnis heruntergeladen und nicht direkt angezeigt. (Download-Header wird gesetzt)
+
+  
+Beispiel: <a href="http://tools.shownot.es/parser/api.php?mode=morehtml&pad=mm95" target="_blank">tools.shownot.es/parser/api.php?mode=<code>morehtml</code>&pad=<code>mm95</code></a>  
