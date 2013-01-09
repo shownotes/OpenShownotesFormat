@@ -1,5 +1,68 @@
 <?php
 
+$osf_starttime = 0;
+
+function osf_specialtags($needles, $haystack)
+  {
+    // Eine Funktion um Tags zu filtern
+    $return = false;
+    foreach($needles as $needle)
+      {
+        if(array_search($needle, $haystack) !== false)
+          {
+            $return = true;
+          }
+      }
+    return $return;
+  }
+
+function osf_affiliate_generator($url, $data)
+  {
+    // Diese Funktion wandelt Links zu Amazon, Thomann und iTunes in Affiliate Links um
+    $amazon       = $data['amazon'];
+    $thomann      = $data['thomann'];
+    $tradedoubler = $data['tradedoubler'];
+    
+    if((strstr($url, 'www.amazon.de/')&&strstr($url, 'p/'))&&($amazon != ''))
+      {
+        if(strstr($url,"dp/")){$pid = substr(strstr($url,"dp/"),3,10);}
+        elseif(strstr($url,"gp/product/")){$pid = substr(strstr($url,"gp/product/"),11,10);}
+        else{$pid='';}
+        $aid = '?ie=UTF8&linkCode=as2&tag='.$amazon;
+        $purl = 'http://www.amazon.de/gp/product/'.$pid.'/'.$aid;
+      }
+    elseif((strstr($url, 'www.amazon.com/')&&strstr($url, 'p/'))&&($amazon != ''))
+      {
+        if(strstr($url,"dp/")){$pid = substr(strstr($url,"dp/"),3,10);}
+        elseif(strstr($url,"gp/product/")){$pid = substr(strstr($url,"gp/product/"),11,10);}
+        else{$pid='';}
+        $aid = '?ie=UTF8&linkCode=as2&tag='.$amazon;
+        $purl = 'http://www.amazon.com/gp/product/'.$pid.'/'.$aid;
+      }
+    elseif((strstr($url, 'thomann.de/de/'))&&($thomann != ''))
+      {
+        $thomannurl = explode('.de/', $url);
+        $purl = 'http://www.thomann.de/index.html?partner_id='.$thomann.'&page=/'.$thomannurl[1];
+      }
+    elseif((strstr($url, 'itunes.apple.com/de'))&&($tradedoubler != ''))
+      {
+        if(strstr($url, '?'))
+          {
+            $purl = 'http://clkde.Tradedoubler.com/click?p=23761&a='.$tradedoubler.'&url='.urlencode($url.'&partnerId=2003');
+          }
+        else
+          {
+            $purl = 'http://clkde.Tradedoubler.com/click?p=23761&a='.$tradedoubler.'&url='.urlencode($url.'?partnerId=2003');
+          }
+      }
+    else
+      {
+        $purl = $url;
+      }
+    
+    return $purl;
+  }
+
 function osf_convert_time($string)
   {
     // Diese Funktion wandelt Zeitangaben vom Format 01:23:45 (H:i:s) in Sekundenangaben um
@@ -7,8 +70,46 @@ function osf_convert_time($string)
     return (($strarray[0]*3600)+($strarray[1]*60)+$strarray[2]);
   }
 
-function osf_parser($shownotes)
+function osf_time_from_timestamp($utimestamp)
   {
+    // Diese Funktion wandelt Zeitangaben im UNIX-Timestamp Format in relative Zeitangaben im Format 01:23:45 um
+    global $osf_starttime;
+    $duration = $utimestamp-$osf_starttime;
+    $sec = $duration%60;
+    if($sec < 10)
+      {
+        $sec = '0'.$sec;
+      }
+    $min = $duration/60%60;
+    if($min < 10)
+      {
+        $min = '0'.$min;
+      }
+    $hour = $duration/3600%24;
+    if($hour < 10)
+      {
+        $hour = '0'.$hour;
+      }
+    return $hour.':'.$min.':'.$sec;
+  }
+
+function osf_replace_timestamps($shownotes)
+  {
+    // Durchsucht die Shownotes nach Zeitangaben (UNIX-Timestamp) und übergibt sie an die Funktion osf_time_from_timestamp()
+    global $osf_starttime;
+    preg_match_all('/\n[0-9]{9,15}/', $shownotes, $unixtimestamps);
+    $osf_starttime = $unixtimestamps[0][0];
+    $regexTS = array('/\n[0-9]{9,15}/e', 'osf_time_from_timestamp(\'\\0\')');
+    return preg_replace($regexTS[0], $regexTS[1], $shownotes);
+  }
+
+function osf_parser($shownotes, $data)
+  {
+    // Diese Funktion ist das Herzstück des OSF-Parsers
+    $specialtags = $data['tags'];
+    $exportall = $data['fullmode'];
+    
+    // entferne alle Angaben vorm und im Header
     $shownotes = explode('/HEADER', $shownotes);
     if(strlen($shownotes[1])>42)
       {
@@ -18,12 +119,25 @@ function osf_parser($shownotes)
       {
         $shownotes = $shownotes[0];
       }
-    // Diese Funktion ist das Herzstück des OSF-Parsers
+    
+    $shownotes = explode('/HEAD', $shownotes);
+    if(strlen($shownotes[1])>42)
+      {
+        $shownotes = $shownotes[1];
+      }
+    else
+      {
+        $shownotes = $shownotes[0];
+      }
+    
+    // wandle Zeitangaben im UNIX-Timestamp Format in relative Zeitangaben im Format 01:23:45 um
+    $shownotes = osf_replace_timestamps($shownotes);
+    
     // zuerst werden die regex-Definitionen zum erkennen von Zeilen, Tags, URLs und subitems definiert
     $pattern['zeilen']    = '/((\d\d:\d\d:\d\d)(\\.\d\d\d)?)*(.+)/';
     $pattern['tags']      = '((#)(\S*))';
-    $pattern['urls']      = '(\s+((http(|s)://\S{0,128})\s))';
-    $pattern['urls2']     = '(\<((http(|s)://\S{0,128})>))';
+    $pattern['urls']      = '(\s+((http(|s)://\S{0,256})\s))';
+    $pattern['urls2']     = '(\<((http(|s)://\S{0,256})>))';
     $pattern['kaskade']   = '/^([\t ]*-+ )/';
     
     // danach werden mittels des zeilen-Patterns die Shownotes in Zeilen/items geteilt
@@ -73,27 +187,7 @@ function osf_parser($shownotes)
             $purls = array();
             foreach($urls as $url)
               {
-                
-                if(strstr($url, 'www.amazon.de/')&&strstr($url, 'p/'))
-                  {
-                    if(strstr($url,"dp/")){$pid = substr(strstr($url,"dp/"),3,10);}
-                    elseif(strstr($url,"gp/product/")){$pid = substr(strstr($url,"gp/product/"),11,10);}
-                    else{$pid='';}
-                    $aid = '?ie=UTF8&linkCode=as2&tag=shownot.es-21';
-                    $purls[] = 'http://www.amazon.de/gp/product/'.$pid.'/'.$aid;
-                  }
-                elseif(strstr($url, 'www.amazon.com/')&&strstr($url, 'p/'))
-                {
-                  if(strstr($url,"dp/")){$pid = substr(strstr($url,"dp/"),3,10);}
-                  elseif(strstr($url,"gp/product/")){$pid = substr(strstr($url,"gp/product/"),11,10);}
-                  else{$pid='';}
-                  $aid = '?ie=UTF8&linkCode=as2&tag=shownot.es-21';
-                  $purls[] = 'http://www.amazon.com/gp/product/'.$pid.'/'.$aid;
-                }
-                else
-                  {
-                    $purls[] = $url;
-                  }
+                $purls[] = osf_affiliate_generator($url, $data);
               }
             $newarray['urls'] = $purls;
           }
@@ -101,14 +195,25 @@ function osf_parser($shownotes)
         // Wenn Zeile mit "- " beginnt im Ausgabe-Array verschachteln
         if((preg_match($pattern['kaskade'], $zeile[0]))||(!preg_match('/(\d\d:\d\d:\d\d)/', $zeile[0]))||(!$newarray['chapter']))
           {
-            if(preg_match($pattern['kaskade'], $zeile[0]))
+            if((osf_specialtags($newarray['tags'], $specialtags))||($exportall == 'true'))
+            //if((osf_specialtags($newarray['tags'], $specialtags)))
               {
-                $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
+                //print_r($newarray);
+                //echo 'tags: '.osf_specialtags($newarray['tags'], $specialtags).' all: '.$exportall.'<br/>';
+                
+                if(preg_match($pattern['kaskade'], $zeile[0]))
+                  {
+                    $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
+                  }
+                else
+                  {
+                    $newarray['subtext'] = true;
+                    $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
+                  }
               }
             else
               {
-                $newarray['subtext'] = true;
-                $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
+                unset($newarray);
               }
             
             // Verschachtelungstiefe hochzählen
@@ -118,14 +223,25 @@ function osf_parser($shownotes)
         // Wenn die Zeile keine Verschachtelung darstellt
         else
           {
-            // Daten auf oberster ebene einfügen
-            $returnarray['export'][$i] = $newarray;
-            
-            // Nummer des letzten Objekts auf oberster ebene auf akutelle Item Nummer setzen
-            $lastroot = $i;
-            
-            // Verschachtelungstiefe auf 0 setzen
-            $kaskadei = 0;
+            //echo $exportall;
+            if((osf_specialtags($newarray['tags'], $specialtags))||($exportall == 'true'))
+            //if((osf_specialtags($newarray['tags'], $specialtags)))
+              {
+                //print_r($newarray);
+                //echo '<br/>';
+                // Daten auf oberster ebene einfügen
+                $returnarray['export'][$i] = $newarray;
+                
+                // Nummer des letzten Objekts auf oberster ebene auf akutelle Item Nummer setzen
+                $lastroot = $i;
+                
+                // Verschachtelungstiefe auf 0 setzen
+                $kaskadei = 0;
+              }
+            else
+              {
+                unset($newarray);
+              }
           }
         
         // Item Nummer hochzählen

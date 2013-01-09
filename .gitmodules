@@ -1,6 +1,6 @@
-[submodule "reqwest"]
-	path = reqwest
-	url = https://SimonWaldherr@github.com/SimonWaldherr/reqwest.git
 [submodule "baf"]
 	path = baf
 	url = https://SimonWaldherr@github.com/SimonWaldherr/buttons-and-forms.git
+[submodule "reqwest"]
+	path = reqwest
+	url = https://SimonWaldherr@github.com/SimonWaldherr/reqwest.git

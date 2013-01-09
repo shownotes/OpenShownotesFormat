@@ -88,6 +88,12 @@ function osf_export_anycast($array, $full=false, $filtertags=array(0 => 'spoiler
                           {
                             $subtext = '';
                           }
+                          
+                        if((isset($subitem['time']))&&(trim($subitem['time']) != ''))
+                          {
+                            $subtext .= '<a href="#t='.$subitem['time'].'" class="time_button"></a>';
+                          }
+                          
                         if(isset($subitem['urls'][0]))
                           {
                             $subtext .= '<a href="'.$subitem['urls'][0].'"';
@@ -116,6 +122,7 @@ function osf_export_anycast($array, $full=false, $filtertags=array(0 => 'spoiler
                               {
                                 $subtext .= ' data-tooltip="'.$subitem['time'].'"';
                               }
+                            
                             $subtext .= '>'.trim($text).'</a>'." ";
                           }
                         else
@@ -125,10 +132,12 @@ function osf_export_anycast($array, $full=false, $filtertags=array(0 => 'spoiler
                               {
                                 $subtext .= ' class="'.$hide.'"';
                               }
+                            
                             if((isset($subitem['time']))&&(trim($subitem['time']) != ''))
                               {
                                 $subtext .= ' data-tooltip="'.$subitem['time'].'"';
                               }
+                            
                             $subtext .= '>'.trim($text).'</span> ';
                           }
                         //$subtext = str_replace("\n, ", ", ", $subtext);
