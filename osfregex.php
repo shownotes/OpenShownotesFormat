@@ -90,7 +90,7 @@ function osf_time_from_timestamp($utimestamp)
       {
         $hour = '0'.$hour;
       }
-    return $hour.':'.$min.':'.$sec;
+    return "\n".$hour.':'.$min.':'.$sec;
   }
 
 function osf_replace_timestamps($shownotes)
@@ -135,7 +135,7 @@ function osf_parser($shownotes, $data)
     
     // zuerst werden die regex-Definitionen zum erkennen von Zeilen, Tags, URLs und subitems definiert
     $pattern['zeilen']    = '/((\d\d:\d\d:\d\d)(\\.\d\d\d)?)*(.+)/';
-    $pattern['tags']      = '((#)(\S*))';
+    $pattern['tags']      = '((\s#)(\S*))';
     $pattern['urls']      = '(\s+((http(|s)://\S{0,256})\s))';
     $pattern['urls2']     = '(\<((http(|s)://\S{0,256})>))';
     $pattern['kaskade']   = '/^([\t ]*-+ )/';
@@ -196,11 +196,7 @@ function osf_parser($shownotes, $data)
         if((preg_match($pattern['kaskade'], $zeile[0]))||(!preg_match('/(\d\d:\d\d:\d\d)/', $zeile[0]))||(!$newarray['chapter']))
           {
             if((osf_specialtags($newarray['tags'], $specialtags))||($exportall == 'true'))
-            //if((osf_specialtags($newarray['tags'], $specialtags)))
               {
-                //print_r($newarray);
-                //echo 'tags: '.osf_specialtags($newarray['tags'], $specialtags).' all: '.$exportall.'<br/>';
-                
                 if(preg_match($pattern['kaskade'], $zeile[0]))
                   {
                     $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
@@ -223,12 +219,9 @@ function osf_parser($shownotes, $data)
         // Wenn die Zeile keine Verschachtelung darstellt
         else
           {
-            //echo $exportall;
             if((osf_specialtags($newarray['tags'], $specialtags))||($exportall == 'true'))
             //if((osf_specialtags($newarray['tags'], $specialtags)))
               {
-                //print_r($newarray);
-                //echo '<br/>';
                 // Daten auf oberster ebene einfügen
                 $returnarray['export'][$i] = $newarray;
                 
