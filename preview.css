@@ -34,3 +34,59 @@ content: ', ';
 .osf_items .osf_subend::after {
 content: '); ';
 }
+
+.osf_wikigeeks h1 {
+font-family: "Voltaire", arial, sans-serif;
+}
+
+.osf_wikigeeks h1, .osf_wikigeeks h2, .osf_wikigeeks h3 {
+font-size: 1.5em;
+color: #000;
+}
+
+.osf_wikigeeks h1 a, .osf_wikigeeks h2 a, .osf_wikigeeks h3 a {
+font-size: 1.5em;
+color:#001d7d;
+}
+
+.osf_wikigeeks ul, .osf_wikigeeks ol {
+margin: 0 0 1.625em 2.5em;
+}
+
+.osf_wikigeeks ul {
+list-style: square;
+}
+
+.osf_wikigeeks li {
+border: 0;
+font-family: inherit;
+font-size: 100%;
+font-style: inherit;
+font-weight: inherit;
+margin: 0;
+outline: 0;
+padding: 0;
+vertical-align: baseline;
+}
+
+.osf_wikigeeks li a {
+text-decoration: none;
+color: #c35242;
+}
+
+.osf_wikigeeks {
+color: #373737;
+font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-weight: 300;
+line-height: 1.625;
+border: 0;
+font-family: inherit;
+font-size: 100%;
+font-style: inherit;
+font-weight: inherit;
+margin: 0;
+outline: 0;
+padding: 0;
+vertical-align: baseline;
+}
+

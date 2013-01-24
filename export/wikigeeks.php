@@ -18,7 +18,7 @@ function osf_checktags($needles, $haystack)
 function osf_export_wikigeeks($array, $full=false, $filtertags=array(0 => 'spoiler'))
   {
     $filtertags = array('spoiler', 'trash');
-    $returnstring = '';
+    $returnstring = '<div class="osf_wikigeeks">';
     $filterpattern = array('(\s(#)(\S*))', '(\<((http(|s)://[\S#?-]{0,128})>))', '(\s+((http(|s)://[\S#?-]{0,128})\s))', '(^ *-*)');
     foreach($array as $item)
       {
@@ -126,7 +126,7 @@ function osf_export_wikigeeks($array, $full=false, $filtertags=array(0 => 'spoil
           }
       }
 
-    $returnstring .= ''."\n";
+    $returnstring .= '</div>'."\n";
     return $returnstring;
   }
 

@@ -138,9 +138,10 @@ if($_GET['configfile'] != '')
         </a>
         <ul class="dropdown-menu">
           <li><a onclick="getShownotes('anycast', false);">Anycast</a></li>
-          <li><a onclick="getShownotes('anycast-full', true);">Anycast-Full</a></li>
+          <li><a onclick="getShownotes('anycast-full', true);">Anycast Full</a></li>
           <li><a onclick="getShownotes('metacast', true);">Metacast-Full</a></li>
           <li><a onclick="getShownotes('wikigeeks', false);">Wikigeeks</a></li>
+          <li><a onclick="getShownotes('wikigeeks-full', true);">Wikigeeks Full</a></li>
           <li><a onclick="getShownotes('json', false);">JSON</a></li>
           <li><a onclick="getShownotes('chapter', false);">Chapter</a></li>
           <li><a onclick="getShownotes('glossary', true);">Glossary</a></li>
@@ -159,7 +160,7 @@ if($_GET['configfile'] != '')
     <a href="http://flattr.com/thing/1062678/SimonWaldherrOSF-Parser-Suite-on-GitHub" target="_blank">
     <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
     </div>
-    <div class="footer">&nbsp;<span>&copy; 2012 <a href="http://shownot.es/">shownot.es</a></span></div>
+    <div class="footer">&nbsp;<span>&copy; 2013 <a href="http://shownot.es/">shownot.es</a></span></div>
   </div>
 <script type="text/javascript">
 
@@ -244,7 +245,6 @@ function getShownotes(mode, fulloutput)
                         {
                           document.getElementById('outputsource').style.display = 'none';
                           document.getElementById('outputview').style.display = 'block';
-                          //document.getElementById('viewarea').srcdoc = '<html><head><title>'+mode+' - Shownotes</title><link rel="stylesheet" href="http://shownot.es/css/style.css?v=008" type="text/css"><link rel="stylesheet" href="http://shownot.es/css/anycast.min.css?v=008" type="text/css" media="screen"><link rel="stylesheet" href="http://shownot.es/css/shownotes.min.css?v=002" type="text/css" media="screen"><link rel="stylesheet" href="http://shownot.es/css/ua/other.css?v=002" type="text/css" media="screen"><style type="text/css">dl {padding-top: 0px;}</style></head><body><div class="content"><div class="box">'+resp+'</div></div><div class="footer">&nbsp;<span>© 2012 <a href="/">shownot.es</a></span></div></body></html>';
                           document.getElementById('viewarea').srcdoc = '<html><head><title>'+mode+' - Shownotes</title><link rel="stylesheet" href="http://cdn.shownot.es/include-shownotes/shownotes.css" type="text/css" media="screen"><link rel="stylesheet" href="http://tools.shownot.es/parsersuite/preview.css" type="text/css" media="screen"></head><body><div class="content"><div class="box">'+resp+'</div></div><div class="footer">&nbsp;<span>© 2013 <a href="/">shownot.es</a></span></div></body></html>';
                           
                         }

@@ -93,9 +93,14 @@ if(($mode != '')&&($pad != ''))
         include "./export/wikigeeks.php";
         ctcs_header("text/html");
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
-        echo '<html><head><meta charset="utf-8"><title>Shownotes - '.$pad.'</title><link href="./css/anycast.css" rel="stylesheet" type="text/css" /></head><body>';
+        echo osf_export_wikigeeks($shownotes['export'], 1);
+      }
+    elseif($_POST['exportmode'] == 'wikigeeks-full')
+      {
+        include "./export/wikigeeks.php";
+        ctcs_header("text/html");
+        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
         echo osf_export_wikigeeks($shownotes['export'], 2);
-        echo '</body></html>';
       }
     elseif($_POST['exportmode'] == 'chapter')
       {

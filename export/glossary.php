@@ -63,14 +63,14 @@ function osf_export_glossary($array, $showtags = array(0 => ''))
     
     foreach($linksbytag as $tagname => $content)
       {
-        $return .= '<h1>'.$tagname.'</h1>';
-        $return .= '<ol>';
+        $return .= '<h1>'.$tagname.'</h1>'."\n";
+        $return .= '<ol>'."\n";
         usort($content, "osf_glossarysort");
         foreach($content as $item)
           {
-            $return .= '<li><a href="'.$item['url'].'">'.$item['text'].'</a></li>';
+            $return .= '<li><a href="'.$item['url'].'">'.$item['text'].'</a></li>'."\n";
           }
-        $return .= '</ol>';
+        $return .= '</ol>'."\n";
       }
 
     return $return;
