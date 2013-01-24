@@ -143,6 +143,7 @@ if($_GET['configfile'] != '')
           <li><a onclick="getShownotes('wikigeeks', false);">Wikigeeks</a></li>
           <li><a onclick="getShownotes('json', false);">JSON</a></li>
           <li><a onclick="getShownotes('chapter', false);">Chapter</a></li>
+          <li><a onclick="getShownotes('glossary', true);">Glossary</a></li>
           <li><a onclick="getShownotes('print_r', true);">Print_r</a></li>
         </ul>
       </div>
