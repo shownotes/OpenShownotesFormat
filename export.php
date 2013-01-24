@@ -88,7 +88,7 @@ if(($mode != '')&&($pad != ''))
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
         echo osf_export_anycast($shownotes['export'], 2);
       }
-    elseif($_POST['mode'] == 'wikigeeks')
+    elseif($_POST['exportmode'] == 'wikigeeks')
       {
         include "./export/wikigeeks.php";
         ctcs_header("text/html");
@@ -103,6 +103,12 @@ if(($mode != '')&&($pad != ''))
         ctcs_header("text/plain");
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
         echo osf_export_chapterlist($shownotes['export']);
+      }
+    elseif($_POST['exportmode'] == 'print_r')
+      {
+        ctcs_header("text/plain");
+        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
+        echo print_r($shownotes);
       }
     else
       {

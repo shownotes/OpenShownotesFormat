@@ -1,0 +1,367 @@
+HEADER
+
+---------------------------------------------------------------------
+New Rules:
+
+Standard Tags: #c #s #spoiler #t #embed
+Inclusion Tags: #v #a #i #shopping #g
+
+Deprecated Tags: #wikilink #amazon #youtube #link
+---------------------------------------------------------------------
+Zur Diskusion vorgeschlagene Tags: #source #app #title #quote
+
+Show: MM
+Episode: MM103
+
+
+Shownotes zu MobileMacs 103
+Stream: <http://streams.xenim.de/metaebene.mp3>
+Timer: Zeitangaben werden vom EP-TimeStamp-Bookmarklet geschrieben. 
+Das Plugin wandelt alle ### am Anfang von Zeilen in UNIX-Timestamp Zeitangaben um
+Mit: Tim @timpritlove, roddi @roddi, Clemens @csch42, Denis @denis2342
+Verfahrensweise, Tims Wünsche: <https://shownotes.piratenpad.de/podlove-shownotes-format>
+Version auf Shownot.es: <http://shownot.es/mm/103>
+
+Zusammengetragen von: @EvitaBley, @SimonWaldherr, @mrmoe, @mxmerz, @kaeffchen_heinz
+Sendungstitel Vorschläge:  
+Noch Chinesenkinderhandwarm
+Plattform mit Migrationshintergrund
+Microsoft, Java und eMails
+Blackjack und NATten
+Pehpehtehpehdeh
+PPPd, L2TP und PPTP
+Vom Club zum Club Tunneln
+Lebenssituationen mit Fritz!Boxen
+Flaschenrückgabeautomatenfail
+Provider mit Nerd-Keller
+DVI ist vom letzten Jahrtausend
+WhiteVPN
+
+Showbot Vorschläge:
+Pehpehtehpehdeh
+Niedrig hängende Frucht
+Wenn Du hinter einem NAT bist...
+Pass auf!
+Es ist alles ein Drama
+WTF
+
+Sendungsbeginn:  19:39:05 Uhr
+
+/HEADER
+
+1358966352 Sendungsbeginn #c
+1358966353 Previously on mobileMacs 102 <https://soundcloud.com/david1701/> #t #a
+1358966410 Bumm Zack Return Intro
+1358966444 Begrüßung
+1358966463 Alles was digital ist, ist gut oder nicht gut, - das ist aber wiederum binär... #quote
+1358966544 Hukl ist krank ;( ist aber im Chat #t
+1358966568 Denis war letztes Mal krank und war aber im Chat
+
+1358966640 Quartalsendeberichtserstattungsfinanzkasper #c
+1358966654 Desaster Gerücht, dass Apple weniger Displays ordert #t
+1358966683 Wall Street Journal Bericht <http://www.wallstreetjournal.de/article/SB10001424127887324235104578240743916677374.html> #t
+1358966714 SpOn prophezeite direkt den Markteinbruch von Apple <http://www.spiegel.de/wirtschaft/unternehmen/apple-bestellt-wegen-schwacher-nachfrage-weniger-iphone-bauteile-a-877306.html>
+1358966756 Apple Aktienkurs <http://finance.yahoo.com/q?s=AAPL>
+1358966810 Price-to-earnings ratio (P/E ratio) <http://de.wikipedia.org/wiki/Kurs-Gewinn-Verh%C3%A4ltnis> #g
+1358966841 Osbourne-Effekt <http://en.wikipedia.org/wiki/Osbourne_effect> #g
+1358966904 Applerechner Umrechner auf Appleaktien <http://macorstock.com/> #t
+1358966924 Tim erwartet Apple Rekordzahlen für dieses Jahr #t
+1358966942 Apple verkauft seit Jahren immer so viele Geräte wie sie produzieren können
+1358966986 Die Lagerzeit eines Appleproduktes beträgt 2 - 3 Tage <http://de.wikipedia.org/wiki/Lagerhaltung#Durchschnittliche_Lagerdauer> #g
+1358967081 Geheimhaltung wird nicht mehr so groß geschrieben, wie zu Steves Zeiten
+1358967086 Coolness durch Verknappung funktioniert nur in der Disco #quote
+1358967133 Tim möchte das auch mit dem Stream ausprobieren
+1358967161 Die einzig wichtige Frage: Wieviele Macs hat Apple verkauft? #quote
+
+1358967180 Microsoft und seine Produkte Bashing #c
+1358967182 Der PC-Markt schrumpft <http://de.statista.com/themen/614/pc-markt/infografik/816/weltweiter-pc-absatz/> #t
+1358967247 Windows 8 Run bleibt vermutlich aus <http://www.netzwelt.de/news/94857-windows-8-verkaufszahlen-liegen-gleichauf-vorgaenger.html> #t
+1358967258 Windows 7 war dagegen recht erfolgreich <http://de.wikipedia.org/wiki/Windows_7> #g
+1358967295 Surface Pro <http://www.microsoft.com/Surface/en-us/surface-with-windows-8-pro/home> kostet USD 1029 in der Vollausstattung, ist also teurer als ein Macbook Air (USD 999) #t
+1358967396 Das iPad 4 kostet voll ausgestattet 829 € <http://store.apple.com/de/buy/home/shop_ipad/family/ipad> #shopping
+1358967481 Windows 8: The Animated Evalutaion <http://www.youtube.com/watch?v=WTYet-qf1jo> #v
+1358967516 c´t-Test Monitore
+1358967613 wird es eine Unterscheidung zwischen iPad mini Zahlen und iPad Zahlen geben?
+1358967642 Verizon sagt, 2/3 ihrer aktivierten Smartphones seien iPhones <http://www.networkworld.com/community/blog/iphone-activations-verizon-increased-47> #t
+1358967765 Denis kann seine "Internetsucht" ab und zu mit einer iPhone-Spritze stillen #quote
+1358967801 Bis 2008 nahm man seinen Laptop mit, wenn man aus dem Haus ging #quote
+1358967848 Denis hatte mal einen Vertrag wo die ersten 10 Sekunden kostenlos waren
+1358967895 Es gibt Kekse
+1358968031 Viele Menschen rennen noch mit alten Macbook Pros rum weil sie noch gut sind
+Denis hat ein MacBook Pro mit Quad Core Prozessor
+1358968061 Tim prophezeit Retina Graphics
+1358968113 Fusion Drive <http://de.wikipedia.org/wiki/Fusion_Drive> #g
+1358968142 Clemens hat zwei SSDs in seinem MacBook #t
+1358968168 Manche Menschen sollten nicht sagen, was sie arbeiten #t
+1358968203 Die ganzen alten Windows User kommen jetzt rüber zum Mac
+1358968217 "Plattform mit Migrationshintergrund" #quote
+1358968230 Word for Mac <http://www.microsoft.com/germany/mac/word> #t
+1358968249 Der Microsoft Online Store <http://www.microsoftstore.com/store/mseea/de_DE/list/ThemeID.30303100/categoryID.59876100> #shopping
+1358968282 Outlook wird mit installiert aber man kann es nicht öffnen ohne Pro User zu sein
+1358968314 nach Download startet Updateassistent, er updatet, startet ihn nochmal, das ganze 4 mal und dann im Programm unter Hilfe nochmal ein Update... #t
+1358968391 Update Dominoeffekt (nenn ich jetzt mal so :D)
+1358968437 Cubes <https://itunes.apple.com/de/app/cubes/id404705245?mt=12> #shopping
+1358968518 Wie hoch ist der Aufwand, ein weiteres Land hinzuzufügen
+1358968661 In Word for Mac gibt es noch Disketten Symbole #spoiler
+1358968692 Für was halten Menschen Dinge, die sie noch nicht kennen
+1358968726 Schallplatten <http://de.wikipedia.org/wiki/Schallplatte> #g
+1358968752 Floppy Disc <http://de.wikipedia.org/wiki/Diskette> #g
+
+1358968804 Dokumentenscanning #c
+MobileMacs 102 <http://mobilemacs.de/2013/01/mm102.html> #t
+1358968870 Fujitsu Scanner 1300<http://www.fujitsu.com/emea/products/de/scanners/scansnap/s1300-gig4.html> #shopping
+1358968896 Fujitsu Scanner 1500M <http://www.amazon.de/dp/B001VGG6X2> #shopping
+1358968904 Fujitsu Scanner ix500 <http://www.amazon.de/dp/B00AR55MLU> #shopping
+
+1358968940 Software für Mac #s
+1358968952 Papers <http://papers.softonic.de/mac> #software #t
+1358969032 DEVONthink Pro Office <http://www.devontechnologies.com/products/devonthink/devonthink-pro-office.html> #t
+1358969149 ADF Automatic Document Feeding <http://de.wikipedia.org/wiki/Automatischer_Vorlagenwechsler> #g
+1358969307 Canondrucker zum direkten Bedrucken von CDs
+1358969456 Doxie Scanner <http://www.getdoxie.com/>
+1358969502 FineReader von ABBYY <http://www.abbyy.de/finereader-for-mac/> #t
+1358969537 Hand Scanner <http://de.wikipedia.org/wiki/Handscanner> #g
+1358969563 OCR Kit <http://ocrkit.com/de/index.html>#software #t
+1358969675 FineReader für iOS <https://itunes.apple.com/app/finereader-touch/id565102038> #shopping
+1358969759 OCRKit für iOS <https://itunes.apple.com/de/app/ocrkit/id388421968> #shopping
+1358969781 Hazel für OSX <http://www.noodlesoft.com/hazel.php> #shopping
+1358969922 TimeMachine <http://de.wikipedia.org/wiki/Time_Machine_%28Apple%29> #g
+1358969954 TimeMachine sichert nicht den Mülleimer
+
+1358970018 Java #c
+Java <http://de.wikipedia.org/wiki/Java_%28Programmiersprache%29> #g
+1358970137 9./10.1. Elster Online braucht Java, wurde aber von Apple weggeschaltet <https://www.elster.de/eon_home.php> #t
+1358970206 Artikel ZDNet <http://www.zdnet.de/88134531/neue-mac-malware-dockster-greift-erneut-flashback-java-lucke-an/> #t
+1358970438 Java Applets <http://de.wikipedia.org/wiki/Javaapplet> #g
+1358970475 Oracle <http://de.wikipedia.org/wiki/Oracle> #g
+1358970630 Cisco Werbevideos <http://www.cisco.com/en/US/products/hw/contnetw/index.html> #t
+1358970632 Auswahl der Cisco Video Data Sheets <http://www.google.de/search?q=cisco+video+data+sheet&tbm=vid>
+1358970779 Multimediale Selbstdarstellung
+
+1358970849 Mail #c
+IMAPdesaster <http://de.wikipedia.org/wiki/Imap> #g
+1358970978 IMAP auf dem iPhone einstellen #t
+1358971040 In den Einstellungen unter Mail..., einen Mailaccount aussuchen, dort auf erweitert klicken und einstellen
+1358971243 Drafts = Entwürfe
+1358971353 MailMate <http://freron.com> #t
+1358971488 Google Mailserver Fail #t
+1358971507 Bing <http://de.wikipedia.org/wiki/Bing_%28Suchmaschine%29> #g
+1358971513 DuckDuck Go <https://duckduckgo.com>
+- Duckduck Go bei Wikipedia <http://de.wikipedia.org/wiki/Duckduckgo> #g
+
+1358971580 Netzwerktechnik #c
+1358971582 Fashion Week in Berlin 2013 #t
+1358971597 Wurm <http://de.wikipedia.org/wiki/Computerwurm> #g
+1358971674 Bots <http://de.wikipedia.org/wiki/Bot> #g
+1358971740 IPv6 <http://de.wikipedia.org/wiki/IPv6> #g
+1358971768 Clemens behauptet: Facebook und Google machen 40% des Internettraffics aus #t
+1358971798 Internet Service Provider <http://de.wikipedia.org/wiki/Internetdienstanbieter> #g
+1358971807 Aufgrund fehlender IP-Adressen musste geNATed werden
+1358971820 NAT <http://de.wikipedia.org/wiki/Network_Address_Translation> #g
+1358971894 Welche Portale sollten dringend IPv6 anbieten: Ebay, Amazon, Apple,…
+1358971903 Apple hat kein IPv6
+1358971996 heise kann IPv6
+1358972040 Amazon ElasticCloud (EC2) ist nicht IPv6 fähig <http://aws.amazon.com/de/ec2/> #t
+1358972043 IPv6 Tag <http://de.wikipedia.org/wiki/World_IPv6_Day_und_World_IPv6_Launch_Day> #g
+1358972088 Akamai kann IPv6 <http://de.wikipedia.org/wiki/Akamai> #g #t
+- Akamai <http://www.akamai.com/>
+1358972124 Im Mobilfunk sinkt die Latenz durch IPv6 stark <http://www.extremetech.com/mobile/145765-ipv6-makes-mobile-networks-faster> #t
+1358972194 Die Deutschen Mobilfunkbetreiben haben es aber noch nicht
+In Amerika bekommt man IPv6 von T-Mobile USA über einen anderen APN <http://www.extremetech.com/mobile/127213-ipv6-now-deployed-across-entire-t-mobile-us-network>
+- APN <http://de.wikipedia.org/wiki/Access_Point_Name> #g
+1358972210 Tim hat bei App.net gefragt, warum die kein IPv6 machen #t
+1358972336 Port 53 DNS <http://de.wikipedia.org/wiki/Domain_Name_System> #g
+1358972365 Hetzner <http://www.hetzner.de/>
+1358972498 CloudFront <http://aws.amazon.com/de/cloudfront/>
+1358972556 Port 587 #s
+1358972589 SMTP <http://de.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol> #g
+1358972610 Port 25 (Server mit Server) <http://de.wikipedia.org/wiki/Port_%28Protokoll%29> #g
+1358972658 Port 587 (Mailclient mit Server)
+1358972726 Tim bekommt mit blackVPN keinen zugriff auf dem Mailserver <https://www.blackvpn.com/>
+1358972764 Port 465 SMTP mit SSL <http://de.wikipedia.org/wiki/SMTPS> #g
+1358972776 SSL <https://de.wikipedia.org/wiki/Transport_Layer_Security> #g
+1358972848 default werden vom Mailclient alle diese Ports benutzt und durchprobiert
+1358972903 Errata: list-Kommando zählt alle Mails durch und schreibt die Datengröße dahinter
+1358972944 Bei blackVPN kommt kein Port 587 durch <https://www.blackvpn.com>
+1358972980 "Es schadet nicht, seinen Mailclient default auf Port 587 umzustellen." #quote
+
+1358973153 Netzfeindliche Regionen #c
+1358973203 blackVPN <https://www.blackvpn.com/>
+1358973248 VPN ist nur IPv4
+1358973362 Die Lösung
+1358973374 PPTP <http://de.wikipedia.org/wiki/Point-to-Point_Tunneling_Protocol> #g
+1358973387 L2TP <http://de.wikipedia.org/wiki/L2TP> #g
+1358973461 PPPd <http://en.wikipedia.org/wiki/Point-to-Point_Protocol_daemon> #g
+1358973527 NAT-Gerät kann die Zugehörigkeit nicht mehr erkennen #t
+1358973562 Virtuelle Maschine <http://de.wikipedia.org/wiki/Virtuelle_Maschine> #g
+1358973602 BSD <http://de.wikipedia.org/wiki/Berkeley_Software_Distribution> #g
+1358973606 Linux <http://de.wikipedia.org/wiki/Linux> #g
+1358973610 SwissVPN <http://www.swissvpn.net/> #t
+1358973680 Split Tunneling <http://en.wikipedia.org/wiki/Split_tunneling> #g
+1358973690 IPSec <http://de.wikipedia.org/wiki/IPSec> #g
+1358973821 iPhone Configuration Utility <http://support.apple.com/kb/DL1465>
+1358973940 VPN <http://de.wikipedia.org/wiki/Virtual_Private_Network> #g
+Advocatus Diaboli <http://de.wikipedia.org/wiki/Advocatus_Diaboli> #g
+Vom Club zum Club Tunneln #t
+1358974031 Fritz!Box <http://de.wikipedia.org/wiki/Fritzbox> #g
+1358974041 Fritz!Box kann VPN nur über IPsec
+1358974100 Multiport Datenprotokolle sind schwierig
+1358974127 NAT-Traversal <http://en.wikipedia.org/wiki/NAT_traversal> #g
+1358974239 AVM <http://de.wikipedia.org/wiki/AVM_GmbH> #g
+1358974258 AVM wird ein Webinterface für die VPN-Generierung bauen #t
+1358974330 Es gibt eine App zur Konfiguration der Fritz!Box-VPN-Funktionalität - VPN!Assistent <https://itunes.apple.com/de/app/vpn!assistent/id497680686>
+1358974410 Lebenssituationen, in denen man mit mehreren Fritz!Boxen zu tun hat
+1358974482 Viscosity <http://www.sparklabs.com/viscosity/> #software #app
+1358974489 Tunnelblick <http://code.google.com/p/tunnelblick/> #software #app
+VPNs im Iran
+1358974620 IPv6 mit Bordmitteln: Layer-3-SSH-Tunnel
+1358974637 Layer 3 <http://de.wikipedia.org/wiki/Layer_3#Schicht_3_.E2.80.93_Vermittlungsschicht> #g
+1358974661 Ethernet <http://de.wikipedia.org/wiki/Ethernet> #g
+1358974686 SSH-Tunnel <http://de.wikipedia.org/wiki/Tunnel_(Rechnernetz)> #g
+1358974698 Bonjour <http://de.wikipedia.org/wiki/Bonjour_%28Apple%29> #g
+1358974776 Bridge <http://de.wikipedia.org/wiki/Bridge_(Netzwerk)> #g
+Apple lässt den BSD-Kernel in ruhe #spoiler
+1358974855 ifconfig <http://en.wikipedia.org/wiki/Ifconfig> #g
+1358974884 Clemens verspricht eine Anleitung
+1358974933 TUN/TAP <http://de.wikipedia.org/wiki/TUN/TAP> #g
+
+1358974952 Telekom(unikation) Beschwerdeecke #c
+1358974972 Denis war bei der Telekom #t
+1358974984 "Alice hat zu oft dafür gesorgt, dass ich gestorben bin" (Denis) #quote
+1358975010 Alice disconnectet zu oft (jetzt o2) <http://www.o2online.de/dsl-und-festnetz/>
+1358975068 Die Telekom ist zu teuer <http://www.telekom.de/dsl>
+1358975110 "VDSL braucht man um Porn runterzuladen oder Podcasts hoch" #quote
+1358975284 1und1 <http://1und1.de>
+1358975488 Telekom failt bei Tims Anschluss #t
+1358975590 Tim bekommt live ne SMS von der Telekom <http://hilfe.telekom.de>
+1358975611 Telekommitarbeiter hören mit #t
+1358975665 Congstar Test für 30 Tage Fail
+- Kundenservice Un-Freundlichkeitsfail
+1358975732 Flaschenrückgabeautomatenfail
+1358975800 Zugangsdatenfail bei der Telekom #t
+1358975890 Es gibt auch guten Kundenservice #t
+1358975898 Verschlüsselte PDF mit Schlüssel per SMS
+1358976010 TR-069 <http://en.wikipedia.org/wiki/TR-069> #g
+1358976050 PPPoE <http://de.wikipedia.org/wiki/PPP_over_Ethernet> #g
+1358976160 CPE <http://de.wikipedia.org/wiki/Customer_Premises_Equipment> #g
+1358976217 Kundenservice nur noch bei Original Hardware #t
+1358976341 spielt Jingle ein #spoiler
+1358976355 Bei jedem Provider gibts nen Keller mit Nerds
+
+1358976437 Professional Macs (MacPro) #c
+- Wir müssen mehr über Macs reden
+Mac Pro 4.1 mit Dual Xeon von 2009 #t
+1358976500 Tim hat nen gebrauchten MacPro
+1358976575 Tim hat 16 Virtuelle Cores #t
+Bootcamp <http://de.wikipedia.org/wiki/Boot_Camp_(Software)> #gloassary
+Der MacPro ist auch ein guter Windows Rechner #t
+1358976802 Early MacPro 2009 ist fast gleich wie der 2012er
+1358976910 Tims Mac ist viel zu schnell #quote
+1358976928 Bitmining via CPU bringt nix mehr #quote
+1358976942 "Upgraden macht Spass" (Denis) #quote
+1358976953 neue 32 GB RAM für Tim #t
+1358977040 mit verschiedenen Modulen startete der MacPro nicht
+1358977080 ECC RAM <http://en.wikipedia.org/wiki/ECC_memory> #g
+1358977092 RAM-Tauschbörse
+1358977231 Aufrüsttipps für Tims Mac #t
+1358977270 SATA 3 <http://de.wikipedia.org/wiki/Serial_ATA> #g
+1358977370 Tim "DVI ist vom letzten Jahrtausend" #quote
+1358977562 Zusatzkarte für Tims MacPro #t
+1358977805 Xilinx <http://de.wikipedia.org/wiki/Xilinx> #g
+1358977820 FPGA <http://en.wikipedia.org/wiki/Field-programmable_gate_array> #g
+1358977900 Cisco Switch mit QoS
+1358977965 Mixer spricht Bonjour <http://de.wikipedia.org/wiki/Bonjour_(Apple)>
+1358978005 Auf dem Mixer ist sogar ein Webserver
+1358978090 Die Karte kostet 1000€ #t
+1358978230 Tim ist nicht Zielgruppe, das professionelle Equipment brauchen die Kirchen und Konzerte...
+1358978334 Gerüchte über Grafiktreiber in OSX 10.8.3 Beta
+1358978361 Hacker, die die Firmware der Grafikkarten mit nem EFI BIOS flashen <http://netkas.org> #t
+1358978475 HDMI Anschluss jetzt auch mit Audio
+1358978495 Softwareempfehlung von Clemens: AirParrot <http://airparrot.com/> #app #software
+
+1358978623 Apple Quarterly Results <https://www.apple.com/pr/library/2013/01/23Apple-Reports-Record-Results.html> #c
+- Aufnahme auf Apple.com <http://www.apple.com/apple-events/>
+1358978627 47,8 Mio iPhones #t
+1358978672 13,1 Millarden US-Dollar Gewinn (knapp über letztem Jahr) #t
+1358978781 75 Million iOS-Devices wurden im letzten Quartal verkauft #t
+1358978819 4,1 Mio Macs #t
+1358979099 iPods verkaufen sich weniger #t
+1358979177 38% Marge #t
+1358979235 Tim Cook is thrilled, aber Tim P. hatte das eh auf seiner Bingo Karte #t
+
+
+1358979273 Softwareempfehlungen #c
+- Compliment App <http://compliment.rentzsch.com> #t #app #software
+- Blogger <http://rentzsch.com/>
+1358979340 MOGenerator <https://github.com/rentzsch/mogenerator> #t
+1358979505 Distributed Notifications #t
+1358979625 Flattrn durch Appstart #t
+1358979640 Growl <http://growl.info>
+1358979709 Outbank 2 <http://www.outbank.de> #t
+- für iOS <https://itunes.apple.com/de/app/id585564091> #shopping
+- für OSX <https://itunes.apple.com/de/app/id451208372> #shopping
+1358979878 3-Fragen Security um neuen Rechner einzurichten #t
+1358979916 Wooga <http://www.wooga.com> #t
+1358979958 Apple ID zurücksetzen <http://appleid.apple.com> #t
+1358979960 (In)security Fragen #t
+1358980030 1Password #t
+1358980035 World of WarCraft
+1358980105 OutBank 2 für OSX hat Passwörter ins Logfile geschrieben <http://chrismarquardt.com/blog.php?id=4223403188396996876> #t
+1358980197 TweetMarker <http://tweetmarker.net>
+1358980366 iCloud <https://www.icloud.com> #t
+1358980427 CoreData <http://en.wikipedia.org/wiki/Core_Data> #g
+1358980430 Security by Obscurity <http://en.wikipedia.org/wiki/Security_through_obscurity> #g
+- grafisch erklärt <https://pbs.twimg.com/media/AiR94k9CAAIY-y3.png:large> #i
+1358980585 Amazon Apple Security Fail <http://www.heise.de/mac-and-i/meldung/iCloud-Hack-Amazon-und-Apple-reagieren-auf-Sicherheitsproblem-1662667.html> #t
+1358980630 Neue Infos über das VPN
+1358980687 "BlackVPN ist nicht zu empfehlen" sagt Tim #quote <http://www.blackvpn.com>
+
+1358980736 Ubuntu Phone<http://www.ubuntu.com/devices/phone> #c
+1358980747 Mark Shuttleworth <http://en.wikipedia.org/wiki/Mark_Shuttleworth> #g
+1358980830 Video <http://www.youtube.com/watch?v=cpWHJDLsqTU> #v
+1358980922 Innovation bei Ubuntu Phone
+1358981020 Canonical <http://www.canonical.com/> #t
+1358981050 Kommt der neue Window Manager noch vor GNU Hurd / BER 
+1358981125 Frage nach dem Businessmodel #t
+1358981231 Hersteller wollen keine Updates #spoiler
+1358981318 HTC liegt am Boden
+1358981326 Nur Samsung und Apple verdienen auf dem Smartphone Markt Geld
+1358981349 "Die restlichen Hersteller teilen sich das vierte Drittel" #quote
+1358981430 "i did not have a (customer) relationship with that woman" #quote
+1358981480 vor 6 Jahren stand Steve Jobs auf der Bühne und hat durchgezählt, a Widescreen iPod, a mobile Phone, a Internet Communicator <http://www.youtube.com/watch?v=t4OEsI0Sc_s> #v
+1358981668 Dalvik <http://de.wikipedia.org/wiki/Dalvik_Virtual_Machine> #g
+1358981680 Frage nach der Programmiersprache/Umgebung auf dem Ubuntu Phone #t
+1358981707 Assembler ist wieder stark im Kommen
+1358981719 Unity <http://de.wikipedia.org/wiki/Unity_(Benutzeroberfl%C3%A4che)> #g
+1358981753 "Android ist das neue Nokia (billig und nix dahinter)" #quote
+
+1358981900 Appstore Politik und Richtlinien #c 
+1358981905 Sicherheitsfragen bei Mobilfunkgeräten
+1358982030 Politische Entscheidungen bei Apple #t
+1358982230 Payment #t
+- Flattr <http://flattr.com/> #t
+- BitCoin <http://bitcoin.org> #t
+1358982481 Regeln im AppStore
+- Calvinball-Regeln <http://www.bartel.org/calvinball/> #t
+- Hacker Jeopardy (beim 29C3) <http://www.youtube.com/watch?v=wx4THCBPNtE> #v
+1358982570 Was wäre wenn Apple eine Fluggesellschaft wäre? #t
+1358982653 europäisches Kartellamt <http://de.wikipedia.org/wiki/Europ%C3%A4isches_Wettbewerbsnetz> #g
+1358982729 Neue AppStores auf iOS? #t
+1358982874 Denis schlägt die Gründung einer App-Developer-Gewerkschaft vor #spoiler
+1358982987 Malware <http://en.wikipedia.org/wiki/Malware>
+1358983094 "Pr0n soll die Marke App-Store nicht verwässern" (Tim) #quote
+1358983138 Happy Weekend Zeitschrift <http://de.wikipedia.org/wiki/Happy_Weekend_(Zeitschrift)> #g
+1358983270 Tim sieht einen berechtigten Anspruch Apples, ihre Marke zu schützen #t
+1358983460 Installous <http://www.slashgear.com/installous-is-dead-its-not-just-you-02262835/>
+1358983511 iOS6 ist immer noch ohne Jailbreak <http://www.giga.de/extra/jailbreak/news/ios-6-untethered-jailbreak-fertiggestellt-warten-auf-ios-6-1/> #t
+1358983768 Tim sieht neue Business-Modelle wie Micropayment gefährdet #t
+1358984097 Rufnummerportierung <http://de.wikipedia.org/wiki/Rufnummernmitnahme> #g
+
+1358984109 Ausklang #c
+1358984110 "say" für den Mac (Terminalprogramm)  #t
+1358984280 say wird getestet
+1358984290 Tim löscht alle Plugins... 
+1358984370 Steffi möchte, dass die Sendung bald zuende ist #t
+1358984451 Clemens' Freundin angelt in WoW
+1358984497 Sendungsende 00:41:33 #t
+

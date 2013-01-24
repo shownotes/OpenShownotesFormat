@@ -1,0 +1,36 @@
+dl {
+font-family: "Lucida Grande", "Lucida Sans Unicode", Geneva, sans-serif;
+}
+dt {
+display: inline-block;
+float: left;
+padding-right: 25px;
+}
+dd {
+border-bottom: 1px solid #ccc;
+margin-bottom: 15px;
+}
+.osf_items {
+padding-bottom: 20px;
+padding-top: 5px;
+line-height: 16pt;
+}
+.osf_items a::after, .osf_items span::after {
+content: '; ';
+}
+.osf_items a, .osf_chapter a {
+text-decoration: none;
+color: #33a;
+}
+.osf_items:last-child {
+content: none;
+}
+.osf_items .osf_substart::before {
+content: '(';
+}
+.osf_items .osf_substart::after {
+content: ', ';
+}
+.osf_items .osf_subend::after {
+content: '); ';
+}

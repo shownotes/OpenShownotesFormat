@@ -63,6 +63,9 @@ if($_GET['configfile'] != '')
     input[type="radio"]{
       margin: 3px;
     }
+    #viewarea {
+      visibility: visible;
+    }
   </style>
 </head>
 <body onload="baf_listenerInit();">
@@ -140,12 +143,16 @@ if($_GET['configfile'] != '')
           <li><a onclick="getShownotes('wikigeeks', false);">Wikigeeks</a></li>
           <li><a onclick="getShownotes('json', false);">JSON</a></li>
           <li><a onclick="getShownotes('chapter', false);">Chapter</a></li>
+          <li><a onclick="getShownotes('print_r', true);">Print_r</a></li>
         </ul>
       </div>
     </div>
     <hr/>
     <div id="outputsource" style="display:none;">
-      <textarea id="sourcearea" style="height: 420px; width: 96%;"></textarea>
+      <textarea id="sourcearea" style="height: 620px; width: 96%;"></textarea>
+    </div>
+    <div id="outputview" style="display:none;">
+      <iframe id="viewarea" style="height: 620px; width: 96%;"></iframe>
     </div>
     <hr/>
     <a href="http://flattr.com/thing/1062678/SimonWaldherrOSF-Parser-Suite-on-GitHub" target="_blank">
@@ -234,11 +241,16 @@ function getShownotes(mode, fulloutput)
                         }
                       else if(outputmode == 'Preview')
                         {
-                          openpopup(600,600,'<html><head><title>'+mode+' - Shownotes</title><link rel="stylesheet" href="http://shownot.es/css/style.css?v=008" type="text/css"><link rel="stylesheet" href="http://shownot.es/css/anycast.min.css?v=008" type="text/css" media="screen"><link rel="stylesheet" href="http://shownot.es/css/shownotes.min.css?v=002" type="text/css" media="screen"><link rel="stylesheet" href="http://shownot.es/css/ua/other.css?v=002" type="text/css" media="screen"><style type="text/css">dl {padding-top: 0px;}</style></head><body><div class="content"><div class="box">'+resp+'</div></div><div class="footer">&nbsp;<span>© 2012 <a href="/">shownot.es</a></span></div></body></html>');
+                          document.getElementById('outputsource').style.display = 'none';
+                          document.getElementById('outputview').style.display = 'block';
+                          //document.getElementById('viewarea').srcdoc = '<html><head><title>'+mode+' - Shownotes</title><link rel="stylesheet" href="http://shownot.es/css/style.css?v=008" type="text/css"><link rel="stylesheet" href="http://shownot.es/css/anycast.min.css?v=008" type="text/css" media="screen"><link rel="stylesheet" href="http://shownot.es/css/shownotes.min.css?v=002" type="text/css" media="screen"><link rel="stylesheet" href="http://shownot.es/css/ua/other.css?v=002" type="text/css" media="screen"><style type="text/css">dl {padding-top: 0px;}</style></head><body><div class="content"><div class="box">'+resp+'</div></div><div class="footer">&nbsp;<span>© 2012 <a href="/">shownot.es</a></span></div></body></html>';
+                          document.getElementById('viewarea').srcdoc = '<html><head><title>'+mode+' - Shownotes</title><link rel="stylesheet" href="http://cdn.shownot.es/include-shownotes/shownotes.css" type="text/css" media="screen"><link rel="stylesheet" href="http://tools.shownot.es/parsersuite/preview.css" type="text/css" media="screen"></head><body><div class="content"><div class="box">'+resp+'</div></div><div class="footer">&nbsp;<span>© 2013 <a href="/">shownot.es</a></span></div></body></html>';
+                          
                         }
-                      else
+                      else if(outputmode == 'ShowSource')
                         {
                           document.getElementById('outputsource').style.display = 'block';
+                          document.getElementById('outputview').style.display = 'none';
                           document.getElementById('sourcearea').value = resp;
                         }
                       

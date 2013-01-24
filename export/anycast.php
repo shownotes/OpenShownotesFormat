@@ -76,53 +76,53 @@ function osf_export_anycast($array, $full=false, $filtertags=array(0 => 'spoiler
   {
     $returnstring = '<dl>';
     $filterpattern = array('(\s(#)(\S*))', '(\<((http(|s)://[\S#?-]{0,128})>))', '(\s+((http(|s)://[\S#?-]{0,128})\s))', '(^ *-*)');
-    foreach($array as $item)
+    $arraykeys = array_keys($array);
+    for($i = 0; $i <= count($array); $i++)
       {
-        if(($item['chapter'])||(($full!=false)&&($item['time'] != '')))
+        if(($array[$arraykeys[$i]]['chapter'])||(($full!=false)&&($array[$arraykeys[$i]]['time'] != '')))
           {
-            $text = preg_replace($filterpattern, '', $item['text']);
-            if(strpos($item['time'], '.'))
+            $text = preg_replace($filterpattern, '', $array[$arraykeys[$i]]['text']);
+            if(strpos($array[$arraykeys[$i]]['time'], '.'))
               {
-                $time = explode('.', $item['time']);
+                $time = explode('.', $array[$arraykeys[$i]]['time']);
                 $time = $time[0];
               }
             else
               {
-                $time = $item['time'];
+                $time = $array[$arraykeys[$i]]['time'];
               }
             
-            if(($item['chapter'])&&($full!=false)&&($time != '')&&($time != '00:00:00'))
+            if(($array[$arraykeys[$i]]['chapter'])&&($full!=false)&&($time != '')&&($time != '00:00:00'))
               {
                 $returnstring .= ''; //add code, which should inserted between chapters
               }
             
             $returnstring .= '<dt data-time="'.osf_convert_time($time).'">'.$time.'</dt>'."\n".'<dd>';
-            if(isset($item['urls'][0]))
+            if(isset($array[$arraykeys[$i]]['urls'][0]))
               {
                 $returnstring .= '<strong';
-                if(($item['chapter'])&&($time != ''))
+                if(($array[$arraykeys[$i]]['chapter'])&&($time != ''))
                   {
                     $returnstring .= ' class="osf_chapter"';
                   }
-                $returnstring .= '><a href="'.$item['urls'][0].'">'.$text.'</a></strong><div class="osf_items"> '."\n";
+                $returnstring .= '><a href="'.$array[$arraykeys[$i]]['urls'][0].'">'.$text.'</a></strong><div class="osf_items"> '."\n";
               }
             else
               {
                 $returnstring .= '<strong';
-                if(($item['chapter'])&&($time != ''))
+                if(($array[$arraykeys[$i]]['chapter'])&&($time != ''))
                   {
                     $returnstring .= ' class="osf_chapter"';
                   }
                 $returnstring .= '>'.$text.'</strong><div class="osf_items"> '."\n";
               }
-            if(isset($item['subitems']))
+            if(isset($array[$arraykeys[$i]]['subitems']))
               {
-                $subitemi = 0;
-                foreach($item['subitems'] as $subitem)
+                for($ii = 0; $ii <= count($array[$arraykeys[$i]]['subitems']); $ii++)
                   {
-                    if(((($full!=false)||(!$subitem['subtext']))&&((($full==1)&&(!osf_checktags($filtertags, $subitem['tags'])))||($full==2)))&&(strlen(trim($subitem['text']))>2))
+                    if(((($full!=false)||(!$array[$arraykeys[$i]]['subitems'][$ii]['subtext']))&&((($full==1)&&(!osf_checktags($filtertags, $array[$arraykeys[$i]]['subitems'][$ii]['tags'])))||($full==2)))&&(strlen(trim($array[$arraykeys[$i]]['subitems'][$ii]['text']))>2))
                       {
-                        if(($full==2)&&(osf_checktags($filtertags, $subitem['tags'])))
+                        if(($full==2)&&(osf_checktags($filtertags, $array[$arraykeys[$i]]['subitems'][$ii]['tags'])))
                           {
                             $tagtext = ' osf_spoiler';
                           }
@@ -131,17 +131,29 @@ function osf_export_anycast($array, $full=false, $filtertags=array(0 => 'spoiler
                             $tagtext = '';
                           }
                         
-                        foreach($subitem['tags'] as $tag)
+                        if($array[$arraykeys[$i]]['subitems'][$ii]['subtext'])
+                          {
+                            if(!$array[$arraykeys[$i]]['subitems'][$ii-1]['subtext'])
+                              {
+                                $tagtext .= ' osf_substart';
+                              }
+                            if(!$array[$arraykeys[$i]]['subitems'][$ii+1]['subtext'])
+                              {
+                                $tagtext .= ' osf_subend';
+                              }
+                          }
+                        
+                        foreach($array[$arraykeys[$i]]['subitems'][$ii]['tags'] as $tag)
                           {
                             $tagtext .= ' osf_'.$tag;
                           }
                         
-                        $text = preg_replace($filterpattern, '', $subitem['text']);
-                        $subtext = osf_metacast_textgen($subitem, $tagtext, $text);
+                        $text = preg_replace($filterpattern, '', $array[$arraykeys[$i]]['subitems'][$ii]['text']);
+                        $subtext = osf_metacast_textgen($array[$arraykeys[$i]]['subitems'][$ii], $tagtext, $text);
                         
                         $subtext = trim($subtext);
                         $returnstring .= $subtext;
-                        ++$subitemi;
+                        //++$array[$arraykeys[$i]]['subitems'][$ii]i;
                       }
                   }
               }

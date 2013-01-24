@@ -74,6 +74,11 @@ function osf_time_from_timestamp($utimestamp)
   {
     // Diese Funktion wandelt Zeitangaben im UNIX-Timestamp Format in relative Zeitangaben im Format 01:23:45 um
     global $osf_starttime;
+    if(strpos($utimestamp, ':') != false)
+      {
+        $pause = explode(':', $utimestamp);
+        $osf_starttime = $osf_starttime+$pause[1]-$pause[0];
+      }
     $duration = $utimestamp-$osf_starttime;
     $sec = $duration%60;
     if($sec < 10)
@@ -99,7 +104,7 @@ function osf_replace_timestamps($shownotes)
     global $osf_starttime;
     preg_match_all('/\n[0-9]{9,15}/', $shownotes, $unixtimestamps);
     $osf_starttime = $unixtimestamps[0][0];
-    $regexTS = array('/\n[0-9]{9,15}/e', 'osf_time_from_timestamp(\'\\0\')');
+    $regexTS = array('/\n[0-9:]{9,23}/e', 'osf_time_from_timestamp(\'\\0\')');
     return preg_replace($regexTS[0], $regexTS[1], $shownotes);
   }
 
@@ -169,12 +174,48 @@ function osf_parser($shownotes, $data)
         
         // Zeit und Text in Array zur weitergabe speichern
         $newarray['time'] = $zeile[1];
-        $newarray['text'] = $zeile[4];
+        $newarray['text'] = trim(htmlentities(preg_replace(array($pattern['tags'],$pattern['urls'],$pattern['urls2']),array('','',''), $zeile[4]), ENT_QUOTES, 'UTF-8'));
         
         // Wenn Tags vorhanden sind, diese ebenfalls im Array speichern
         if(@count($tags[2])>0)
           {
-            $newarray['tags'] = $tags[2];
+            foreach($tags[2] as $tag)
+              {
+                if(strlen($tag) === 1)
+                  {
+                    switch($tag)
+                      {
+                        case 'c':
+                          $newarray['tags'][] = 'chapter';
+                          break;
+                        case 'g':
+                          $newarray['tags'][] = 'glossary';
+                          break;
+                        case 'l':
+                          $newarray['tags'][] = 'link';
+                          break;
+                        case 's':
+                          $newarray['tags'][] = 'section';
+                          break;
+                        case 't':
+                          $newarray['tags'][] = 'topic';
+                          break;
+                        case 'v':
+                          $newarray['tags'][] = 'video';
+                          break;
+                        case 'a':
+                          $newarray['tags'][] = 'audio';
+                          break;
+                        case 'i':
+                          $newarray['tags'][] = 'image';
+                          break;
+                      }
+                  }
+                else
+                  {
+                    $newarray['tags'] = $tags[2];
+                  }
+              }
             if(((in_array("Chapter", $newarray['tags']))||(in_array("chapter", $newarray['tags'])))&&($newarray['time'] != ''))
               {
                 $newarray['chapter'] = true;
@@ -190,6 +231,7 @@ function osf_parser($shownotes, $data)
                 $purls[] = osf_affiliate_generator($url, $data);
               }
             $newarray['urls'] = $purls;
+            $newarray['tags'][] = 'link';
           }
         
         // Wenn Zeile mit "- " beginnt im Ausgabe-Array verschachteln
@@ -199,11 +241,12 @@ function osf_parser($shownotes, $data)
               {
                 if(preg_match($pattern['kaskade'], $zeile[0]))
                   {
+                    $newarray['subtext'] = true;
                     $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
                   }
                 else
                   {
-                    $newarray['subtext'] = true;
+                    //$newarray['subtext'] = true;
                     $returnarray['export'][$lastroot]['subitems'][$kaskadei] = $newarray;
                   }
               }
