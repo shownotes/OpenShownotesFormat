@@ -10,7 +10,7 @@ function osf_export_chapterlist($array)
         if($item['chapter'])
           {
             $filterpattern = array('((#)(\S*))', '(\<((http(|s)://\S{0,128})>))', '(\s+((http(|s)://\S{0,128})\s))');
-            $text = preg_replace($filterpattern, '', $item['text']);
+            $text = preg_replace($filterpattern, '', $item['orig']);
 
             if(strpos($item['time'], '.'))
               {

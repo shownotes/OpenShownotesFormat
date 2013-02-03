@@ -66,6 +66,9 @@ if($_GET['configfile'] != '')
     #viewarea {
       visibility: visible;
     }
+    input.input-grey {
+      margin-left: -5px;
+    }
   </style>
 </head>
 <body onload="baf_listenerInit();">
@@ -99,9 +102,9 @@ if($_GET['configfile'] != '')
       </label>
       <input class="input-grey" id="etherpad" name="text-etherpad2" maxlength="" size="16" type="text"/>
     </div>-->
-    <div class="textarea" style="width: 340px; margin:auto;">
-      <label class="baf add-on w90" for="defaulttextarea" id="defaultt1">Shownotes</label>
-      <textarea class="" id="defaulttextarea" name="defaulttextarea" onkeyup="" size="16" type="text"><?php echo $_POST['padcontent']; ?></textarea>
+    <div class="textarea" style="width: 640px; margin:auto;">
+      <label class="baf add-on w90" for="defaulttextarea" id="defaultt1">Shownotes</label><br/>
+      <textarea class="" id="defaulttextarea" name="defaulttextarea" onkeyup="" size="26" type="text"><?php echo $_POST['padcontent']; ?></textarea>
     </div>
     <br/>
     <div class="input-prepend baf-input baf-group-x3">
@@ -145,6 +148,7 @@ if($_GET['configfile'] != '')
           <li><a onclick="getShownotes('json', false);">JSON</a></li>
           <li><a onclick="getShownotes('chapter', false);">Chapter</a></li>
           <li><a onclick="getShownotes('glossary', true);">Glossary</a></li>
+          <li><a onclick="getShownotes('tagsalphabetical', true);">Tags Alphabetical</a></li>
           <li><a onclick="getShownotes('print_r', true);">Print_r</a></li>
         </ul>
       </div>
@@ -191,19 +195,13 @@ function getCheckedValue(radioObj)
     return "";
   }
 
-function openpopup(w,h,site)
-  {
-    x = screen.availWidth/2-w/2;
-    y = screen.availHeight/2-h/2;
-    var popupWindow = window.open('','','width='+w+',height='+h+',left='+x+',top='+y+',status=yes,scrollbars=yes,resizable=yes,screenX='+x+',screenY='+y);
-    popupWindow.document.write(site);
-  }
-
 var outputmode;
+var exportmode = '';
 
 function getShownotes(mode, fulloutput)
   {
     outputmode = getCheckedValue(document.forms['outputmode'].elements['select']);
+    exportmode = mode;
     
     if((document.getElementById('defaulttextarea').value == ''))
       {
@@ -227,7 +225,7 @@ function getShownotes(mode, fulloutput)
                   url: geturl
                 , type: 'html'
                 , method: 'post'
-                , data: { exportmode: mode
+                , data: { exportmode: exportmode
                          ,shownotes: document.getElementById('defaulttextarea').value
                          ,tags: document.getElementById('tags').value
                          ,amazon: document.getElementById('amazon').value
@@ -245,6 +243,10 @@ function getShownotes(mode, fulloutput)
                         {
                           document.getElementById('outputsource').style.display = 'none';
                           document.getElementById('outputview').style.display = 'block';
+                          if((exportmode == 'chapter')||(exportmode == 'print_r'))
+                            {
+                              resp = '<pre>'+resp+'</pre>';
+                            }
                           document.getElementById('viewarea').srcdoc = '<html><head><title>'+mode+' - Shownotes</title><link rel="stylesheet" href="http://cdn.shownot.es/include-shownotes/shownotes.css" type="text/css" media="screen"><link rel="stylesheet" href="http://tools.shownot.es/parsersuite/preview.css" type="text/css" media="screen"></head><body><div class="content"><div class="box">'+resp+'</div></div><div class="footer">&nbsp;<span>© 2013 <a href="/">shownot.es</a></span></div></body></html>';
                           
                         }

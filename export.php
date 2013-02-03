@@ -116,6 +116,13 @@ if(($mode != '')&&($pad != ''))
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
         echo osf_export_glossary($shownotes['export'], array(0=>'glossary'));
       }
+    elseif($_POST['exportmode'] == 'tagsalphabetical')
+      {
+        include "./export/glossary.php";
+        ctcs_header("text/plain");
+        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
+        echo osf_export_glossary($shownotes['export'], array(0=>''));
+      }
     elseif($_POST['exportmode'] == 'print_r')
       {
         ctcs_header("text/plain");

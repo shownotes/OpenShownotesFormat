@@ -67,7 +67,14 @@ function osf_convert_time($string)
   {
     // Diese Funktion wandelt Zeitangaben vom Format 01:23:45 (H:i:s) in Sekundenangaben um
     $strarray = explode(':', $string);
-    return (($strarray[0]*3600)+($strarray[1]*60)+$strarray[2]);
+    if(count($strarray) == 3)
+      {
+        return (($strarray[0]*3600)+($strarray[1]*60)+$strarray[2]);
+      }
+    elseif(count($strarray) == 2)
+      {
+        return (($strarray[1]*60)+$strarray[2]);
+      }
   }
 
 function osf_time_from_timestamp($utimestamp)
@@ -139,7 +146,7 @@ function osf_parser($shownotes, $data)
     $shownotes = osf_replace_timestamps($shownotes);
     
     // zuerst werden die regex-Definitionen zum erkennen von Zeilen, Tags, URLs und subitems definiert
-    $pattern['zeilen']    = '/((\d\d:\d\d:\d\d)(\\.\d\d\d)?)*(.+)/';
+    $pattern['zeilen']    = '/(((\d\d:)?\d\d:\d\d)(\\.\d\d\d)?)*(.+)/';
     $pattern['tags']      = '((\s#)(\S*))';
     $pattern['urls']      = '(\s+((http(|s)://\S{0,256})\s))';
     $pattern['urls2']     = '(\<((http(|s)://\S{0,256})>))';
@@ -162,7 +169,7 @@ function osf_parser($shownotes, $data)
         unset($newarray);
         
         // Text der Zeile in Variable abspeichern und abschließendes Leerzeichen anhängen
-        $text = $zeile[4].' ';
+        $text = $zeile[5].' ';
         
         // Mittels regex tags und urls extrahieren
         preg_match_all($pattern['tags'],  $text, $tags,  PREG_PATTERN_ORDER);
@@ -174,7 +181,8 @@ function osf_parser($shownotes, $data)
         
         // Zeit und Text in Array zur weitergabe speichern
         $newarray['time'] = $zeile[1];
-        $newarray['text'] = trim(htmlentities(preg_replace(array($pattern['tags'],$pattern['urls'],$pattern['urls2']),array('','',''), $zeile[4]), ENT_QUOTES, 'UTF-8'));
+        $newarray['text'] = trim(htmlentities(preg_replace(array($pattern['tags'],$pattern['urls'],$pattern['urls2']),array('','',''), $zeile[5]), ENT_QUOTES, 'UTF-8'));
+        $newarray['orig'] = trim(preg_replace(array($pattern['tags'],$pattern['urls'],$pattern['urls2']),array('','',''), $zeile[5]));
         
         // Wenn Tags vorhanden sind, diese ebenfalls im Array speichern
         if(@count($tags[2])>0)
