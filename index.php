@@ -81,11 +81,8 @@ if($_GET['configfile'] != '')
     <div class="box" id="main" style="text-align:center;">
       <h2><b>OSF-Parser-Suite!</b></h2>
       <br/><br/>
-      <h4><i>Bitte <s>entweder den Etherpad Namen im Feld &quot;<b>etherpad</b>&quot; oder</s> die kompletten Shownotes im Feld &quot;<b>Shownotes</b>&quot; eingeben.</i></h4>
+      <h4><i>Bitte entweder den Etherpad Namen im Feld &quot;<b>etherpad</b>&quot; oder die kompletten Shownotes im Feld &quot;<b>Shownotes</b>&quot; eingeben.</i></h4>
       <br/>
-    
-    <!--
-      Der folgende Code ist nur auf cdn.simon.waldherr.eu/projects/osf-parser-suite/ zu verwenden
     <div class="input-prepend baf-input baf-group-x1">
       <label class="baf grey w120 add-on" for="search" id="searchlabel">
         <span class="baf-icomoon normal" aria-hidden="true" data-icon="&#xe04a;">&nbsp;
@@ -101,7 +98,7 @@ if($_GET['configfile'] != '')
         </span> etherpad
       </label>
       <input class="input-grey" id="etherpad" name="text-etherpad2" maxlength="" size="16" type="text"/>
-    </div>-->
+    </div>
     <div class="textarea" style="width: 640px; margin:auto;">
       <label class="baf add-on w90" for="defaulttextarea" id="defaultt1">Shownotes</label><br/>
       <textarea class="" id="defaulttextarea" name="defaulttextarea" onkeyup="" size="26" type="text"><?php echo $_POST['padcontent']; ?></textarea>
@@ -167,6 +164,11 @@ if($_GET['configfile'] != '')
     <div class="footer">&nbsp;<span>&copy; 2013 <a href="http://shownot.es/">shownot.es</a></span></div>
   </div>
 <script type="text/javascript">
+
+function getPadslist()
+  {
+    document.getElementById('padlist').innerHTML = getPadsByName(document.getElementById('search').value);
+  }
 
 function getCheckedValue(radioObj)
   {
@@ -271,5 +273,6 @@ _gaq.push(['_trackPageview']);
 })();
 
 </script>
+<script src="http://api.shownot.es/pad/ep/script.js"></script>
 </body>
 </html>

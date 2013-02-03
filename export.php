@@ -53,6 +53,8 @@ if(($mode != '')&&($pad != ''))
     $fullmode     = $_POST['fullmode'];
     $tradedoubler = $_POST['tradedoubler'];
     
+    if($amazon == ''){$amazon = 'shownot.es-21';}
+    
     $shownotes = osf_parser($pad, array('amazon'       => $amazon
                                        ,'thomann'      => $thomann
                                        ,'tradedoubler' => $tradedoubler
