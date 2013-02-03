@@ -70,12 +70,19 @@ if($_GET['configfile'] != '')
     input.input-grey {
       margin-left: -5px;
     }
+    .textarea textarea {
+      height: 160px;
+    }
+    #padlist {
+      overflow-y: auto;
+      max-height: 135px;
+    }
     @media only screen 
     and (min-width : 480px) 
     and (max-width : 680px) {
-    .content {
-      zoom: 0.8;
-    }
+      .content {
+        zoom: 0.8;
+      }
     }
   </style>
 </head>
@@ -141,7 +148,7 @@ if($_GET['configfile'] != '')
     <div class="baf-container">
       <div class="baf-group">
         <a class="baf bluehover dropdown-toggle w175">
-          download with export modul
+          parse with export modul
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
@@ -195,7 +202,7 @@ function getPadslist()
         for(var i in items)
           {
             item = items[i].split(';');
-            html += '<li><a onclick="document.getElementById(\'etherpad\').value = \''+item[0]+'\'">'+item[1]+'</a></li>';
+            html += '<li><a onclick="document.getElementById(\'etherpad\').value = \''+item[0]+'\'; document.getElementById(\'defaulttextarea\').innerHTML = \'\';">'+item[1]+'</a></li>';
           }
         document.getElementById('padlist').innerHTML = html
       });
