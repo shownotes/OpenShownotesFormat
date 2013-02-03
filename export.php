@@ -23,9 +23,6 @@ if($_GET['mode'] == 'download')
     $dl = true;
   }
 
-
-//print_r($pad);
-
 function ctcs_header($type)
   {
     $contenttype = 'Content-Type: '.$type.'; ';

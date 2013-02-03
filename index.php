@@ -52,6 +52,7 @@ if($_GET['configfile'] != '')
     
     .content {
       max-width: 880px;
+      min-width: 680px;
       margin: 30px auto 30px auto;
       width: 80%;
     }
@@ -68,6 +69,13 @@ if($_GET['configfile'] != '')
     }
     input.input-grey {
       margin-left: -5px;
+    }
+    @media only screen 
+    and (min-width : 480px) 
+    and (max-width : 680px) {
+    .content {
+      zoom: 0.8;
+    }
     }
   </style>
 </head>
