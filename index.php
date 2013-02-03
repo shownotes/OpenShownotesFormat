@@ -81,7 +81,7 @@ if($_GET['configfile'] != '')
     <div class="box" id="main" style="text-align:center;">
       <h2><b>OSF-Parser-Suite!</b></h2>
       <br/><br/>
-      <h4><i>Bitte entweder den Etherpad Namen im Feld &quot;<b>etherpad</b>&quot; oder die kompletten Shownotes im Feld &quot;<b>Shownotes</b>&quot; eingeben.</i></h4>
+      <h4><i>Bitte entweder den Etherpad Namen im Feld &quot;<b>etherpad</b>&quot; oder die kompletten Shownotes im Feld &quot;<b>Shownotes</b>&quot; eingeben.<br/>Bitte bedenken Sie, dass es eine gewisse Zeit (mehrere Sekunden) dauern kann, bis die Padliste und die Shownotes via API abgerufen werden.</i></h4>
       <br/>
     <div class="input-prepend baf-input baf-group-x1">
       <label class="baf grey w120 add-on" for="search" id="searchlabel">
@@ -165,9 +165,39 @@ if($_GET['configfile'] != '')
   </div>
 <script type="text/javascript">
 
+var searchvalue = '';
 function getPadslist()
   {
-    document.getElementById('padlist').innerHTML = getPadsByName(document.getElementById('search').value);
+    if(document.getElementById('search').value.length < 2)
+      {
+        return false;
+      }
+    if(searchvalue != document.getElementById('search').value)
+      {
+        searchvalue = document.getElementById('search').value;
+        window.setTimeout(getPadslist(), 750);
+        return false;
+      }
+    var item;
+    var html = '';
+    getPadsByName(document.getElementById('search').value, function(items)
+      {
+        for(var i in items)
+          {
+            item = items[i].split(';');
+            html += '<li><a onclick="document.getElementById(\'etherpad\').value = \''+item[0]+'\'">'+item[1]+'</a></li>';
+          }
+        document.getElementById('padlist').innerHTML = html
+      });
+  }
+
+function getPadContentAndParse(mode, fulloutput)
+  {
+    getPadcontentByName(document.getElementById('etherpad').value, function(padcontent)
+      {
+        document.getElementById('defaulttextarea').innerHTML = padcontent;
+        getShownotes(mode, fulloutput);
+      });
   }
 
 function getCheckedValue(radioObj)
@@ -207,8 +237,16 @@ function getShownotes(mode, fulloutput)
     
     if((document.getElementById('defaulttextarea').value == ''))
       {
-        alert('please choose an episode');
-        return false;
+        if(document.getElementById('etherpad').value == '')
+          {
+            alert('please choose an episode');
+            return false;
+          }
+        else
+          {
+            getPadContentAndParse(mode, fulloutput);
+            return false;
+          }
       }
     
     var geturl = '';
