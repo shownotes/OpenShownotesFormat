@@ -113,15 +113,15 @@ if($_GET['configfile'] != '')
     </div>
     <div class="input-prepend baf-input baf-group-x4">
       <label class="baf grey w120 add-on" for="amazon" id="label-amazon id4">amazon id</label>
-      <input class="input-grey" id="amazon" name="text-amazon id4" onkeyup="this.value = baf_converttxt(this.value)" maxlength="" size="16" value="<?php echo $amazonid; ?>" type="text"/>
+      <input class="input-grey" id="amazon" name="text-amazon id4" onkeyup="" maxlength="" size="16" value="<?php echo $amazonid; ?>" type="text"/>
     </div>
     <div class="input-prepend baf-input baf-group-x5">
       <label class="baf grey w120 add-on" for="thomann" id="label-thomann id5">thomann id</label>
-      <input class="input-grey" id="thomann" name="text-thomann id5" onkeyup="this.value = baf_converttxt(this.value)" maxlength="" size="16" value="<?php echo $thomannid; ?>" type="text"/>
+      <input class="input-grey" id="thomann" name="text-thomann id5" onkeyup="" maxlength="" size="16" value="<?php echo $thomannid; ?>" type="text"/>
     </div> 
     <div class="input-prepend baf-input baf-group-x6">
       <label class="baf grey w120 add-on" for="tradedoubler" id="label-tradedoubler id6">tradedoubler id</label>
-      <input class="input-grey" id="tradedoubler" name="text-tradedoubler id6" onkeyup="this.value = baf_converttxt(this.value)" maxlength="" size="16" value="<?php echo $tradedoubler; ?>" type="text"/>
+      <input class="input-grey" id="tradedoubler" name="text-tradedoubler id6" onkeyup="" maxlength="" size="16" value="<?php echo $tradedoubler; ?>" type="text"/>
     </div> 
     <div style="">
       <form name="outputmode" method="get" action="" onsubmit="return false;" style="width: 145px; text-align: left; margin: 15px auto;">
