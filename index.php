@@ -139,6 +139,8 @@ if($_GET['configfile'] != '')
         <ul class="dropdown-menu">
           <li><a onclick="getShownotes('anycast', false);">Anycast</a></li>
           <li><a onclick="getShownotes('anycast-full', true);">Anycast Full</a></li>
+          <li><a onclick="getShownotes('metastyle', false);">metastyle</a></li>
+          <li><a onclick="getShownotes('metastyle-full', true);">metastyle Full</a></li>
           <li><a onclick="getShownotes('metacast', true);">Metacast-Full</a></li>
           <li><a onclick="getShownotes('wikigeeks', false);">Wikigeeks</a></li>
           <li><a onclick="getShownotes('wikigeeks-full', true);">Wikigeeks Full</a></li>
@@ -229,6 +231,7 @@ function getCheckedValue(radioObj)
 
 var outputmode;
 var exportmode = '';
+var style = '';
 
 function getShownotes(mode, fulloutput)
   {
@@ -287,7 +290,12 @@ function getShownotes(mode, fulloutput)
                             {
                               resp = '<pre>'+resp+'</pre>';
                             }
-                          document.getElementById('viewarea').srcdoc = '<html><head><title>'+mode+' - Shownotes</title><link rel="stylesheet" href="http://cdn.shownot.es/include-shownotes/shownotes.css" type="text/css" media="screen"><link rel="stylesheet" href="http://tools.shownot.es/parsersuite/preview.css" type="text/css" media="screen"></head><body><div class="content"><div class="box">'+resp+'</div></div><div class="footer">&nbsp;<span>© 2013 <a href="/">shownot.es</a></span></div></body></html>';
+                          style = '';
+                          if((exportmode == 'metastyle')||(exportmode == 'metastyle-full'))
+                          	{
+                          	  style += ".osf_items a::after, .osf_items span::after {content: '';}";
+                          	}
+                          document.getElementById('viewarea').srcdoc = '<html><head><title>'+mode+' - Shownotes</title><link rel="stylesheet" href="http://cdn.shownot.es/include-shownotes/shownotes.css" type="text/css" media="screen"><link rel="stylesheet" href="http://tools.shownot.es/parsersuite/preview.css" type="text/css" media="screen"><style>'+style+'</style></head><body><div class="content"><div class="box">'+resp+'</div></div><div class="footer">&nbsp;<span>© 2013 <a href="/">shownot.es</a></span></div></body></html>';
                           
                         }
                       else if(outputmode == 'ShowSource')

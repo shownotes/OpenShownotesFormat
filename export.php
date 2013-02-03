@@ -83,6 +83,20 @@ if(($mode != '')&&($pad != ''))
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
         echo osf_export_anycast($shownotes['export'], 2);
       }
+    elseif($_POST['exportmode'] == 'metastyle')
+      {
+        include "./export/metastyle.php";
+        ctcs_header("text/html");
+        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
+        echo osf_export_anycast($shownotes['export'], 1);
+      }
+    elseif($_POST['exportmode'] == 'metastyle-full')
+      {
+        include "./export/metastyle.php";
+        ctcs_header("text/html");
+        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
+        echo osf_export_anycast($shownotes['export'], 2);
+      }
     elseif($_POST['exportmode'] == 'metacast')
       {
         include "./export/metacast.php";
@@ -106,9 +120,11 @@ if(($mode != '')&&($pad != ''))
       }
     elseif($_POST['exportmode'] == 'chapter')
       {
+        header('Content-Type: text/html; charset=utf-8');
         include "./export/chapterlist.php";
         ctcs_header("text/plain");
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
+        header('Content-Type: text/html; charset=utf-8');
         echo osf_export_chapterlist($shownotes['export']);
       }
     elseif($_POST['exportmode'] == 'glossary')

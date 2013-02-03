@@ -143,7 +143,7 @@ function osf_parser($shownotes, $data)
       }
     
     // wandle Zeitangaben im UNIX-Timestamp Format in relative Zeitangaben im Format 01:23:45 um
-    $shownotes = osf_replace_timestamps($shownotes);
+    $shownotes = "\n".osf_replace_timestamps("\n".$shownotes);
     
     // zuerst werden die regex-Definitionen zum erkennen von Zeilen, Tags, URLs und subitems definiert
     $pattern['zeilen']    = '/(((\d\d:)?\d\d:\d\d)(\\.\d\d\d)?)*(.+)/';
