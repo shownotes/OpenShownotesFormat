@@ -63,6 +63,17 @@ function osf_affiliate_generator($url, $data)
     return $purl;
   }
 
+function osf_parser_header($header)
+  {
+    preg_match("/(((mit.*)|(podcaste.*)):(.*))/i",$header,$podcaster);
+    preg_match_all("/(@\w*)/i",$podcaster[0],$podcaster);
+    
+    preg_match("/(((zusammengetr.*)|(shownoter.*)):(.*))/i",$header,$shownoter);
+    preg_match_all("/(@\w*)/i",$shownoter[0],$shownoter);
+    
+    return array('shownoter' => $shownoter[0], 'podcaster' => $podcaster[0]);
+  }
+
 function osf_convert_time($string)
   {
     // Diese Funktion wandelt Zeitangaben vom Format 01:23:45 (H:i:s) in Sekundenangaben um
@@ -125,21 +136,22 @@ function osf_parser($shownotes, $data)
     $shownotes = explode('/HEADER', $shownotes);
     if(strlen($shownotes[1])>42)
       {
+        $returnarray['header'] = osf_parser_header($shownotes[0]);
         $shownotes = $shownotes[1];
       }
     else
       {
         $shownotes = $shownotes[0];
-      }
-    
-    $shownotes = explode('/HEAD', $shownotes);
-    if(strlen($shownotes[1])>42)
-      {
-        $shownotes = $shownotes[1];
-      }
-    else
-      {
-        $shownotes = $shownotes[0];
+        $shownotes = explode('/HEAD', $shownotes);
+        if(strlen($shownotes[1])>42)
+          {
+            $returnarray['header'] = osf_parser_header($shownotes[0]);
+            $shownotes = $shownotes[1];
+          }
+        else
+          {
+            $shownotes = $shownotes[0];
+          }
       }
     
     // wandle Zeitangaben im UNIX-Timestamp Format in relative Zeitangaben im Format 01:23:45 um

@@ -114,6 +114,7 @@ if($_GET['configfile'] != '')
       </label>
       <input class="input-grey" id="etherpad" name="text-etherpad2" maxlength="" size="16" type="text"/>
     </div>
+    <a class="baf w175" id="loadbutton" onclick="getPadContentAndParse('load', false);">load Pad</a>
     <div class="textarea" style="width: 640px; margin:auto;">
       <label class="baf add-on w90" for="defaulttextarea" id="defaultt1">Shownotes</label><br/>
       <textarea class="" id="defaulttextarea" name="defaulttextarea" onkeyup="" size="26" type="text"><?php echo $_POST['padcontent']; ?></textarea>
@@ -147,7 +148,7 @@ if($_GET['configfile'] != '')
     </div>
     <div class="baf-container">
       <div class="baf-group">
-        <a class="baf bluehover dropdown-toggle w175">
+        <a class="baf dropdown-toggle w175" id="parsebutton">
           parse with export modul
           <span class="caret"></span>
         </a>
@@ -210,10 +211,15 @@ function getPadslist()
 
 function getPadContentAndParse(mode, fulloutput)
   {
+    document.getElementById('loadbutton').className = 'baf w175 loading';
     getPadcontentByName(document.getElementById('etherpad').value, function(padcontent)
       {
         document.getElementById('defaulttextarea').innerHTML = padcontent;
-        getShownotes(mode, fulloutput);
+        if(mode != 'load')
+          {
+            getShownotes(mode, fulloutput);
+          }
+        document.getElementById('loadbutton').className = 'baf w175';
       });
   }
 
@@ -250,11 +256,13 @@ var style = '';
 
 function getShownotes(mode, fulloutput)
   {
+    document.getElementById('parsebutton').className = 'baf dropdown-toggle w175 loading';
     outputmode = getCheckedValue(document.forms['outputmode'].elements['select']);
     exportmode = mode;
     
     if((document.getElementById('defaulttextarea').value == ''))
       {
+        document.getElementById('parsebutton').className = 'baf dropdown-toggle w175';
         if(document.getElementById('etherpad').value == '')
           {
             alert('please choose an episode');
@@ -319,7 +327,7 @@ function getShownotes(mode, fulloutput)
                           document.getElementById('outputview').style.display = 'none';
                           document.getElementById('sourcearea').value = resp;
                         }
-                      
+                      document.getElementById('parsebutton').className = 'baf dropdown-toggle w175';
                     }
               })
   }
