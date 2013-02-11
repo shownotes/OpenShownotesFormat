@@ -211,6 +211,11 @@ function getPadslist()
 
 function getPadContentAndParse(mode, fulloutput)
   {
+    if(document.getElementById('etherpad').value.length < 2)
+      {
+        alert('please enter a padname first');
+        return false;
+      }
     document.getElementById('loadbutton').className = 'baf w175 loading';
     getPadcontentByName(document.getElementById('etherpad').value, function(padcontent)
       {

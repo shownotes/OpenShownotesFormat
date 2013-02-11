@@ -158,7 +158,7 @@ function osf_parser($shownotes, $data)
     $shownotes = "\n".osf_replace_timestamps("\n".$shownotes);
     
     // zuerst werden die regex-Definitionen zum erkennen von Zeilen, Tags, URLs und subitems definiert
-    $pattern['zeilen']    = '/(((\d\d:)?\d\d:\d\d)(\\.\d\d\d)?)*(.+)/';
+    $pattern['zeilen']    = '/((\d*:){0,2}(\d+)(\.\d*)?)*(.+)/';
     $pattern['tags']      = '((\s#)(\S*))';
     $pattern['urls']      = '(\s+((http(|s)://\S{0,256})\s))';
     $pattern['urls2']     = '(\<((http(|s)://\S{0,256})>))';
