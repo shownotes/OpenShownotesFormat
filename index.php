@@ -140,12 +140,27 @@ if($_GET['configfile'] != '')
       <input class="input-grey" id="tradedoubler" name="text-tradedoubler id6" onkeyup="" maxlength="" size="16" value="<?php echo $tradedoubler; ?>" type="text"/>
     </div> 
     <div style="">
-      <form name="outputmode" method="get" action="" onsubmit="return false;" style="width: 145px; text-align: left; margin: 15px auto;">
-        <input type="radio" name="select" value="Preview" checked="checked"> Preview<br>
-        <input type="radio" name="select" value="Download"> Download<br>
-        <input type="radio" name="select" value="ShowSource"> Show Source
+      <form name="outputmode" method="get" action="" onsubmit="return false;" style="width: 225px; text-align: left; margin: 15px auto;">
+        <div style="">
+        <input type="radio" name="select" value="anycast" <?php   if($exportmodul == 'anycast'){echo 'checked="checked"';} ?> /> Anycast<br/>
+        <input type="radio" name="select" value="metastyle" <?php if($exportmodul == 'metastyle'){echo 'checked="checked"';} ?> /> Metaebene<br/>
+        <input type="radio" name="select" value="metacast" <?php  if($exportmodul == 'metacast'){echo 'checked="checked"';} ?> /> Newstyle<br/>
+        <input type="radio" name="select" value="wikigeeks" <?php if($exportmodul == 'wikigeeks'){echo 'checked="checked"';} ?> /> Wikigeeks<br/>
+        <input type="radio" name="select" value="json" <?php      if($exportmodul == 'json'){echo 'checked="checked"';} ?> /> JSON<br/>
+        <input type="radio" name="select" value="chapter" <?php   if($exportmodul == 'chapter'){echo 'checked="checked"';} ?> /> Chapter<br/>
+        <input type="radio" name="select" value="glossary" <?php  if($exportmodul == 'glossary'){echo 'checked="checked"';} ?> /> Glossary<br/>
+        <input type="radio" name="select" value="tagsalphabetical" <?php if($exportmodul == 'tagsalphabetical'){echo 'checked="checked"';} ?> /> Tags Alphabetical<br/>
+        <input type="radio" name="select" value="print_r" <?php   if($exportmodul == 'print_r'){echo 'checked="checked"';} ?> /> print_r<br/><br/>
+        </div><div style="position: relative;left: 130px;bottom: 210px;">
+        <input type="radio" name="fullmode" value="off" <?php      if($exportfullmodul == false){echo 'checked="checked"';} ?> /> inclusion tags only<br/>
+        <input type="radio" name="fullmode" value="on" <?php      if($exportfullmodul == true){echo 'checked="checked"';} ?> /> all tags<br/>
+        </div>
       </form>
     </div>
+    <a class="baf w175" id="showsource"  onclick="osf_export('source', getCheckedValue(document.forms['outputmode'].elements['select'], getCheckedValue(document.forms['outputmode'].elements['fullmode'])))">Show Source</a>
+    <a class="baf w175" id="showpreview" onclick="osf_export('preview', getCheckedValue(document.forms['outputmode'].elements['select'], getCheckedValue(document.forms['outputmode'].elements['fullmode'])))">Preview</a>
+    <a class="baf w175" id="download"    onclick="osf_export('download', getCheckedValue(document.forms['outputmode'].elements['select'], getCheckedValue(document.forms['outputmode'].elements['fullmode'])))">Download</a>
+    <!--
     <div class="baf-container">
       <div class="baf-group">
         <a class="baf dropdown-toggle w175" id="parsebutton">
@@ -168,6 +183,7 @@ if($_GET['configfile'] != '')
         </ul>
       </div>
     </div>
+    -->
     <hr/>
     <div id="outputsource" style="display:none;">
       <textarea id="sourcearea" style="height: 620px; width: 96%;"></textarea>
@@ -184,6 +200,129 @@ if($_GET['configfile'] != '')
 <script type="text/javascript">
 
 var searchvalue = '';
+
+function osf_export(mode, outputmodul, fullmode) {
+
+var fullmode2 = exportmode2 = '';
+  if(mode == 'source') {
+    document.getElementById('showsource').className = 'baf w175 loading';
+  }
+  if(mode == 'preview') {
+    document.getElementById('showpreview').className = 'baf w175 loading';
+  }
+  if(mode == 'download') {
+    document.getElementById('download').className = 'baf w175 loading';
+  }
+  
+  outputmode = mode;
+  exportmode = outputmodul;
+  if((fullmode == 'on')&&((outputmodul == 'anycast')||(outputmodul == 'metastyle')||(outputmodul == 'wikigeeks'))) {
+    exportmode2 = exportmode+'-full';
+  } else {
+	exportmode2 = exportmode;
+  }
+  
+  if(fullmode == 'on') {
+    fullmode2 = true;
+  }
+  if(fullmode == 'off') {
+    fullmode2 = false;
+  }
+  
+  if((document.getElementById('defaulttextarea').value == ''))
+    {
+      if(mode == 'source') {
+        document.getElementById('showsource').className = 'baf w175';
+      }
+      if(mode == 'preview') {
+        document.getElementById('showpreview').className = 'baf w175';
+      }
+      if(mode == 'download') {
+        document.getElementById('download').className = 'baf w175';
+      }
+      if(document.getElementById('etherpad').value == '')
+        {
+          alert('please choose an episode');
+          return false;
+        }
+      else
+        {
+          getPadContentAndParse2(exportmode2, mode, fullmode);
+          return false;
+        }
+    }
+  
+  var geturl = '';
+  
+  if(mode == 'download')
+    {
+      geturl = 'http://tools.shownot.es/parsersuite/export.php?mode=download';
+    }
+  else
+    {
+      geturl = 'http://tools.shownot.es/parsersuite/export.php?mode=getpad';
+    }
+    
+    if(getCheckedValue(document.forms['outputmode'].elements['fullmode']) == 'on') {
+    if(((outputmodul == 'anycast')||(outputmodul == 'metastyle')||(outputmodul == 'wikigeeks'))) {
+      exportmode2 = exportmode+'-full';
+      fullmode2 = true;
+    }
+    }
+  
+  reqwest(
+            {
+                url: geturl
+              , type: 'html'
+              , method: 'post'
+              , data: { exportmode: exportmode2
+                       ,shownotes: document.getElementById('defaulttextarea').value
+                       ,tags: document.getElementById('tags').value
+                       ,amazon: document.getElementById('amazon').value
+                       ,thomann: document.getElementById('thomann').value
+                       ,tradedoubler: document.getElementById('tradedoubler').value
+                       ,fullmode: fullmode2
+                      }
+              , success: function (resp)
+                  {
+                    if(outputmode == 'download')
+                      {
+                        window.location = "http://tools.shownot.es/parsersuite/archive/download.php?mode=download&smode="+mode+"&get="+resp;
+                      }
+                    else if(outputmode == 'preview')
+                      {
+                        document.getElementById('outputsource').style.display = 'none';
+                        document.getElementById('outputview').style.display = 'block';
+                        if((exportmode == 'chapter')||(exportmode == 'print_r'))
+                          {
+                            resp = '<pre>'+resp+'</pre>';
+                          }
+                        style = '';
+                        if((exportmode == 'metastyle')||(exportmode == 'metastyle-full'))
+                        	{
+                        	  style += ".osf_items a::after, .osf_items span::after {content: '';}";
+                        	}
+                        document.getElementById('viewarea').srcdoc = '<html><head><title>'+mode+' - Shownotes</title><link rel="stylesheet" href="http://cdn.shownot.es/include-shownotes/shownotes.css" type="text/css" media="screen"><link rel="stylesheet" href="http://tools.shownot.es/parsersuite/preview.css" type="text/css" media="screen"><style>'+style+'</style></head><body><div class="content"><div class="box">'+resp+'</div></div><div class="footer">&nbsp;<span>© 2013 <a href="/">shownot.es</a></span></div></body></html>';
+                        
+                      }
+                    else if(outputmode == 'source')
+                      {
+                        document.getElementById('outputsource').style.display = 'block';
+                        document.getElementById('outputview').style.display = 'none';
+                        document.getElementById('sourcearea').value = resp;
+                      }
+                    if(mode == 'source') {
+                      document.getElementById('showsource').className = 'baf w175';
+                    }
+                    if(mode == 'preview') {
+                      document.getElementById('showpreview').className = 'baf w175';
+                    }
+                    if(mode == 'download') {
+                      document.getElementById('download').className = 'baf w175';
+                    }
+                  }
+            })
+}
 function getPadslist()
   {
     if(document.getElementById('search').value.length < 2)
@@ -206,6 +345,25 @@ function getPadslist()
             html += '<li><a onclick="document.getElementById(\'etherpad\').value = \''+item[0]+'\'; document.getElementById(\'defaulttextarea\').innerHTML = \'\';">'+item[1]+'</a></li>';
           }
         document.getElementById('padlist').innerHTML = html
+      });
+  }
+
+function getPadContentAndParse2(exportmode, mode, fulloutput)
+  {
+    if(document.getElementById('etherpad').value.length < 2)
+      {
+        alert('please enter a padname first');
+        return false;
+      }
+    document.getElementById('loadbutton').className = 'baf w175 loading';
+    getPadcontentByName(document.getElementById('etherpad').value, function(padcontent)
+      {
+        document.getElementById('defaulttextarea').innerHTML = padcontent;
+        if(mode != 'load')
+          {
+            osf_export(exportmode, mode, fulloutput);
+          }
+        document.getElementById('loadbutton').className = 'baf w175';
       });
   }
 

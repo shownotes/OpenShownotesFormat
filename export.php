@@ -23,6 +23,9 @@ if($_GET['mode'] == 'download')
     $dl = true;
   }
 
+
+//print_r($pad);
+
 function ctcs_header($type)
   {
     $contenttype = 'Content-Type: '.$type.'; ';
@@ -96,7 +99,7 @@ if(($mode != '')&&($pad != ''))
       }
     elseif($_POST['exportmode'] == 'metacast')
       {
-        include "./export/metacast.php";
+        include "./export/newmode.php";
         ctcs_header("text/html");
         if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
         echo osf_export_anycast($shownotes['export'], 2);

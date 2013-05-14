@@ -4,5 +4,7 @@ $inclusion = array('chapter', 'section', 'spoiler', 'topic', 'embed', 'video', '
 $amazonid  = 'timpritlove-21';
 $thomannid = '93439';
 $tradedoubler = '1857699';
+$exportmodul  = 'metastyle';
+$exportfullmodul = false; 
 
 ?>
