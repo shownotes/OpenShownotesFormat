@@ -1,171 +1,167 @@
 <?php
 
-if($_POST['shownotes'] == '')
-  {
+if ($_POST['shownotes'] == '') {
     include("../etherconnect/bootstrap.inc.php");
     include("../etherconnect/common.inc.php");
     include("../etherconnect/config.inc.php");
     include("../etherconnect/include.php");
-    
+
     $pad = fetch_recent_pads($base, $email, $password, $check_public, $time);
-  }
-else
-  {
+} else {
     $pad = $_POST['shownotes'];
-  }
+}
 
 $mode = $_POST['exportmode'];
 
 $dl = false;
 
-if($_GET['mode'] == 'download')
-  {
+if ($_GET['mode'] == 'download') {
     $dl = true;
-  }
+}
 
 
 //print_r($pad);
 
-function ctcs_header($type)
-  {
-    $contenttype = 'Content-Type: '.$type.'; ';
-    if(strpos($_SERVER["HTTP_ACCEPT_CHARSET"], 'utf-8'))
-      {
+function ctcs_header($type) {
+    $contenttype = 'Content-Type: ' . $type . '; ';
+    if (strpos($_SERVER["HTTP_ACCEPT_CHARSET"], 'utf-8')) {
         $contenttype .= 'charset=utf-8';
-      }
-    elseif(strpos($_SERVER["HTTP_ACCEPT_CHARSET"], 'ISO-8859-15'))
-      {
+    } elseif (strpos($_SERVER["HTTP_ACCEPT_CHARSET"], 'ISO-8859-15')) {
         $contenttype .= 'charset=ISO-8859-15';
-      }
-    else
-      {
+    } else {
         $contenttype .= 'charset=ISO-8859-1';
-      }
+    }
     header($contenttype);
-  }
+}
 
-if(($mode != '')&&($pad != ''))
-  {
+if (($mode != '') && ($pad != '')) {
     include('./osfregex.php');
-    
+
     $amazon       = $_POST['amazon'];
     $thomann      = $_POST['thomann'];
     $fullmode     = $_POST['fullmode'];
     $tradedoubler = $_POST['tradedoubler'];
-    
-    if($amazon == ''){$amazon = 'shownot.es-21';}
-    
-    $shownotes = osf_parser($pad, array('amazon'       => $amazon
-                                       ,'thomann'      => $thomann
-                                       ,'tradedoubler' => $tradedoubler
-                                       ,'fullmode'     => $fullmode
-                                       ,'tags'         => explode(' ', $_POST['tags'])));
-    
+
+    if ($amazon == '') {
+        $amazon = 'shownot.es-21';
+    }
+
+    $shownotes = osf_parser($pad, array(
+        'amazon' => $amazon,
+        'thomann' => $thomann,
+        'tradedoubler' => $tradedoubler,
+        'fullmode' => $fullmode,
+        'tags' => explode(' ', $_POST['tags'])
+    ));
+
     ob_start();
-    
-    if($_POST['exportmode'] == 'json')
-      {
+
+    if ($_POST['exportmode'] == 'json') {
         ctcs_header("application/json");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.json\"");}
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.json\"");
+        }
         echo json_encode($shownotes);
-      }
-    elseif($_POST['exportmode'] == 'anycast')
-      {
+    } elseif ($_POST['exportmode'] == 'anycast') {
         include "./export/anycast.php";
         ctcs_header("text/html");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.html\"");
+        }
         echo osf_export_anycast($shownotes['export'], 1);
-      }
-    elseif($_POST['exportmode'] == 'anycast-full')
-      {
+    } elseif ($_POST['exportmode'] == 'anycast-full') {
         include "./export/anycast.php";
         ctcs_header("text/html");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.html\"");
+        }
         echo osf_export_anycast($shownotes['export'], 2);
-      }
-    elseif($_POST['exportmode'] == 'metastyle')
-      {
+    } elseif ($_POST['exportmode'] == 'metastyle') {
         include "./export/metastyle.php";
         ctcs_header("text/html");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.html\"");
+        }
         echo osf_export_anycast($shownotes['export'], 1);
-      }
-    elseif($_POST['exportmode'] == 'metastyle-full')
-      {
+    } elseif ($_POST['exportmode'] == 'metastyle-full') {
         include "./export/metastyle.php";
         ctcs_header("text/html");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.html\"");
+        }
         echo osf_export_anycast($shownotes['export'], 2);
-      }
-    elseif($_POST['exportmode'] == 'metacast')
-      {
+    } elseif ($_POST['exportmode'] == 'metacast') {
         include "./export/newmode.php";
         ctcs_header("text/html");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.html\"");
+        }
         echo osf_export_anycast($shownotes['export'], 2);
-      }
-    elseif($_POST['exportmode'] == 'wikigeeks')
-      {
+    } elseif ($_POST['exportmode'] == 'wikigeeks') {
         include "./export/wikigeeks.php";
         ctcs_header("text/html");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.html\"");
+        }
         echo osf_export_wikigeeks($shownotes['export'], 1);
-      }
-    elseif($_POST['exportmode'] == 'wikigeeks-full')
-      {
+    } elseif ($_POST['exportmode'] == 'wikigeeks-full') {
         include "./export/wikigeeks.php";
         ctcs_header("text/html");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.html\"");}
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.html\"");
+        }
         echo osf_export_wikigeeks($shownotes['export'], 2);
-      }
-    elseif($_POST['exportmode'] == 'chapter')
-      {
+    } elseif ($_POST['exportmode'] == 'chapter') {
         header('Content-Type: text/html; charset=utf-8');
         include "./export/chapterlist.php";
         ctcs_header("text/plain");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.txt\"");
+        }
         header('Content-Type: text/html; charset=utf-8');
         echo osf_export_chapterlist($shownotes['export']);
-      }
-    elseif($_POST['exportmode'] == 'glossary')
-      {
+    } elseif ($_POST['exportmode'] == 'glossary') {
         include "./export/glossary.php";
         ctcs_header("text/plain");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
-        echo osf_export_glossary($shownotes['export'], array(0=>'glossary'));
-      }
-    elseif($_POST['exportmode'] == 'tagsalphabetical')
-      {
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.txt\"");
+        }
+        echo osf_export_glossary($shownotes['export'], array(
+            0 => 'glossary'
+        ));
+    } elseif ($_POST['exportmode'] == 'tagsalphabetical') {
         include "./export/glossary.php";
         ctcs_header("text/plain");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
-        echo osf_export_glossary($shownotes['export'], array(0=>''));
-      }
-    elseif($_POST['exportmode'] == 'print_r')
-      {
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.txt\"");
+        }
+        echo osf_export_glossary($shownotes['export'], array(
+            0 => ''
+        ));
+    } elseif ($_POST['exportmode'] == 'print_r') {
         ctcs_header("text/plain");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.txt\"");
+        }
         echo print_r($shownotes);
-      }
-    else
-      {
+    } else {
         ctcs_header("text/plain");
-        if($dl){header("Content-Disposition: attachment; filename=\"shownotes.txt\"");}
+        if ($dl) {
+            header("Content-Disposition: attachment; filename=\"shownotes.txt\"");
+        }
         print_r($shownotes);
-      }
-  }
+    }
+}
 
-if($dl)
-  {
-    $fileid = hash("sha256", rand(0, 9999999).time().rand(0,9999));
-    
-    mkdir('./archive/'.$fileid.'/', $mode=0777);
-    file_put_contents('./archive/'.$fileid.'/shownotes.txt', ob_get_clean());
-    
+if ($dl) {
+    $fileid = hash("sha256", rand(0, 9999999) . time() . rand(0, 9999));
+
+    mkdir('./archive/' . $fileid . '/', $mode = 0777);
+    file_put_contents('./archive/' . $fileid . '/shownotes.txt', ob_get_clean());
+
     echo $fileid;
-  }
-else {
-  echo ob_get_clean();
+} else {
+    echo ob_get_clean();
 }
 
 ?>
