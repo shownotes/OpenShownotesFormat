@@ -2,9 +2,24 @@
 
 <img src="http://tools.shownot.es/parser/osf_file_icon.png">
 
-Das ```Open Shownotes Format``` oder ```Podlove Shownotes Format``` ist ein Standard, um maschinenlesbare Shownotes für Podcasts zu schreiben.
+Das ```Open Shownotes Format``` ist ein Standard, um per Hand maschinenlesbare Shownotes für Podcasts zu schreiben.
+Die Shownotes können ganz einfach im OSF geschrieben und dann zu diversen anderen Formaten umgewandelt werden:
 
-Dieses Repo enthält die Standard-Definition sowie eine Referenz-Implementierung in PHP.
+* HTML
+* MP4 Chaps
+* PSC
+* ...
+
+Dieses Repo enthält die Referenz-Implementierung in PHP.
+Der Code wurde mit wenig Rücksicht auf Geschwindigkeit oder Schönheit geschrieben, Benutzung auf eigene Gefahr
+
+weitere Informationen:
+
+* [OSF in a Nutshell](https://github.com/shownotes/OSF-in-a-Nutshell/blob/master/OSF-in-a-Nutshell.md#deutsch) ist eine kurze Beschreibung des OSF-"Standards" *(auf deutsch und englisch)*
+* [tinyOSF.js](https://github.com/shownotes/tinyOSF.js) ist eine Referenzimplementierung des OSF Parsers in JavaScript
+* [wp-osf-shownotes](https://github.com/SimonWaldherr/wp-osf-shownotes) ([auf wordpress.org](http://wordpress.org/extend/plugins/shownotes/)) ist ein WordPress Plugin (auch als [PPP Modul erhältlich](https://github.com/podlove/podlove-publisher/tree/module-shownotes)), welches die Umwandlung von OSF zu HTML direkt im Blog ermöglicht
+
+
 
 ---
 
@@ -88,9 +103,6 @@ Zur stärkeren Kaskadierung erhöht man die Anzahl der Bindestriche ```-- ``` ``
 ---
 
 #Info
-
-Der gesammte Inhalt dieses Repos steht unter der MIT Lizenz zur Verfügung.  (ausgenommen die Shownote Beispiele)
-Jeder ist eingeladen, bei diesem Projekt mitzuwirken.
 
 OSF ist Teil des [Shownot.es Projekt](http://shownot.es/), sowie von [Podlove](http://podlove.org/)
 
