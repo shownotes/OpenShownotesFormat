@@ -53,8 +53,6 @@ if ($mode == 'osf') {
   $mode = 'clean osf';
 }
 
-$shownotesArray = osf_parser($shownotesString, $data);
-
 function is_feed() {
   return false;
 }
@@ -66,7 +64,32 @@ $shownotes_options['main_delimiter'] = '';
 $shownotes_options['main_last_delimiter'] = '';
 $osf_starttime = 0;
 
-if (($mode == 'block style') || ($mode == 'button style')) {
+if ($mode == 'shownot.es') {
+  $fullmode             = 'true';
+  $fullint              = 2;
+  $tags                 = explode(' ', 'chapter section spoiler topic embed video audio image shopping glossary source app title quote link podcast news');
+  $data['tags']         = $tags;
+  $data['fullmode']     = $fullmode;
+  $data['amazon']       = 'shownot.es-21';
+  $data['thomann']      = '93439';
+  $data['tradedoubler'] = '16248286';
+}
+
+$shownotesArray = osf_parser($shownotesString, $data);
+
+if ($mode == 'shownot.es') {
+  $fullmode             = 'true';
+  $fullint              = 2;
+  $tags                 = explode(' ', 'chapter section spoiler topic embed video audio image shopping glossary source app title quote link podcast news');
+  $data['tags']         = $tags;
+  $data['fullmode']     = $fullmode;
+  $data['amazon']       = 'shownot.es-21';
+  $data['thomann']      = '93439';
+  $data['tradedoubler'] = '16248286';
+  $export = '<div class="info">  <div class="thispodcast">  <div class="podcastimg">  <img src="" alt="Logo">  </div> <?php  include "./../episodeselector.php"; insertselector();  ?>  </div>  <div class="episodeinfo">  <table>  <tr>  <td>Podcast</td><td><a href="#"></a></td>  </tr>  <tr>  <td>Episode</td><td><a href="#"></a></td>  </tr>  <tr>  <td>Sendung vom</td><td>'.date("j. M Y").'</td>  </tr>  <tr>  <td>Podcaster</td><td>'.osf_get_persons('podcaster', $shownotesArray['header']).'</td>  </tr>  <tr>  <td>Shownoter</td>  <td>'.osf_get_persons('shownoter', $shownotesArray['header']).'</td>  </tr>  </table>  </div> </div><br/><br/>'."\n\n";
+  
+  $export .= osf_export_block($shownotesArray['export'], 2, 'block style');
+} elseif (($mode == 'block style') || ($mode == 'button style')) {
   $export = osf_export_block($shownotesArray['export'], $fullint, $mode);
 } elseif ($mode == 'list style') {
   $export = osf_export_list($shownotesArray['export'], $fullint, $mode);
@@ -83,7 +106,11 @@ if (($mode == 'block style') || ($mode == 'button style')) {
     }
   }
 } elseif ($mode == 'JSON') {
-  $export = json_encode($shownotesArray['header']);
+  $export = json_encode($shownotesArray['export']);
+} elseif ($mode == 'Chapter') {
+  $export = osf_export_chapterlist($shownotesArray['export']);
+} elseif ($mode == 'PSC') {
+  $export = osf_export_psc($shownotesArray['export']);
 }
 
 echo $export;

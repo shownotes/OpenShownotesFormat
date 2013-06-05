@@ -81,14 +81,17 @@ if($_GET['configfile'] != '')
       <form name="outputmode" method="get" action="" onsubmit="return false;" style="width: 225px; text-align: left; margin: 15px auto;">
         <!--<label class="baf grey w120 add-on" for="mainmode" id="label-mainmode id7">main mode</label>-->
         <select id="mainmode">
+          <option>shownot.es</option>
           <option>block style</option>
           <option>button style</option>
           <option>list style</option>
           <option>clean osf</option>
           <option>glossary</option>
           <option>shownoter</option>
+          <option>podcaster</option>
           <option>JSON</option>
           <option>Chapter</option>
+          <option>PSC</option>
         </select>
       </form>
     </div>
