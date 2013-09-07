@@ -4,3 +4,6 @@
 [submodule "reqwest"]
 	path = reqwest
 	url = https://SimonWaldherr@github.com/SimonWaldherr/reqwest.git
+[submodule "wp-osf-shownotes"]
+	path = wp-osf-shownotes
+	url = https://github.com/SimonWaldherr/wp-osf-shownotes.git
