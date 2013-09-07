@@ -41,6 +41,8 @@ $data = array(
 $encodedData = str_replace(' ','+',$_POST['pad']);
 $shownotesString = "\n" . base64_decode($encodedData) . "\n";
 
+$shownotesString = str_replace("\n", " \n", $shownotesString);
+
 $mode = $_POST['mainmode'];
 
 if ($mode == 'block') {
@@ -76,6 +78,8 @@ if ($mode == 'shownot.es') {
 }
 
 $shownotesArray = osf_parser($shownotesString, $data);
+
+//die(print_r($shownotesArray, true));
 
 if ($mode == 'shownot.es') {
   $fullmode             = 'true';

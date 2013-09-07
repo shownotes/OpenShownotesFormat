@@ -25,6 +25,14 @@ window.onload = function () {
   });
 };
 
+function utf8_to_b64( str ) {
+    return window.btoa(unescape(encodeURIComponent( str )));
+}
+
+function b64_to_utf8( str ) {
+    return decodeURIComponent(escape(window.atob( str )));
+}
+
 function searchPadslist(e) {
   var i, pads = document.getElementById('padlist').getElementsByTagName('span');
   for (i = 0; i < pads.length; i++) {
@@ -47,6 +55,7 @@ function loadPad(name) {
 
 function parsePad() {
   var padContent = window.btoa(unescape(encodeURIComponent( document.getElementById('defaulttextarea').value )));
+  //var padContent = utf8_to_b64(document.getElementById('defaulttextarea').value);
   getOptions();
   majaX({
     'url': './api.php',

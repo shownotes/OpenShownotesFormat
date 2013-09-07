@@ -34,7 +34,7 @@ if($_GET['configfile'] != '')
 </head>
 <body>
   <div class="content">
-    <div class="header">
+    <div class="header box">
       <div class="title">
         <a href="http://shownot.es/"><img src="http://cdn.shownot.es/img/logo.png" alt="Shownot.es Logo">Die Shownotes</a>
       </div>
@@ -63,7 +63,7 @@ if($_GET['configfile'] != '')
         <span class="baf-icomoon normal" aria-hidden="true" data-icon="&#xe084;">&nbsp;
         </span> inc. tags
       </label>
-      <input class="input-grey" id="tags" name="text-inc. tags3" maxlength="" size="16" value="<?php echo implode(' ', $inclusion); ?>" type="text"/>
+      <input class="input-grey" id="tags" name="text-inc. tags3" maxlength="" size="16" value="" type="text"/>
     </div>
     <div class="input-prepend baf-input baf-group-x4">
       <label class="baf grey w120 add-on" for="amazon" id="label-amazon id4">amazon id</label>
@@ -109,7 +109,7 @@ if($_GET['configfile'] != '')
     <a href="http://flattr.com/thing/1062678/SimonWaldherrOSF-Parser-Suite-on-GitHub" target="_blank">
     <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
     </div>
-    <div class="footer">&nbsp;<span>&copy; 2013 <a href="http://shownot.es/">shownot.es</a></span></div>
+    <div class="footer box">&nbsp;<span>&copy; 2013 <a href="http://shownot.es/">shownot.es</a></span></div>
   </div>
 <script src="http://selfcss.org/baf/js/baf.min.js"></script>
 <script src="http://simonwaldherr.github.io/majaX.js/majax.js"></script>
