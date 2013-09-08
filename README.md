@@ -1,6 +1,6 @@
 #OpenShownotesFormat
 
-<img src="http://tools.shownot.es/parser/osf_file_icon.png">
+<img src="https://raw.github.com/shownotes/OpenShownotesFormat/master/img/osf_file_icon.png">
 
 Das ```Open Shownotes Format``` ist ein Standard, um per Hand maschinenlesbare Shownotes für Podcasts zu schreiben.
 Die Shownotes können ganz einfach im OSF geschrieben und dann zu diversen anderen Formaten umgewandelt werden:
@@ -104,6 +104,6 @@ Zur stärkeren Kaskadierung erhöht man die Anzahl der Bindestriche ```-- ``` ``
 
 #Info
 
-OSF ist Teil des [Shownot.es Projekt](http://shownot.es/), sowie von [Podlove](http://podlove.org/)
+OSF ist Teil des [Shownot.es Projekt](http://shownot.es/)  
 
 Eine Demoversion ist unter <http://tools.shownot.es/parsersuite/?configfile=shownotes> zu finden.  
