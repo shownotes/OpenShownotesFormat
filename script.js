@@ -80,9 +80,9 @@ function parsePad() {
       'expmode': options.expmode
     }
   }, function (txt) {
-    var style = '';
+    var style = '.osf_chaptertime, .osf_chapter {vertical-align: baseline;}';
 
-    document.getElementById('viewarea').srcdoc = '<html><head><title>' + options.mainmode + ' - Shownotes</title><link rel="stylesheet" href="http://cdn.shownot.es/include-shownotes/shownotes.css" type="text/css" media="screen"><link rel="stylesheet" href="http://tools.shownot.es/parsersuite/preview.css" type="text/css" media="screen"><style>' + style + '</style></head><body><div class="content"><div class="box">' + txt + '</div></div><div class="footer">&nbsp;<span>© 2013 <a href="/">shownot.es</a></span></div></body></html>';
+    document.getElementById('viewarea').srcdoc = '<html><head><title>' + options.mainmode + ' - Shownotes</title><link rel="stylesheet" href="http://shownotes.github.io/tinyOSF.js/shownotes.css" type="text/css" media="screen"><link rel="stylesheet" href="http://tools.shownot.es/parsersuite/preview.css" type="text/css" media="screen"><style>' + style + '</style></head><body><div class="content"><div class="box">' + txt + '</div></div><div class="footer">&nbsp;<span>© 2013 <a href="/">shownot.es</a></span></div></body></html>';
     document.getElementById('sourcearea').innerHTML = txt;
 
     if (expmode === 'preview') {
