@@ -15,7 +15,7 @@ Der Code wurde mit wenig Rücksicht auf Geschwindigkeit oder Schönheit geschrie
 
 weitere Informationen:
 
-* [OSF in a Nutshell](https://github.com/shownotes/OSF-in-a-Nutshell/blob/master/OSF-in-a-Nutshell.md#deutsch) ist eine kurze Beschreibung des OSF-"Standards" *(auf deutsch und englisch)*
+* [OSF in a Nutshell](https://github.com/shownotes/OSF-in-a-Nutshell/blob/master/OSF-in-a-Nutshell.de.md) ist eine kurze Beschreibung des OSF-"Standards" *(auf deutsch und englisch)*
 * [tinyOSF.js](https://github.com/shownotes/tinyOSF.js) ist eine Referenzimplementierung des OSF Parsers in JavaScript
 * [wp-osf-shownotes](https://github.com/SimonWaldherr/wp-osf-shownotes) ([auf wordpress.org](http://wordpress.org/extend/plugins/shownotes/)) ist ein WordPress Plugin (auch als [PPP Modul erhältlich](https://github.com/podlove/podlove-publisher/tree/module-shownotes)), welches die Umwandlung von OSF zu HTML direkt im Blog ermöglicht
 
