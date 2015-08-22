@@ -1,0 +1,16 @@
+{
+  "name": "osf-export-templates",
+  "version": "0.5.0",
+  "homepage": "https://github.com/shownotes/osf-export-templates",
+  "authors": [
+    "luto <m@luto.at>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

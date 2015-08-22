@@ -1,0 +1,198 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf190
+{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue233;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid2\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid3\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li2160\lin2160 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+{\info
+{\title OSF-in-a-Nutshell.de}}\deftab720
+\pard\pardeftab720\sa321
+
+\f0\b\fs48 \cf0 OSF in a Nutshell\
+\pard\pardeftab720\sa240
+{\field{\*\fldinst{HYPERLINK "http://shownotes.github.io/OSF-in-a-Nutshell/OSF-in-a-Nutshell.en.html"}}{\fldrslt 
+\b0\fs24 \cf2 \ul \ulc2 english}}
+\b0\fs24  - {\field{\*\fldinst{HYPERLINK "http://shownotes.github.io/OSF-in-a-Nutshell/OSF-in-a-Nutshell.de.html"}}{\fldrslt \cf2 \ul \ulc2 deutsch}}\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf0 Erkl\'e4rung\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf0 Das Open Shownotes Format, oder auch kurz OSF ist ein Format welches die Erstellung von Shownotes f\'fcr Podcasts erleichtert.\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf0 Beispiele\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf0 Zeitangabe als HH:MM:SS gefolgt von Text und Chapter-Tag\uc0\u8232 
+\f1 00:00:00 Intro #c
+\f0 \
+Zeitangabe als HH:MM:SS.ms gefolgt von Text und Link in spitzen Klammern\uc0\u8232 
+\f1 00:01:25.234 Shownot.es Projekt <http://shownot.es/>
+\f0 \
+Zus\'e4tzliche Informationen mittels Glossar (Wikipedia-Link)\uc0\u8232 `
+\f1 00:03:13 Geofencing <http://de.wikipedia.org/wiki/Geofencing> #g
+\f0 \
+Zeitangabe als UNIX-Timestamp\uc0\u8232 
+\f1 1373135108 Sendungsbeginn #c
+\f0 \
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf0 Grundlagen\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf0 Wichtige Grundlagen des Open Shownotes Format (OSF) sind:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720
+\ls1\ilvl0\cf0 {\listtext	\'95	}jede Zeile ist ein eigenes Item (d.h. zusammenh\'e4ngende Informationen nicht durch 
+\f1 \\n
+\f0  trennen)\
+{\listtext	\'95	}leere Zeilen werden ignoriert\
+{\listtext	\'95	}jedes Item 
+\b kann
+\b0  eine Zeitangabe enthalten\
+{\listtext	\'95	}Zeitangaben sind als UNIX-Timestamps oder im Format 
+\f1 HH:MM:SS
+\f0  anzugeben (wenn das {\field{\*\fldinst{HYPERLINK "http://pad.shownot.es/"}}{\fldrslt \cf2 \ul \ulc2 ShowPad}} zum Shownotes schreiben verwendet wird, k\'f6nnen diese Zeitangaben per 
+\f1 ###
+\f0  und einem darauf folgendem Leerzeichen automatisch eingef\'fcgt werden)\
+{\listtext	\'95	}nach der Zeitangabe (oder am Anfang der Zeile wenn keine Zeit angegeben wurde) kann eine Angabe \'fcber die Hierarchieebene mittels 
+\f1 -
+\f0  gemacht werden. Je mehr 
+\f1 -
+\f0 , desto tiefer verschachtelt ist das Item.\
+{\listtext	\'95	}mit Hierarchien 
+\b sollte
+\b0  man nicht \'fcbertreiben\
+{\listtext	\'95	}jedes Item 
+\b muss
+\b0  einen Text enthalten, dieser kann die meisten UTF\'968 Zeichen enthalten, um Probleme zu vermeiden w\'e4re es aber Sinnvoll, sich auf ISO\'968859\'9615 zu beschr\'e4nken\
+{\listtext	\'95	}Items 
+\b sollten
+\b0  mit Gro\'dfbuchstaben beginnen, es sei den es handelt sich um Subitems oder Halbs\'e4tze\
+{\listtext	\'95	}Satzzeichen am Ende von Items 
+\b sollten
+\b0  vermieden werden\
+{\listtext	\'95	}Es sollten keine Sprachspezifischen Anf\'fchrungszeichen, sondern nur 
+\f1 "
+\f0  verwendet werden\
+{\listtext	\'95	}jedes Item 
+\b kann
+\b0  
+\b eine
+\b0  URL enthalten, diese ist mit 
+\f1 <
+\f0  am Anfang und 
+\f1 >
+\f0  am Ende zu kennzeichnen\
+{\listtext	\'95	}jedes Item 
+\b kann
+\b0  
+\b mehrere
+\b0  Tags enthalten, diese sind mit 
+\f1 #
+\f0  zu beginnen\
+{\listtext	\'95	}ausserdem gibt es Tags mit vordefinierten Eigenschaften:\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440
+\ls1\ilvl1
+\f1 \cf0 {\listtext	\uc0\u9702 	}#chapter
+\f0  (
+\f1 #c
+\f0 ) kennzeichnet ein Item als Beginn eines neuen Kapitels\
+\ls1\ilvl1
+\f1 {\listtext	\uc0\u9702 	}#topic
+\f0  (
+\f1 #t
+\f0 ) kennzeichnet ein Item als wichtigen Bestandteil der Shownotes\
+\ls1\ilvl1
+\f1 {\listtext	\uc0\u9702 	}#video
+\f0  (
+\f1 #v
+\f0 ), 
+\f1 #audio
+\f0  (
+\f1 #a
+\f0 ) und 
+\f1 #image
+\f0  (
+\f1 #i
+\f0 ) k\'f6nnen verwendet werden, um Mediendateien zu referenzieren\
+\ls1\ilvl1
+\f1 {\listtext	\uc0\u9702 	}#quote
+\f0  (
+\f1 #q
+\f0 ) kennzeichnet Zitate, es sollte immer die Person die es gesagt hat angegeben werden\
+\pard\tx1660\tx2160\pardeftab720\li2160\fi-2160
+\ls1\ilvl2\cf0 {\listtext	\uc0\u9642 	}Alle in den Shownotes erw\'e4hnten Personen (egal ob bei Zitaten oder Erw\'e4hnungen) sollten auch im Header angegeben werden (FAMOUS)\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440
+\ls1\ilvl1\cf0 {\listtext	\uc0\u9702 	}mit 
+\f1 #shopping
+\f0  k\'f6nnen Links zur Onlineshops gekennzeichnet werden\
+\ls1\ilvl1
+\f1 {\listtext	\uc0\u9702 	}#prediction
+\f0  wird verwendet, um Vorhersagen zu markieren, die sp\'e4ter \'fcberpr\'fcft werden m\'fcssen\
+{\listtext	\uc0\u9702 	}Links mit weiterf\'fchrenden und beschreibenden Inhalten, auf die aber im Podcast nicht weiter eingegangen worden ist k\'f6nnen mit 
+\f1 #glossary
+\f0  gekennzeichnet werden\
+{\listtext	\uc0\u9702 	}Links die direkt im Podcast erw\'e4hnt worden sind, sind mit 
+\f1 #link
+\f0  zu kennzeichnen\
+{\listtext	\uc0\u9702 	}unfertige Zeilen sollten mit 
+\f1 #revision
+\f0 (
+\f1 #r
+\f0 ) gekennzeichnet werden, diese werden nicht exportiert\
+{\listtext	\uc0\u9702 	}zus\'e4tzlich werden jedem Item, welches einen Link enth\'e4lt die Top- und Second Level Domain als Tags beigef\'fcgt (z.B.: 
+\f1 #googlede
+\f0 )\
+{\listtext	\uc0\u9702 	}weitere Tags k\'f6nnen ebenfalls verwendet werden, haben jedoch vorerst keine Auswirkungen auf das Ergebnis (f\'fcr einige Tags gibt es kleine Bildchen: {\field{\*\fldinst{HYPERLINK "http://simonwaldherr.github.io/BitmapWebIcons/"}}{\fldrslt \cf2 \ul \ulc2 BitmapWebIcons}})\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf0 Wortdefinition\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf0 Die folgende Erkl\'e4rung muss wie in {\field{\*\fldinst{HYPERLINK "http://tools.ietf.org/html/rfc2119"}}{\fldrslt \cf2 \ul \ulc2 RFC 2119}} definiert gelesen werden, wobei in der deutschen \'dcbersetzung 
+\f1 MUST
+\f0 /
+\f1 SHALL
+\f0  mit 
+\f1 MUSS
+\f0 , 
+\f1 REQUIRED
+\f0  mit 
+\f1 BEN\'d6TIGT
+\f0 , 
+\f1 MUST NOT
+\f0 /
+\f1 SHALL NOT
+\f0  mit 
+\f1 DARF NICHT
+\f0 , 
+\f1 SHOULD
+\f0  mit 
+\f1 SOLLTE
+\f0 /
+\f1 KANN
+\f0 , 
+\f1 SHOULD NOT
+\f0  mit 
+\f1 SOLLTE NICHT
+\f0  und 
+\f1 MAY
+\f0  mit 
+\f1 KANN
+\f0  \'fcbersetzt wurde.\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf0 Tools\
+\pard\tx220\tx720\pardeftab720\li720\fi-720
+\ls2\ilvl0
+\b0\fs24 \cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/shownotes/show-pad"}}{\fldrslt \ul ShowPad}}\cf0  ist eine Erweiterung von {\field{\*\fldinst{HYPERLINK "https://github.com/ether/etherpad-lite"}}{\fldrslt \cf2 \ul \ulc2 Etherpad lite}} um Usermanagement, Zeitmanagement, ein sch\'f6nes Interface sowie Im- und Export Funktionen\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/shownotes/tinyOSF.js"}}{\fldrslt \ul tinyOSF.js}}\cf0  ist eine Referenzimplementierung des OSF Parsers in JavaScript\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/shownotes/OpenShownotesFormat"}}{\fldrslt \ul OpenShownotesFormat}}\cf0  ist die erste Implementierung des OSF Standards (geschrieben in PHP). Eine frei verwendbare Installation dieses Tools ist auf {\field{\*\fldinst{HYPERLINK "http://tools.shownot.es/parsersuite/?configfile=shownotes"}}{\fldrslt \cf2 \ul \ulc2 tools.shownot.es/parsersuite}} zu finden\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/SimonWaldherr/wp-osf-shownotes"}}{\fldrslt \ul wp-osf-shownotes}}\cf0  ({\field{\*\fldinst{HYPERLINK "http://wordpress.org/extend/plugins/shownotes/"}}{\fldrslt \cf2 \ul \ulc2 auf wordpress.org}}) ist ein WordPress Plugin), welches die Umwandlung von OSF zu HTML direkt im Blog erm\'f6glicht\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/SimonWaldherr/OSF.php"}}{\fldrslt \ul OSF.php}}\cf0  sind PHP Funktionen um OSF nach HTML (und andere Formate) zu wandeln (dieses Repo sollte als Submodul in Projekte eingef\'fcgt werden, welche OSF verarbeiten)\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/shownotes/ep_insertTimestamp"}}{\fldrslt \ul ep_insertTimestamp}}\cf0  erweitert EPL Installationen um eine automatisierte Datum/Zeit eingabe\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/shownotes/EtherpadBookmarklets"}}{\fldrslt \ul EtherpadBookmarklets}}\cf0  sind Bookmarklets die das {\field{\*\fldinst{HYPERLINK "http://shownot.es/"}}{\fldrslt \cf2 \ul \ulc2 Shownot.es Team}} vor dem Umstieg auf {\field{\*\fldinst{HYPERLINK "https://github.com/ether/etherpad-lite"}}{\fldrslt \cf2 \ul \ulc2 Etherpad lite}} verwendete\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/SimonWaldherr/parseTime.js"}}{\fldrslt \ul ParseTime.js}}\cf0  wandelt Zeitangaben in den Shownotes in weiterverarbeitbare Zahlen um\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/Drake81/shownotes-message-service"}}{\fldrslt \ul XMPP Notification Service}}\cf0 \
+}

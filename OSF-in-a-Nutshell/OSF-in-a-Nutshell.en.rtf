@@ -1,0 +1,168 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf190
+{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue233;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid2\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid3\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li2160\lin2160 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+{\info
+{\title OSF-in-a-Nutshell.en}}\deftab720
+\pard\pardeftab720\sa321
+
+\f0\b\fs48 \cf0 OSF in a Nutshell\
+\pard\pardeftab720\sa240
+{\field{\*\fldinst{HYPERLINK "http://shownotes.github.io/OSF-in-a-Nutshell/OSF-in-a-Nutshell.en.html"}}{\fldrslt 
+\b0\fs24 \cf2 \ul \ulc2 english}}
+\b0\fs24  - {\field{\*\fldinst{HYPERLINK "http://shownotes.github.io/OSF-in-a-Nutshell/OSF-in-a-Nutshell.de.html"}}{\fldrslt \cf2 \ul \ulc2 deutsch}}\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf0 Explanation\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf0 The Open Show Notes format, or short OSF is a format which simplifies the creation of show notes for podcasts.\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf0 Beispiele\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf0 time information as HH:MM:SS followed by text and Chapter-Tag\uc0\u8232 
+\f1 00:00:00 Intro #c
+\f0 \
+time information as HH:MM:SS.ms followed by text and a url enclosed in angle brackets\uc0\u8232 
+\f1 00:01:25.234 Shownot.es Projekt <http://shownot.es/>
+\f0 \
+additional information via glossary (Wikipedia-Link)\uc0\u8232 
+\f1 00:03:13 Geofencing <http://de.wikipedia.org/wiki/Geofencing> #g
+\f0 \
+time information as UNIX-Timestamp\uc0\u8232 
+\f1 1373135108 Sendungsbeginn #c
+\f0 \
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf0 Basics\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf0 Important basics of the Open Show Notes format (OSF) are:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720
+\ls1\ilvl0\cf0 {\listtext	\'95	}each line is its own separate item (related information 
+\b shall not
+\b0  be separated by 
+\f1 \\n
+\f0 )\
+{\listtext	\'95	}blank lines are ignored\
+{\listtext	\'95	}each item 
+\b may
+\b0  contain a time specification\
+{\listtext	\'95	}Times are to specify as UNIX timestamps or in 
+\f1 HH:MM:SS
+\f0  format (if the {\field{\*\fldinst{HYPERLINK "http://pad.shownot.es/"}}{\fldrslt \cf2 \ul \ulc2 Showpad}} is used to write show notes, these times can be made by 
+\f1 ###
+\f0  followed by a whitespace)\
+{\listtext	\'95	}after the time (or at the beginning of the line if no time is specified), a level of hierarchy can be set with 
+\f1 -
+\f0 . The more 
+\f1 -
+\f0  the deeper the item is nested.\
+{\listtext	\'95	}don\'92t use to much hierarchies\
+{\listtext	\'95	}each item 
+\b must
+\b0  contain a text, it can contain most of UTF\'968 characters, but to avoid problems, it would make sense to limit themselves to ISO\'968859\'9615\
+{\listtext	\'95	}Items 
+\b should
+\b0  begin with a capital letter, unless it is a subitems or a half-sentences\
+{\listtext	\'95	}Punctuation marks at the end of items 
+\b should
+\b0  be avoided\
+{\listtext	\'95	}Don\'92t write language specific quotation marks, use 
+\f1 "
+\f0 , they will be converted automatically by the parser\
+{\listtext	\'95	}each item 
+\b may
+\b0  contain 
+\b one
+\b0  URL, this URL has to beginn with 
+\f1 <
+\f0  and end with 
+\f1 >
+\f0 \
+{\listtext	\'95	}each item 
+\b may
+\b0  contain 
+\b multiple
+\b0  tags, they have to start with 
+\f1 #
+\f0 \
+{\listtext	\'95	}There are also tags with predefined properties:\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440
+\ls1\ilvl1
+\f1 \cf0 {\listtext	\uc0\u9702 	}#chapter
+\f0  (
+\f1 #c
+\f0 ) identifies an item as the beginning of a new chapter\
+\ls1\ilvl1
+\f1 {\listtext	\uc0\u9702 	}#topic
+\f0  (
+\f1 #t
+\f0 ) identifies an item as an important part of the show notes\
+\ls1\ilvl1
+\f1 {\listtext	\uc0\u9702 	}#video
+\f0  (
+\f1 #v
+\f0 ), 
+\f1 #audio
+\f0  (
+\f1 #a
+\f0 ) and 
+\f1 #image
+\f0  (
+\f1 #i
+\f0 ) and can be used to refer to media files\
+\ls1\ilvl1
+\f1 {\listtext	\uc0\u9702 	}#quote
+\f0  (
+\f1 #q
+\f0 ) marks quotes, it should also be given the name of the person who said it\
+\pard\tx1660\tx2160\pardeftab720\li2160\fi-2160
+\ls1\ilvl2\cf0 {\listtext	\uc0\u9642 	}All persons mentioned in the show notes (whether in citations or references) should also be specified in the header (FAMOUS)\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440
+\ls1\ilvl1
+\f1 \cf0 {\listtext	\uc0\u9702 	}#shopping
+\f0  links can be marked for online shops\
+\ls1\ilvl1
+\f1 {\listtext	\uc0\u9702 	}#prediction
+\f0  is used to highlight predictions that need to be checked later\
+{\listtext	\uc0\u9702 	}Links with further and descriptive content, which was not directly discussed in the podcast can be marked with 
+\f1 #glossary
+\f0 \
+{\listtext	\uc0\u9702 	}Links that have been directly mentioned in the podcast, have to be marked with 
+\f1 #link
+\f0 \
+{\listtext	\uc0\u9702 	}unfinished items should be marked with 
+\f1 #revision
+\f0 (
+\f1 #r
+\f0 ), so they wan\'92t appear in the parsed output\
+{\listtext	\uc0\u9702 	}in addition to any item that contains a link, the top and second level domain are attached as a tag (e.g.: 
+\f1 #googlecom
+\f0 )\
+{\listtext	\uc0\u9702 	}more tags can also be used, but have no immediate impact on the result (for some tags exists icons: {\field{\*\fldinst{HYPERLINK "http://simonwaldherr.github.io/BitmapWebIcons/"}}{\fldrslt \cf2 \ul \ulc2 BitmapWebIcons}})\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf0 Word definition\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf0 The following statements has to be interpreted as described in {\field{\*\fldinst{HYPERLINK "http://tools.ietf.org/html/rfc2119"}}{\fldrslt \cf2 \ul \ulc2 RFC 2119}}.\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf0 Tools\
+\pard\tx220\tx720\pardeftab720\li720\fi-720
+\ls2\ilvl0
+\b0\fs24 \cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/shownotes/show-pad"}}{\fldrslt \ul ShowPad}}\cf0  is an extension to {\field{\*\fldinst{HYPERLINK "https://github.com/ether/etherpad-lite"}}{\fldrslt \cf2 \ul \ulc2 Etherpad lite}} with user management, time management, a nice interface, and import and export functions\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/shownotes/tinyOSF.js"}}{\fldrslt \ul tinyOSF.js}}\cf0  is a reference implementation of the OSF parser in JavaScript\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/shownotes/OpenShownotesFormat"}}{\fldrslt \ul OpenShownotesFormat}}\cf0  is the first implementation of the OSF standards (written in PHP). A freely usable installation of this tool is available at {\field{\*\fldinst{HYPERLINK "http://tools.shownot.es/parsersuite/?configfile=shownotes"}}{\fldrslt \cf2 \ul \ulc2 tools.shownot.es/parsersuite}}\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/SimonWaldherr/wp-osf-shownotes"}}{\fldrslt \ul wp-osf-shownotes}}\cf0  ({\field{\*\fldinst{HYPERLINK "http://wordpress.org/extend/plugins/shownotes/"}}{\fldrslt \cf2 \ul \ulc2 at wordpress.org}}) is a WordPress Plugin), which allows the conversion of OSF to HTML directly in the blog\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/SimonWaldherr/OSF.php"}}{\fldrslt \ul OSF.php}}\cf0  are PHP functions to convert OSF to HTML (and other formats) (it\'92s meant to be included as submodule in other projects)\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/shownotes/ep_insertTimestamp"}}{\fldrslt \ul ep_insertTimestamp}}\cf0  extends EPL installations by an automated date / time input\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/shownotes/EtherpadBookmarklets"}}{\fldrslt \ul EtherpadBookmarklets}}\cf0  are bookmarklets which were used by the {\field{\*\fldinst{HYPERLINK "http://shownot.es/"}}{\fldrslt \cf2 \ul \ulc2 Shownot.es Team}} before moving to {\field{\*\fldinst{HYPERLINK "https://github.com/ether/etherpad-lite"}}{\fldrslt \cf2 \ul \ulc2 Etherpad Lite}}\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/SimonWaldherr/parseTime.js"}}{\fldrslt \ul ParseTime.js}}\cf0  can parse Timedefinitions in Show notes\
+\ls2\ilvl0\cf2 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://github.com/Drake81/shownotes-message-service"}}{\fldrslt \ul XMPP Notification Service}}\cf0 \
+}
