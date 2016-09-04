@@ -105,5 +105,3 @@ Zur stärkeren Kaskadierung erhöht man die Anzahl der Bindestriche ```-- ``` ``
 #Info
 
 OSF ist Teil des [Shownot.es Projekt](http://shownot.es/)  
-
-Eine Demoversion ist unter <http://tools.shownot.es/parsersuite/?configfile=shownotes> zu finden.  
